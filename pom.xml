@@ -33,7 +33,7 @@
         <jodaTimeVersion>2.3</jodaTimeVersion>
         <hashidsVersion>1.0.1</hashidsVersion>
         <commonsNetVersion>3.1</commonsNetVersion>
-        <commonsFileupload>1.2.2</commonsFileupload>
+        <commonsFileupload>1.3.3</commonsFileupload>
         <commonsIoVersion>2.0.1</commonsIoVersion>
         <pagehelperVersion>4.1.0</pagehelperVersion>
         <mybatisPaginatorVersion>1.2.17</mybatisPaginatorVersion>
