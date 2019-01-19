@@ -12,7 +12,7 @@ public interface UserService {
      * 登录接口
      * @param username
      * @param password
-     * @return
+     * @return user
      */
     User login(String username, String password);
 }

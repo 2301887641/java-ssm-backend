@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     /**
      * 根据username进行查找
-     * @param username
+     * @param username 姓名
      * @return User
      */
     User selectByUsername(String username);

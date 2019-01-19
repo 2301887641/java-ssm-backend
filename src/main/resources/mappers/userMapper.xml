@@ -13,7 +13,7 @@
         create_time
     </sql>
 
-    <resultMap id="baseResultMap" type="user">
+    <resultMap id="baseResultMap" type="com.mall.pojo.User">
             <id property="id" column="id" jdbcType="INTEGER"/>
     </resultMap>
 
