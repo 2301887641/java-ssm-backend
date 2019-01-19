@@ -11,5 +11,6 @@
     <!--使用AspectJ提供的注解方式实现aop-->
     <aop:aspectj-autoproxy/>
     <!--引入其他-->
-    <import resource="applicationContext-datasource.xml"/>
+    <import resource="classpath:applicationContext-datasource.xml"/>
+    <import resource="classpath:applicationContext-configuration.xml"/>
 </beans>

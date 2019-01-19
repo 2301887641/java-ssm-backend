@@ -23,11 +23,10 @@ public class LoginController {
 
     @PostMapping("/login.do")
     @ResponseBody
-    public Result doLogin(String username,String password){
-        User user = userService.login(username, password);
+    public Result doLogin(com.mall.vo.User user){
+        User users = userService.login(user.getUsername(),user.getPassword());
         System.out.println(SecurityUtil.messageDigest("123456"));
-
-        if(Objects.isNull(user)){
+        if(Objects.isNull(users)){
             return Result.failed(ConstantsPool.USER_NOT_FOUND);
         }
         return null;

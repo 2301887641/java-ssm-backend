@@ -47,6 +47,7 @@
         <jedisVersion>2.9.0</jedisVersion>
         <flywayVersion>4.1.0</flywayVersion>
         <lombokVersion>1.16.20</lombokVersion>
+        <validatorVersion>4.3.1.Final</validatorVersion>
     </properties>
     <dependencies>
         <!--servlet-->
@@ -244,6 +245,11 @@
             <artifactId>lombok</artifactId>
             <version>${lombokVersion}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${validatorVersion}</version>
         </dependency>
         <!--junit-->
         <dependency>
