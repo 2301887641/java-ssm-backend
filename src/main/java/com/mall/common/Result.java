@@ -11,20 +11,20 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class Result<T> implements Serializable {
-    private int code;
-    private String info;
+    private int restCode;
+    private String restInfo;
     private T data;
 
     /**
      * 静态
-     * @param code
-     * @param info
+     * @param restCode
+     * @param restInfo
      * @param data
      * @param <W>
      * @return
      */
-    public static <W> Result of(int code, String info, W data) {
-        return new Result<>(code, info, data);
+    public static <W> Result of(int restCode, String restInfo, W data) {
+        return new Result<>(restCode, restInfo, data);
     }
 
     /**
@@ -47,35 +47,35 @@ public class Result<T> implements Serializable {
 
     /**
      * 失败 只传递错误信息
-     * @param retInfo
+     * @param restInfo
      * @param <w>
      * @return
      */
-    public static<w> Result failed(String retInfo){
-        return new Result<>(RestCodeEnum.EXCEPTION.getOrdinal(),retInfo);
+    public static<w> Result failed(String restInfo){
+        return new Result<>(RestCodeEnum.ERROR.getOrdinal(),restInfo);
     }
 
     /**
      * 失败 可以传递完整的状态码和信息
      * @param code
-     * @param retInfo
+     * @param restInfo
      * @param <W>
      * @return
      */
-    public static<W> Result failed(int code,String retInfo){
-        return new Result<>(code,retInfo);
+    public static<W> Result failed(int code,String restInfo){
+        return new Result<>(code,restInfo);
     }
 
     /**
      * 失败 可以传递完的状态码和数整据
      * @param code
-     * @param retInfo
+     * @param restInfo
      * @param data
      * @param <W>
      * @return
      */
-    public static<W> Result failed(int code,String retInfo,W data){
-        return new Result<>(code,retInfo,data);
+    public static<W> Result failed(int code,String restInfo,W data){
+        return new Result<>(code,restInfo,data);
     }
 
     /**
@@ -86,23 +86,23 @@ public class Result<T> implements Serializable {
 
     /**
      * 构造 不传数据
-     * @param retCode
-     * @param retInfo
+     * @param restCode
+     * @param restInfo
      */
-    private Result(int retCode, String retInfo) {
-        this.retCode = retCode;
-        this.retInfo = retInfo;
+    private Result(int restCode, String restInfo) {
+        this.restCode = restCode;
+        this.restInfo = restInfo;
     }
 
     /**
      * 构造全参
-     * @param retCode
-     * @param retInfo
+     * @param restCode
+     * @param restInfo
      * @param result
      */
-    private Result(int retCode, String retInfo, T result) {
-        this.retCode = retCode;
-        this.retInfo = retInfo;
+    private Result(int restCode, String restInfo, T result) {
+        this.restCode = restCode;
+        this.restInfo = restInfo;
         this.data = result;
     }
 }

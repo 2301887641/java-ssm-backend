@@ -1,11 +1,14 @@
 package com.mall.common;
 
+import lombok.Getter;
+
 /**
  * 状态码枚举
  *
  * @author suiguozhen on 19-1-17 下午10:02
  */
-public enum PredefinedCodeEnum {
+@Getter
+public enum RestCodeEnum {
     /*操作成功*/
     SUCCESS(200, "操作成功"),
     /**
@@ -15,7 +18,7 @@ public enum PredefinedCodeEnum {
     private Integer ordinal;
     private String label;
 
-    PredefinedCodeEnum(Integer ordinal, String label) {
+    RestCodeEnum(Integer ordinal, String label) {
         this.ordinal = ordinal;
         this.label = label;
      }
