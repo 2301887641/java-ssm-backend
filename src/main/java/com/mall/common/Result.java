@@ -23,8 +23,8 @@ public class Result<T> implements Serializable {
      * @param <W>
      * @return
      */
-    public static <W> Result of(int restCode, String restInfo, W data) {
-        return new Result<>(restCode, restInfo, data);
+    public static <W> Result<W> of(int restCode, String restInfo, W data) {
+        return new Result<W>(restCode, restInfo, data);
     }
 
     /**
@@ -33,16 +33,16 @@ public class Result<T> implements Serializable {
      * @param <W>
      * @return
      */
-    public static<W> Result success(W data){
-        return new Result<>(RestCodeEnum.SUCCESS.getOrdinal(), RestCodeEnum.SUCCESS.getLabel(),data);
+    public static<W> Result<W> success(W data){
+        return new Result<W>(RestCodeEnum.SUCCESS.getOrdinal(), RestCodeEnum.SUCCESS.getLabel(),data);
     }
 
     /**
      * 默认成功
      * @return
      */
-    public static Result success(){
-        return new Result(RestCodeEnum.SUCCESS.getOrdinal(), RestCodeEnum.SUCCESS.getLabel());
+    public static<W> Result<W> success(){
+        return new Result<W>(RestCodeEnum.SUCCESS.getOrdinal(), RestCodeEnum.SUCCESS.getLabel());
     }
 
     /**
@@ -50,8 +50,8 @@ public class Result<T> implements Serializable {
      * @param restInfo
      * @return
      */
-    public static Result failed(String restInfo){
-        return new Result<>(RestCodeEnum.ERROR.getOrdinal(),restInfo);
+    public static<W> Result<W> failed(String restInfo){
+        return new Result<W>(RestCodeEnum.ERROR.getOrdinal(),restInfo);
     }
 
     /**
@@ -60,8 +60,8 @@ public class Result<T> implements Serializable {
      * @param restInfo
      * @return
      */
-    public static Result failed(int code,String restInfo){
-        return new Result<>(code,restInfo);
+    public static<W> Result<W> failed(int code,String restInfo){
+        return new Result<W>(code,restInfo);
     }
 
     /**
@@ -72,8 +72,8 @@ public class Result<T> implements Serializable {
      * @param <W>
      * @return
      */
-    public static<W> Result failed(int code,String restInfo,W data){
-        return new Result<>(code,restInfo,data);
+    public static<W> Result<W> failed(int code,String restInfo,W data){
+        return new Result<W>(code,restInfo,data);
     }
 
     /**
