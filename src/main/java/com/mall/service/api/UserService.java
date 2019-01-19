@@ -1,6 +1,7 @@
 package com.mall.service.api;
 
 import com.mall.common.Result;
+import com.mall.pojo.User;
 
 /**
  * 用户
@@ -13,5 +14,5 @@ public interface UserService {
      * @param password
      * @return
      */
-    Result login(String username,String password);
+    User login(String username, String password);
 }

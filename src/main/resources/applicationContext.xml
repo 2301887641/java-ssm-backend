@@ -10,5 +10,5 @@
     </context:component-scan>
     <!--使用AspectJ提供的注解方式实现aop-->
     <aop:aspectj-autoproxy/>
-    <import resource=""></import>
+    <import resource="applicationContext-datasource.xml"></import>
 </beans>
