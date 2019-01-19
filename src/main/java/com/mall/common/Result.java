@@ -2,105 +2,77 @@ package com.mall.common;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import java.io.Serializable;
 
 /**
+ * 通用rest结果集返回 使用jackson 并且忽略为null的属性
  * @author suiguozhen on 19-1-17 下午9:40
  */
 @Getter
 @Setter
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class Result<T> implements Serializable {
     private int restCode;
     private String restInfo;
     private T data;
 
-    /**
-     * 静态
-     * @param restCode
-     * @param restInfo
-     * @param data
-     * @param <W>
-     * @return
-     */
-    public static <W> Result<W> of(int restCode, String restInfo, W data) {
-        return new Result<W>(restCode, restInfo, data);
+    public static<T> Result<T> success(){
+        return new Result<T>(RestCodeEnum.SUCCESS.getOrdinal());
     }
 
-    /**
-     * 成功 传递数据
-     * @param data
-     * @param <W>
-     * @return
-     */
-    public static<W> Result<W> success(W data){
-        return new Result<W>(RestCodeEnum.SUCCESS.getOrdinal(), RestCodeEnum.SUCCESS.getLabel(),data);
+    public static<T> Result<T> success(T data){
+        return new Result<T>(RestCodeEnum.SUCCESS.getOrdinal(),data);
     }
 
-    /**
-     * 默认成功
-     * @return
-     */
-    public static<W> Result<W> success(){
-        return new Result<W>(RestCodeEnum.SUCCESS.getOrdinal(), RestCodeEnum.SUCCESS.getLabel());
+    public static<T> Result<T> success(String restInfo,T data){
+        return new Result<T>(RestCodeEnum.SUCCESS.getOrdinal(), restInfo,data);
     }
 
-    /**
-     * 失败 只传递错误信息
-     * @param restInfo
-     * @return
-     */
-    public static<W> Result<W> failed(String restInfo){
-        return new Result<W>(RestCodeEnum.ERROR.getOrdinal(),restInfo);
+    public static <T> Result<T> success(int restCode, String restInfo, T data) {
+        return new Result<T>(restCode, restInfo, data);
     }
 
-    /**
-     * 失败 可以传递完整的状态码和信息
-     * @param code
-     * @param restInfo
-     * @return
-     */
-    public static<W> Result<W> failed(int code,String restInfo){
-        return new Result<W>(code,restInfo);
+    public static<T> Result<T> failed(String restInfo){
+        return new Result<T>(RestCodeEnum.EXCEPTION.getOrdinal(),restInfo);
     }
 
-    /**
-     * 失败 可以传递完的状态码和数整据
-     * @param code
-     * @param restInfo
-     * @param data
-     * @param <W>
-     * @return
-     */
-    public static<W> Result<W> failed(int code,String restInfo,W data){
-        return new Result<W>(code,restInfo,data);
+    public static<T> Result<T> failed(int code,String restInfo){
+        return new Result<T>(code,restInfo);
     }
 
-    /**
-     * 私有构造
-     */
-    private Result() {
+    public static<T> Result<T> failed(int code,String restInfo,T data){
+        return new Result<T>(code,restInfo,data);
     }
 
-    /**
-     * 构造 不传数据
-     * @param restCode
-     * @param restInfo
-     */
+    private Result(int restCode) {
+        this.restCode = restCode;
+    }
+
     private Result(int restCode, String restInfo) {
         this.restCode = restCode;
         this.restInfo = restInfo;
     }
 
-    /**
-     * 构造全参
-     * @param restCode
-     * @param restInfo
-     * @param result
-     */
+    private Result(int restCode, T result) {
+        this.restCode = restCode;
+        this.data = result;
+    }
+
     private Result(int restCode, String restInfo, T result) {
         this.restCode = restCode;
         this.restInfo = restInfo;
         this.data = result;
+    }
+
+    /**
+     * 序列化的时候 忽略生成
+     * @return
+     */
+    @JsonIgnore
+    public  boolean isSuccess(){
+        return RestCodeEnum.SUCCESS.getOrdinal().equals(this.restCode);
     }
 }
