@@ -48,10 +48,9 @@ public class Result<T> implements Serializable {
     /**
      * 失败 只传递错误信息
      * @param restInfo
-     * @param <w>
      * @return
      */
-    public static<w> Result failed(String restInfo){
+    public static Result failed(String restInfo){
         return new Result<>(RestCodeEnum.ERROR.getOrdinal(),restInfo);
     }
 
@@ -59,10 +58,9 @@ public class Result<T> implements Serializable {
      * 失败 可以传递完整的状态码和信息
      * @param code
      * @param restInfo
-     * @param <W>
      * @return
      */
-    public static<W> Result failed(int code,String restInfo){
+    public static Result failed(int code,String restInfo){
         return new Result<>(code,restInfo);
     }
 
