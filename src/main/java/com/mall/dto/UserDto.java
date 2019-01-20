@@ -1,4 +1,4 @@
-package com.mall.vo;
+package com.mall.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,8 +11,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
-public class User {
-    @NotNull(message="{money}")
+public class UserDto extends BaseDto{
     private Integer id;
     @NotNull(message="{money}")
     private String username;
@@ -28,8 +27,4 @@ public class User {
     private String answer;
 
     private Integer role;
-
-    private Date createTime;
-
-    private Date updateTime;
 }

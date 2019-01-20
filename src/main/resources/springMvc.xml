@@ -35,11 +35,18 @@
     </bean>
     <!--国际化文件-->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="classpath:messages"/>
-        <property name="useCodeAsDefaultMessage" value="true"/>
+        <property name="basenames">
+            <list>
+                <value>classpath:messages/messages</value>
+            </list>
+        </property>
+        <property name="defaultEncoding" value="utf-8"/>
     </bean>
-
+    <!--使用hibernate的validator-->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <!--指定校验使用的资源文件，在文件中配置校验错误信息，如果不设置则默认为classpath下的ValidationMessages.properties -->
         <property name="validationMessageSource" ref="messageSource"/>
+        <!-- hibernate校验器 -->
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
     </bean>
 </beans>

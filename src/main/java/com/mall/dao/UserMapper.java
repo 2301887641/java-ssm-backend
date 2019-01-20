@@ -11,7 +11,7 @@ public interface UserMapper {
     /**
      * 根据username进行查找
      * @param username 姓名
-     * @return User
+     * @return UserDto
      */
     User selectByUsername(String username);
 }

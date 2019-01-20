@@ -10,7 +10,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
-public class User {
+public class User extends BasePojo{
     private Integer id;
 
     private String username;
@@ -26,8 +26,4 @@ public class User {
     private String answer;
 
     private Integer role;
-
-    private Date createTime;
-
-    private Date updateTime;
 }
