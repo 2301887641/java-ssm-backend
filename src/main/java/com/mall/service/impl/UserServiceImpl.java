@@ -1,7 +1,9 @@
 package com.mall.service.impl;
 
 import com.mall.common.Result;
+import com.mall.converter.UserConverter;
 import com.mall.dao.UserMapper;
+import com.mall.dto.UserDto;
 import com.mall.pojo.User;
 import com.mall.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public User login(String username, String password) {
-        return userMapper.selectByUsername(username);
+    public UserDto login(String username, String password) {
+        return UserConverter.converter.pojoToDto(userMapper.selectByUsername(username));
     }
 }

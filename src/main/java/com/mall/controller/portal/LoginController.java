@@ -36,7 +36,7 @@ public class LoginController {
             String defaultMessage = fieldError.getDefaultMessage();
             System.out.println(field+":"+defaultMessage);
         }
-        User users = userService.login(userDto.getUsername(), userDto.getPassword());
+        userService.login(userDto.getUsername(), userDto.getPassword());
         System.out.println(SecurityUtil.messageDigest("123456"));
 //        if(Objects.isNull(users)){
 //            return Result.failed(ConstantsPool.USER_NOT_FOUND);

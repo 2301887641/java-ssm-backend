@@ -1,18 +1,18 @@
 package com.mall.service.api;
 
 
-import com.mall.pojo.User;
+import com.mall.dto.UserDto;
 
 /**
  * 用户
  * @author suiguozhen on 19/01/19 13:08
  */
-public interface UserService extends BaseService{
+public interface UserService{
     /**
      * 登录接口
-     * @param username
-     * @param password
-     * @return user
+     * @param username 姓名
+     * @param password 密码
+     * @return userDto
      */
-    User login(String username, String password);
+    UserDto login(String username, String password);
 }
