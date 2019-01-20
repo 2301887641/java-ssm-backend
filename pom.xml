@@ -23,7 +23,7 @@
         <servletVersion>9.0.4</servletVersion>
         <aspectjweaverVersion>1.7.3</aspectjweaverVersion>
         <aspectjrtVersion>1.6.11</aspectjrtVersion>
-        <jacksonVersion>2.5.3</jacksonVersion>
+        <jacksonVersion>2.9.8</jacksonVersion>
         <commonsDbcpVersion>1.4</commonsDbcpVersion>
         <logbackVersion>1.1.2</logbackVersion>
         <mysqlVersion>5.1.6</mysqlVersion>

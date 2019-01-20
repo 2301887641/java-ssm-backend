@@ -7,7 +7,7 @@
     <!--配置包扫描-->
     <context:component-scan base-package="com.mall.controller" annotation-config="true"/>
     <!--Spring处理返回值为String类型的结果时使用了StringHttpMessageConverter, 所以我们需要配置他的编码-->
-    <mvc:annotation-driven>
+    <mvc:annotation-driven validator="validator">
        <mvc:message-converters>
            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                <property name="supportedMediaTypes">
@@ -38,10 +38,8 @@
         <property name="basename" value="classpath:messages"/>
         <property name="useCodeAsDefaultMessage" value="true"/>
     </bean>
-    <!-- 动态切换国际化 ,国际化放在session中 -->
-    <mvc:interceptors>
-        <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
-        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"/>
-    </mvc:interceptors>
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
 </beans>
