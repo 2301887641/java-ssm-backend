@@ -8,8 +8,6 @@
     <context:component-scan base-package="com.mall" annotation-config="true">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-    <!--使用AspectJ提供的注解方式实现aop-->
-    <aop:aspectj-autoproxy/>
     <!--引入其他-->
     <import resource="classpath:applicationContext-datasource.xml"/>
     <import resource="classpath:applicationContext-configuration.xml"/>

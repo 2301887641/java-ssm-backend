@@ -1,8 +1,8 @@
 package com.mall.controller.portal;
 
+import com.mall.annotation.ValidationParam;
 import com.mall.common.Result;
 import com.mall.dto.UserDto;
-import com.mall.pojo.User;
 import com.mall.service.api.UserService;
 import com.mall.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +24,10 @@ import javax.validation.Valid;
 public class LoginController {
     @Autowired
     private UserService userService;
-    @Autowired
-    private MessageSource messageSource;
 
     @PostMapping("/login.do")
     @ResponseBody
+    @ValidationParam
     public Result doLogin(HttpServletRequest request, @Valid UserDto userDto, BindingResult result){
         if(result.hasErrors()) {
             FieldError fieldError = result.getFieldError();
