@@ -1,6 +1,7 @@
 package com.mall.controller.portal;
 
 import com.mall.annotation.DoValidParam;
+import com.mall.common.ConstantsPool;
 import com.mall.common.Result;
 import com.mall.dto.UserDto;
 import com.mall.service.api.UserService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Objects;
 
 /**
  * 登录相关
@@ -28,11 +30,11 @@ public class LoginController {
     @ResponseBody
     @DoValidParam
     public Result doLogin(HttpServletRequest request, @Valid UserDto userDto, BindingResult result){
-//        userService.login(userDto.getUsername(), userDto.getPassword());
+        UserDto user = userService.login(userDto.getUsername(), userDto.getPassword());
         System.out.println(SecurityUtil.messageDigest("123456"));
-//        if(Objects.isNull(users)){
-//            return Result.failed(ConstantsPool.USER_NOT_FOUND);
-//        }
+        if(Objects.isNull(user)){
+            return Result.failed(ConstantsPool.USER_NOT_FOUND);
+        }
         return null;
     }
 }

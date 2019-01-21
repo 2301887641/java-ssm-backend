@@ -13,9 +13,9 @@ import java.util.Date;
 @Setter
 public class UserDto extends BaseDto{
     private Integer id;
-    @NotNull(message="{money}")
+    @NotNull(message="{validation.userDto.web.login.username}")
     private String username;
-
+    @NotNull(message="{validation.userDto.web.login.password}")
     private String password;
 
     private String email;

@@ -73,7 +73,7 @@
             <version>${springVersion}</version>
         </dependency>
         <dependency>
-        <groupId>org.springframework</groupId>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
             <version>${springVersion}</version>
         </dependency>
@@ -254,6 +254,11 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-jdk8</artifactId>
+            <version>${mapstructVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
             <version>${mapstructVersion}</version>
         </dependency>
         <!--junit-->

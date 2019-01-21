@@ -15,6 +15,7 @@ import org.springframework.validation.FieldError;
 import java.lang.reflect.Method;
 
 /**
+ * 验证控制器参数aop
  * @author suiguozhen on 19-1-20 下午4:20
  */
 @Component
