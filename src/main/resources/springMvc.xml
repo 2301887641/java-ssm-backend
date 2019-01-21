@@ -4,11 +4,8 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
-    <!--使用AspectJ提供的注解方式实现aop-->
-    <!--如果项目用了spring MVC,一定要把AOP相关配置移动到MVC配置文件-->
-    <aop:aspectj-autoproxy  proxy-target-class="true"/>
     <!--配置包扫描-->
-    <context:component-scan base-package="com.mall" annotation-config="true"/>
+    <context:component-scan base-package="com.mall.controller"/>
 
     <!--Spring处理返回值为String类型的结果时使用了StringHttpMessageConverter, 所以我们需要配置他的编码-->
     <mvc:annotation-driven validator="validator">
@@ -53,4 +50,7 @@
         <!-- hibernate校验器 -->
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
     </bean>
+    <!--使用AspectJ提供的注解方式实现aop-->
+    <!--如果项目用了spring MVC,一定要把AOP相关配置移动到MVC配置文件-->
+    <aop:aspectj-autoproxy  proxy-target-class="true"/>
 </beans>
