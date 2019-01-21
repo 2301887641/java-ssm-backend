@@ -14,23 +14,29 @@ import org.springframework.stereotype.Component;
  * @author suiguozhen on 19/01/21 20:04
  */
 @Component
-public class SpringUtils implements ApplicationContextAware {
+public class SpringUtil implements ApplicationContextAware {
+
     private static MessageSource messageSource;
 
     private static ApplicationContext applicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        SpringUtils.applicationContext = applicationContext;
+        SpringUtil.applicationContext = applicationContext;
     }
 
     @Autowired
     public void setMessageSource(MessageSource messageSource) {
-        SpringUtils.messageSource = messageSource;
+        SpringUtil.messageSource = messageSource;
     }
 
+    /**
+     * 获取国际化文件中的信息 实现动态传参
+     * @param key  国际化key
+     * @param variables 动态传参
+     * @return  String
+     */
     public static String getMessage(String key, String... variables) {
-        MessageSource messageSource = SpringUtils.applicationContext.getBean(MessageSource.class);
-        return messageSource.getMessage(key, variables, LocaleContextHolder.getLocale());
+        return messageSource.getMessage(key,variables, LocaleContextHolder.getLocale());
     }
 }
