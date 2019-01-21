@@ -28,8 +28,6 @@ public class ValidationAspect {
 
     @Around("pointcut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
-        MethodSignature signature = (MethodSignature) point.getSignature();
-        Method method = signature.getMethod();
         Object[] args = point.getArgs();
         Errors errors;
         for (Object arg : args) {
