@@ -1,12 +1,11 @@
 package com.mall.controller.portal;
 
-import com.mall.annotation.ValidationParam;
+import com.mall.annotation.DoValidParam;
 import com.mall.common.Result;
 import com.mall.dto.UserDto;
 import com.mall.service.api.UserService;
 import com.mall.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -27,14 +26,8 @@ public class LoginController {
 
     @PostMapping("/login.do")
     @ResponseBody
-    @ValidationParam
+    @DoValidParam
     public Result doLogin(HttpServletRequest request, @Valid UserDto userDto, BindingResult result){
-        if(result.hasErrors()) {
-            FieldError fieldError = result.getFieldError();
-            String field = fieldError.getField();
-            String defaultMessage = fieldError.getDefaultMessage();
-            System.out.println(field+":"+defaultMessage);
-        }
 //        userService.login(userDto.getUsername(), userDto.getPassword());
         System.out.println(SecurityUtil.messageDigest("123456"));
 //        if(Objects.isNull(users)){
