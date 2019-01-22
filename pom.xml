@@ -46,7 +46,7 @@
         <jedisVersion>2.9.0</jedisVersion>
         <flywayVersion>4.1.0</flywayVersion>
         <lombokVersion>1.16.20</lombokVersion>
-        <validatorVersion>4.3.1.Final</validatorVersion>
+        <validatorVersion>5.4.0.Final</validatorVersion>
         <mapstructVersion>1.2.0.Final</mapstructVersion>
     </properties>
     <dependencies>

@@ -38,9 +38,6 @@
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basenames">
             <list>
-                <value>format</value>
-                <value>exceptions</value>
-                <value>windows</value>
                 <value>classpath:messages/messages</value>
             </list>
         </property>

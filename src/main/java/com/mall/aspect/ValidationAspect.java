@@ -34,8 +34,7 @@ public class ValidationAspect {
             if(arg instanceof BeanPropertyBindingResult){
                 errors=(BindingResult) arg;
                if(errors.hasErrors()){
-                   FieldError fieldError = errors.getFieldError();
-                   return Result.failed(fieldError.getDefaultMessage());
+                   return Result.failed(errors.getFieldError().getDefaultMessage());
                }
             }
         }
