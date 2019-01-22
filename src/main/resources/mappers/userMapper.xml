@@ -4,7 +4,6 @@
     <sql id="baseColumn">
         id,
         username,
-        password,
         email,
         phone,
         question,
@@ -14,14 +13,23 @@
     </sql>
 
     <resultMap id="baseResultMap" type="com.mall.pojo.User">
-            <id property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="selectByUsername" resultMap="baseResultMap">
         select
         <include refid="baseColumn"/>
         from mall_user as a
-        where username=#{username}
+        where username = #{username}
+    </select>
+
+    <select id="selectByUsernameAndPassword" resultMap="baseResultMap">
+        select
+        <include refid="baseColumn"/>
+        from mall_user as a
+        where username = #{username} and password = #{password}
     </select>
 
 

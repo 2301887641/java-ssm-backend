@@ -4,7 +4,7 @@ package com.mall.service.api;
 import com.mall.dto.UserDto;
 
 /**
- * 用户
+ * 用户接口
  * @author suiguozhen on 19/01/19 13:08
  */
 public interface UserService{
@@ -15,4 +15,11 @@ public interface UserService{
      * @return userDto
      */
     UserDto login(String username, String password);
+
+    /**
+     * 用户注册
+     * @param userDto userDto
+     * @return int
+     */
+    int register(UserDto userDto);
 }

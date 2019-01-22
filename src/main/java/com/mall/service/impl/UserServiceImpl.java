@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public UserDto login(String username, String password) {
+    public UserDto login(String username,String password) {
         return UserConverter.converter.pojoToDto(userMapper.selectByUsername(username));
     }
 }

@@ -8,5 +8,9 @@ public interface ValidationUserDto {
     /**
      * 验证用户登陆
      */
-    interface ValidationUserLogin{};
+    interface ValidationFrontUserLogin{};
+    /**
+     * 验证用户注册
+     */
+    interface ValidationFrontUserRegister{};
 }

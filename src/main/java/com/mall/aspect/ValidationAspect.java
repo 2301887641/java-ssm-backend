@@ -5,14 +5,10 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-
-import java.lang.reflect.Method;
 
 /**
  * 验证控制器参数aop
@@ -28,11 +24,9 @@ public class ValidationAspect {
 
     @Around("pointcut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
-        Object[] args = point.getArgs();
-        Errors errors;
-        for (Object arg : args) {
+        for (Object arg : point.getArgs()) {
             if(arg instanceof BeanPropertyBindingResult){
-                errors=(BindingResult) arg;
+                Errors errors=(BindingResult) arg;
                if(errors.hasErrors()){
                    return Result.failed(errors.getFieldError().getDefaultMessage());
                }
