@@ -26,11 +26,11 @@ public class UserDto extends BaseDto{
     })
     @JsonIgnore
     private String password;
-    @NotNull(message="{validation.userDto.web.login.password}",groups = {
+    @NotNull(message="{validation.userDto.web.login.email}",groups = {
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     private String email;
-    @NotNull(message="{validation.userDto.web.login.password}",groups = {
+    @NotNull(message="{validation.userDto.web.login.phone}",groups = {
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     private String phone;

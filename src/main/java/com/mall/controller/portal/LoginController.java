@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
@@ -51,8 +50,8 @@ public class LoginController {
 
     }
 
-    @GetMapping("/register.do")
-    public Result<String> verifyUser(@NotNull("") String subject, String type){
+    @GetMapping("/register/{subject}/{type}.do")
+    public Result<String> verifyUser(@PathVariable String subject,@PathVariable String type){
         switch(type){
             case ConstantsPool.Subject.SUBJECT_PHONE:
             case ConstantsPool.Subject.SUBJECT_EMAIL:
