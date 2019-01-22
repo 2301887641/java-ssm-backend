@@ -1,5 +1,6 @@
 package com.mall.dto;
 
+import com.mall.group.userDto.ValidationUserDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,9 +14,9 @@ import java.util.Date;
 @Setter
 public class UserDto extends BaseDto{
     private Integer id;
-    @NotNull(message="{validation.userDto.web.login.username}")
+    @NotNull(message="{validation.userDto.web.login.username}",groups = ValidationUserDto.ValidationUserLogin.class)
     private String username;
-    @NotNull(message="{validation.userDto.web.login.password}")
+    @NotNull(message="{validation.userDto.web.login.password}",groups = ValidationUserDto.ValidationUserLogin.class)
     private String password;
 
     private String email;

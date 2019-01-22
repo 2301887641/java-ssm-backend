@@ -3,6 +3,7 @@ package com.mall.controller.portal;
 import com.mall.annotation.DoValidParam;
 import com.mall.common.Result;
 import com.mall.dto.UserDto;
+import com.mall.group.userDto.ValidationUserDto;
 import com.mall.service.api.UserService;
 import com.mall.util.SecurityUtil;
 import com.mall.util.SpringUtil;
@@ -11,6 +12,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,7 +32,7 @@ public class LoginController {
     @PostMapping("/login.do")
     @ResponseBody
     @DoValidParam
-    public Result doLogin(HttpServletRequest request, @Valid UserDto userDto, BindingResult result){
+    public Result doLogin(HttpServletRequest request, @Validated({ValidationUserDto.ValidationUserLogin.class}) UserDto userDto, BindingResult result){
         UserDto user = userService.login(userDto.getUsername(), userDto.getPassword());
         System.out.println(SecurityUtil.messageDigest("123456"));
         if(Objects.isNull(user)){
