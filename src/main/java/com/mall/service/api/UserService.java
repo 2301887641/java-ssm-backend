@@ -2,6 +2,7 @@ package com.mall.service.api;
 
 
 import com.mall.dto.UserDto;
+import com.mall.pojo.User;
 
 /**
  * 用户接口
@@ -22,4 +23,11 @@ public interface UserService{
      * @return int
      */
     int register(UserDto userDto);
+
+    /**
+     * 根据用户主体数据查找
+     * @param subject 用户主体数据
+     * @return userDto
+     */
+    UserDto getBySubject(String subject);
 }

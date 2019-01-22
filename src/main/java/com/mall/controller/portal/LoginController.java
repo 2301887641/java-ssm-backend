@@ -12,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
@@ -47,5 +49,20 @@ public class LoginController {
     @PostMapping("/register.do")
     public Result register(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto,BindingResult bindingResult){
 
+    }
+
+    @GetMapping("/register.do")
+    public Result<String> verifyUser(@NotNull("") String subject, String type){
+        switch(type){
+            case ConstantsPool.Subject.SUBJECT_PHONE:
+            case ConstantsPool.Subject.SUBJECT_EMAIL:
+            case ConstantsPool.Subject.SUBJECT_USERNAME:
+                UserDto user = userService.getBySubject(subject);
+                if(Objects.isNull(user)){
+                    return Result.failed(SpringUtil.getMessage("user.subject.web.register."+type));
+                }
+                return Result.success();
+        }
+        return Result.failed();
     }
 }

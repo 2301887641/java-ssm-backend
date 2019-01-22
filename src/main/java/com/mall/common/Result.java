@@ -36,6 +36,10 @@ public class Result<T> implements Serializable {
         return new Result<T>(restCode, restInfo, data);
     }
 
+    public static<T> Result<T> failed(){
+        return new Result<T>(RestCodeEnum.EXCEPTION.getOrdinal());
+    }
+
     public static<T> Result<T> failed(String restInfo){
         return new Result<T>(RestCodeEnum.EXCEPTION.getOrdinal(),restInfo);
     }

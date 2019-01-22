@@ -10,11 +10,24 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserMapper {
     /**
-     * 根据username进行查找
-     * @param username 姓名
-     * @return UserDto
+     * 根据用户主体数据进行查找
+     * @param subject 用户主体数据
+     * @return user
      */
-    User selectByUsername(String username);
+    User selectBySubject(String subject);
 
+    /**
+     * 用户登录
+     * @param username 姓名
+     * @param password 密码
+     * @return user
+     */
     User selectByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+
+    /**
+     * 用户注册
+     * @param user user
+     * @return user
+     */
+    int insert(User user);
 }

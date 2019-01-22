@@ -18,11 +18,21 @@
         <result property="email" column="email" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="selectByUsername" resultMap="baseResultMap">
+    <select id="selectBySubject" resultMap="baseResultMap">
         select
         <include refid="baseColumn"/>
         from mall_user as a
-        where username = #{username}
+        <where>
+            <if test="username !=null and username !=''">
+                username = #{username}
+            </if>
+            <if test="email !=null and email !=''">
+                email = #{email}
+            </if>
+            <if test="phone !=null and phone !=''">
+                phone = #{phone}
+            </if>
+        </where>
     </select>
 
     <select id="selectByUsernameAndPassword" resultMap="baseResultMap">
@@ -32,5 +42,29 @@
         where username = #{username} and password = #{password}
     </select>
 
+    <insert id="insert">
+        <selectKey resultType="int" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into mall_user(
+        createTime,
+        username,
+        password,
+        email,
+        phone,
+        question,
+        answer,
+        role
+        )values(
+        #{createTime},
+        #{username},
+        #{password},
+        #{email},
+        #{phone},
+        #{question},
+        #{answer},
+        #{role}
+        )
+    </insert>
 
 </mapper>

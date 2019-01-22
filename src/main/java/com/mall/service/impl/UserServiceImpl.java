@@ -1,6 +1,5 @@
 package com.mall.service.impl;
 
-import com.mall.common.Result;
 import com.mall.converter.UserConverter;
 import com.mall.dao.UserMapper;
 import com.mall.dto.UserDto;
@@ -20,6 +19,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto login(String username,String password) {
-        return UserConverter.converter.pojoToDto(userMapper.selectByUsername(username));
+        return UserConverter.converter.pojoToDto(userMapper.selectByUsernameAndPassword(username,password));
+    }
+
+    @Override
+    public int register(UserDto userDto) {
+        return userMapper.insert(UserConverter.converter.dtoToPojo(userDto));
+    }
+
+    @Override
+    public UserDto getBySubject(String subject) {
+        return UserConverter.converter.pojoToDto(userMapper.selectBySubject(subject));
     }
 }
