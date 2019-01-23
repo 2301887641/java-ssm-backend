@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 /**
  * @author suiguozhen on 19/01/19 14:46
@@ -15,22 +14,22 @@ import java.util.Date;
 @Setter
 public class UserDto extends BaseDto{
     private Integer id;
-    @NotNull(message="{validation.userDto.web.login.username}",groups = {
+    @NotNull(message="{validation.userDto.username.required}",groups = {
             ValidationUserDto.ValidationFrontUserLogin.class,
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     private String username;
-    @NotNull(message="{validation.userDto.web.login.password}",groups = {
+    @NotNull(message="{validation.userDto.password.required}",groups = {
             ValidationUserDto.ValidationFrontUserLogin.class,
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     @JsonIgnore
     private String password;
-    @NotNull(message="{validation.userDto.web.login.email}",groups = {
+    @NotNull(message="{validation.userDto.email.required}",groups = {
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     private String email;
-    @NotNull(message="{validation.userDto.web.login.phone}",groups = {
+    @NotNull(message="{validation.userDto.phone.required}",groups = {
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     private String phone;

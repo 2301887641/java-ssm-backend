@@ -30,24 +30,37 @@ public class LoginController {
 
     @PostMapping("/login.do")
     @DoValidParam
-    public Result<String> doLogin(HttpSession session, @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result){
+    public Result<Void> doLogin(HttpSession session, @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result){
         UserDto user = userService.login(userDto.getUsername(),SecurityUtil.messageDigest(userDto.getPassword()));
         if(Objects.isNull(user)){
-            return Result.failed(SpringUtil.getMessage("validation.userDto.web.login.isNull"));
+            return Result.failed(SpringUtil.getMessage("user.subject.user.isNull"));
         }
         session.setAttribute(ConstantsPool.USER_SESSION_NAME,user);
         return Result.success();
     }
 
     @GetMapping("/logout.do")
-    public Result<String> logout(HttpSession session){
+    public Result<Void> logout(HttpSession session){
         session.removeAttribute(ConstantsPool.USER_SESSION_NAME);
         return Result.success();
     }
 
     @PostMapping("/register.do")
-    public Result register(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto,BindingResult bindingResult){
-
+    public Result<Void> register(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto,BindingResult bindingResult){
+        if(Objects.nonNull(userService.getBySubject(userDto.getUsername()))){
+            return Result.failed(SpringUtil.getMessage("user.subject.username.exist"));
+        }
+        if(Objects.nonNull(userService.getBySubject(userDto.getEmail()))){
+            return Result.failed(SpringUtil.getMessage("user.subject.email.exist"));
+        }
+        if(Objects.nonNull(userService.getBySubject(userDto.getPhone()))){
+            return Result.failed(SpringUtil.getMessage("user.subject.phone.exist"));
+        }
+        int saveId = userService.save(userDto);
+        if(saveId==0){
+            return Result.failed(SpringUtil.getMessage("user.subject.user.createFailed"));
+        }
+        return Result.success();
     }
 
     @GetMapping("/register/{subject}/{type}.do")
@@ -58,7 +71,7 @@ public class LoginController {
             case ConstantsPool.Subject.SUBJECT_USERNAME:
                 UserDto user = userService.getBySubject(subject);
                 if(Objects.isNull(user)){
-                    return Result.failed(SpringUtil.getMessage("user.subject.web.register."+type));
+                    return Result.failed(SpringUtil.getMessage("user.subject."+type+".exist"));
                 }
                 return Result.success();
         }

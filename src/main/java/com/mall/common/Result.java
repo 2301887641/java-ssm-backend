@@ -2,7 +2,6 @@ package com.mall.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,36 +19,36 @@ public class Result<T> implements Serializable {
     private String restInfo;
     private T data;
 
-    public static<T> Result<T> success(){
-        return new Result<T>(RestCodeEnum.SUCCESS.getOrdinal());
+    public static<W> Result<W> success(){
+        return new Result<W>(RestCodeEnum.SUCCESS.getOrdinal());
     }
 
-    public static<T> Result<T> success(T data){
-        return new Result<T>(RestCodeEnum.SUCCESS.getOrdinal(),data);
+    public static<W> Result<W> success(W data){
+        return new Result<W>(RestCodeEnum.SUCCESS.getOrdinal(),data);
     }
 
-    public static<T> Result<T> success(String restInfo,T data){
-        return new Result<T>(RestCodeEnum.SUCCESS.getOrdinal(), restInfo,data);
+    public static<W> Result<W> success(String restInfo,W data){
+        return new Result<W>(RestCodeEnum.SUCCESS.getOrdinal(), restInfo,data);
     }
 
-    public static <T> Result<T> success(int restCode, String restInfo, T data) {
-        return new Result<T>(restCode, restInfo, data);
+    public static <W> Result<W> success(int restCode, String restInfo, W data) {
+        return new Result<W>(restCode, restInfo, data);
     }
 
-    public static<T> Result<T> failed(){
-        return new Result<T>(RestCodeEnum.EXCEPTION.getOrdinal());
+    public static<W> Result<W> failed(){
+        return new Result<W>(RestCodeEnum.EXCEPTION.getOrdinal());
     }
 
-    public static<T> Result<T> failed(String restInfo){
-        return new Result<T>(RestCodeEnum.EXCEPTION.getOrdinal(),restInfo);
+    public static<W> Result<W> failed(String restInfo){
+        return new Result<W>(RestCodeEnum.EXCEPTION.getOrdinal(),restInfo);
     }
 
-    public static<T> Result<T> failed(int code,String restInfo){
-        return new Result<T>(code,restInfo);
+    public static<W> Result<W> failed(int code,String restInfo){
+        return new Result<W>(code,restInfo);
     }
 
-    public static<T> Result<T> failed(int code,String restInfo,T data){
-        return new Result<T>(code,restInfo,data);
+    public static<W> Result<W> failed(int code,String restInfo,W data){
+        return new Result<W>(code,restInfo,data);
     }
 
     private Result(int restCode) {

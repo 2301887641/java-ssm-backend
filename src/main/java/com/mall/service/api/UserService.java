@@ -2,7 +2,6 @@ package com.mall.service.api;
 
 
 import com.mall.dto.UserDto;
-import com.mall.pojo.User;
 
 /**
  * 用户接口
@@ -15,14 +14,14 @@ public interface UserService{
      * @param password 密码
      * @return userDto
      */
-    UserDto login(String username, String password);
+    UserDto getByUsernameAndPassword(String username, String password);
 
     /**
      * 用户注册
      * @param userDto userDto
      * @return int
      */
-    int register(UserDto userDto);
+    int save(UserDto userDto);
 
     /**
      * 根据用户主体数据查找
