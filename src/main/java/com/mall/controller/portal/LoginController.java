@@ -31,7 +31,7 @@ public class LoginController {
     @PostMapping("/login.do")
     @DoValidParam
     public Result<Void> doLogin(HttpSession session, @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result){
-        UserDto user = userService.login(userDto.getUsername(),SecurityUtil.messageDigest(userDto.getPassword()));
+        UserDto user = userService.getByUsernameAndPassword(userDto.getUsername(),SecurityUtil.messageDigest(userDto.getPassword()));
         if(Objects.isNull(user)){
             return Result.failed(SpringUtil.getMessage("user.subject.user.isNull"));
         }
@@ -69,8 +69,7 @@ public class LoginController {
             case ConstantsPool.Subject.SUBJECT_PHONE:
             case ConstantsPool.Subject.SUBJECT_EMAIL:
             case ConstantsPool.Subject.SUBJECT_USERNAME:
-                UserDto user = userService.getBySubject(subject);
-                if(Objects.isNull(user)){
+                if(Objects.isNull(userService.getBySubject(subject))){
                     return Result.failed(SpringUtil.getMessage("user.subject."+type+".exist"));
                 }
                 return Result.success();
