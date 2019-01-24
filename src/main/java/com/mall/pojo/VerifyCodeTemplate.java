@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class VerifyCodeTemplate extends BasePojo{
+    private Integer id;
     private String content;
     private VerifyCodeEnum verifyCodeEnum;
 }

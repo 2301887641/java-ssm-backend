@@ -13,6 +13,6 @@ public class VerifyCodeController {
 
 
     public Result smsCode(String phone, VerifyCodeEnum verifyCodeEnum){
-
+        return null;
     }
 }
