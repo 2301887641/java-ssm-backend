@@ -33,7 +33,7 @@ public class LoginController {
     public Result<Void> doLogin(HttpSession session, @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result){
         UserDto user = userService.getByUsernameAndPassword(userDto.getUsername(),SecurityUtil.messageDigest(userDto.getPassword()));
         if(Objects.isNull(user)){
-            return Result.failed(SpringUtil.getMessage("user.subject.user.isNull"));
+            return Result.failed(SpringUtil.getMessage("validation.user.isNull"));
         }
         session.setAttribute(ConstantsPool.USER_SESSION_NAME,user);
         return Result.success();
@@ -48,17 +48,17 @@ public class LoginController {
     @PostMapping("/register.do")
     public Result<Void> register(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto,BindingResult bindingResult){
         if(Objects.nonNull(userService.getBySubject(userDto.getUsername()))){
-            return Result.failed(SpringUtil.getMessage("user.subject.username.exist"));
+            return Result.failed(SpringUtil.getMessage("user.username.exist"));
         }
         if(Objects.nonNull(userService.getBySubject(userDto.getEmail()))){
-            return Result.failed(SpringUtil.getMessage("user.subject.email.exist"));
+            return Result.failed(SpringUtil.getMessage("user.email.exist"));
         }
         if(Objects.nonNull(userService.getBySubject(userDto.getPhone()))){
-            return Result.failed(SpringUtil.getMessage("user.subject.phone.exist"));
+            return Result.failed(SpringUtil.getMessage("user.phone.exist"));
         }
         int saveId = userService.save(userDto);
         if(saveId==0){
-            return Result.failed(SpringUtil.getMessage("user.subject.user.createFailed"));
+            return Result.failed(SpringUtil.getMessage("validation.user.createFailed"));
         }
         return Result.success();
     }
@@ -69,7 +69,7 @@ public class LoginController {
             case ConstantsPool.Subject.SUBJECT_PHONE:
             case ConstantsPool.Subject.SUBJECT_USERNAME:
                 if(Objects.isNull(userService.getBySubject(subject))){
-                    return Result.failed(SpringUtil.getMessage("user.subject."+type+".exist"));
+                    return Result.failed(SpringUtil.getMessage("user."+type+".exist"));
                 }
                 return Result.success();
         }

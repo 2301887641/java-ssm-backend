@@ -63,3 +63,16 @@ CREATE TABLE mall_verify_code_record (
   type varchar(20) not null default "" comment "验证码业务类型",
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for mall_verify_code_template   短信模板表
+-- ----------------------------
+DROP TABLE IF EXISTS mall_verify_code_template;
+CREATE TABLE mall_verify_code_template (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	create_time timestamp  not null  default CURRENT_TIMESTAMP,
+	update_time timestamp  not null  default CURRENT_TIMESTAMP,
+  content varchar(150) not null default "" comment "模板内容",
+  type varchar(20) not null default "" comment "验证码业务类型",
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

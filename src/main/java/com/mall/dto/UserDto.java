@@ -14,22 +14,22 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class UserDto extends BaseDto{
     private Integer id;
-    @NotNull(message="{validation.userDto.username.required}",groups = {
+    @NotNull(message="{validation.username.required}",groups = {
             ValidationUserDto.ValidationFrontUserLogin.class,
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     private String username;
-    @NotNull(message="{validation.userDto.password.required}",groups = {
+    @NotNull(message="{validation.password.required}",groups = {
             ValidationUserDto.ValidationFrontUserLogin.class,
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     @JsonIgnore
     private String password;
-    @NotNull(message="{validation.userDto.email.required}",groups = {
+    @NotNull(message="{validation.email.required}",groups = {
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     private String email;
-    @NotNull(message="{validation.userDto.phone.required}",groups = {
+    @NotNull(message="{validation.phone.required}",groups = {
             ValidationUserDto.ValidationFrontUserRegister.class
     })
     private String phone;

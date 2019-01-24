@@ -4,8 +4,11 @@ import com.mall.common.Result;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.enums.VerifyCodeEnum;
 import com.mall.manager.verifycode.api.VerifyCodeManager;
+import com.mall.pojo.VerifyCodeTemplate;
 import com.mall.service.api.VerifyCodeService;
+import com.mall.service.api.VerifyCodeTemplateService;
 import com.mall.util.SpringUtil;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -25,20 +28,30 @@ public class VerifyCodeManagerImpl implements VerifyCodeManager {
     @Value("${verifyCode.restrict.number}")
     private Integer restrictNumber;
 
+    @Value("${verifyCode.send.length}")
+    private Integer codeLength;
+
     @Autowired
     private VerifyCodeService verifyCodeService;
 
+    @Autowired
+    private VerifyCodeTemplateService verifyCodeTemplateService;
+
     @Override
     public Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeEnum) {
+        //查询发送总数
         VerifyCodeDto verifyCodeDto = verifyCodeService.getByPhoneAndType(phone, verifyCodeEnum);
         if(Objects.nonNull(verifyCodeDto)){
             if(verifyCodeDto.getCount()>=restrictNumber){
-                return Result.failed(SpringUtil.getMessage("verifyCode.sms.count.restrict"));
+                return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
             }
         }
-
-
-
+        //查询是否存在模板
+        VerifyCodeTemplate verifyCodeTemplate = verifyCodeTemplateService.getByType(verifyCodeEnum);
+        if(Objects.isNull(verifyCodeTemplate)){
+            return Result.failed(SpringUtil.getMessage("verifyCode.template.isNull"));
+        }
+        String code=RandomStringUtils.randomNumeric();
     }
 
     @Override
