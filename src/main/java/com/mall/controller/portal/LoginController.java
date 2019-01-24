@@ -67,7 +67,6 @@ public class LoginController {
     public Result<String> verifyUser(@PathVariable String subject,@PathVariable String type){
         switch(type){
             case ConstantsPool.Subject.SUBJECT_PHONE:
-            case ConstantsPool.Subject.SUBJECT_EMAIL:
             case ConstantsPool.Subject.SUBJECT_USERNAME:
                 if(Objects.isNull(userService.getBySubject(subject))){
                     return Result.failed(SpringUtil.getMessage("user.subject."+type+".exist"));
