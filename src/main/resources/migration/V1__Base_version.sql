@@ -1,5 +1,5 @@
 -- ----------------------------
---  Table structure for `mall_user`
+--  Table structure for `mall_user`  用户表
 -- ----------------------------
 DROP TABLE IF EXISTS `mall_user`;
 CREATE TABLE `mall_user` (
@@ -20,7 +20,7 @@ INSERT INTO `mall_user` VALUES ('1', 'admin', '427338237BD929443EC5D48E24FD2B1A'
 
 
 -- ----------------------------
--- Table structure for mall_dict
+-- Table structure for mall_dict   字典表
 -- ----------------------------
 DROP TABLE IF EXISTS mall_dict;
 CREATE TABLE mall_dict (
@@ -34,5 +34,19 @@ CREATE TABLE mall_dict (
   description varchar(64) default "" comment "备注",
   enable char(1) default 1 comment "1:启用 2:停用",
   priority int(10) default 0 comment "排序字段",
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for mall_verify_code   验证码表
+-- ----------------------------
+DROP TABLE IF EXISTS mall_verify_code;
+CREATE TABLE mall_verify_code (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	create_time timestamp  not null  default CURRENT_TIMESTAMP,
+	update_time timestamp  not null  default CURRENT_TIMESTAMP,
+  code char(6) not null default "" comment "验证码",
+  count int(10) default 0 comment "发送记录数",
+  type varchar(20) not null default "" comment "验证码业务类型",
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

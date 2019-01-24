@@ -3,16 +3,15 @@ package com.mall.enums;
 import lombok.Getter;
 
 /**
- * 业务类型
+ * 验证码业务枚举
  * @author suiguozhen on 19/01/24 8:52
  */
 @Getter
 public enum VerifyCodeEnum {
     /**
-     *
+     * 用户注册
      */
-    LOGIN(1,"用户登陆"),
-    AUTHENTICATE(2,"用户认证");
+    REGISTER(1,"用户注册");
     private Integer ordinal;
     private String label;
 

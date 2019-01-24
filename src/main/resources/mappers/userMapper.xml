@@ -18,10 +18,10 @@
         <result property="email" column="email" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="selectBySubject" resultMap="baseResultMap">
+    <select id="selectBySubject" resultType="int">
         select
-        <include refid="baseColumn"/>
-        from mall_user as a
+        count(1)
+        from mall_user
         <where>
             <if test="username !=null and username !=''">
                 username = #{username}
