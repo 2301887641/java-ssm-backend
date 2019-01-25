@@ -35,13 +35,13 @@ public class LoginController {
         if(Objects.isNull(user)){
             return Result.failed(SpringUtil.getMessage("validation.user.isNull"));
         }
-        session.setAttribute(ConstantsPool.USER_SESSION_NAME,user);
+        session.setAttribute(ConstantsPool.Session.USER_SESSION_NAME,user);
         return Result.success();
     }
 
     @GetMapping("/logout.do")
     public Result<Void> logout(HttpSession session){
-        session.removeAttribute(ConstantsPool.USER_SESSION_NAME);
+        session.removeAttribute(ConstantsPool.Session.USER_SESSION_NAME);
         return Result.success();
     }
 

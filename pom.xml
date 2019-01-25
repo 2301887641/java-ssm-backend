@@ -48,6 +48,7 @@
         <lombokVersion>1.16.20</lombokVersion>
         <validatorVersion>5.4.0.Final</validatorVersion>
         <mapstructVersion>1.2.0.Final</mapstructVersion>
+        <kaptchaVersion>2.3.2</kaptchaVersion>
     </properties>
     <dependencies>
         <!--servlet-->
@@ -246,11 +247,13 @@
             <version>${lombokVersion}</version>
             <scope>provided</scope>
         </dependency>
+        <!--hibernate validator-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${validatorVersion}</version>
         </dependency>
+        <!--mapstruct-->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-jdk8</artifactId>
@@ -260,6 +263,12 @@
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
             <version>${mapstructVersion}</version>
+        </dependency>
+        <!--kaptcha-->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>${kaptchaVersion}</version>
         </dependency>
         <!--junit-->
         <dependency>
