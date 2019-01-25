@@ -1,5 +1,6 @@
 package com.mall.service.api;
 
+import com.mall.common.Result;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.enums.VerifyCodeEnum;
 
@@ -16,4 +17,19 @@ public interface VerifyCodeService {
      */
     VerifyCodeDto getByPhoneAndType(String phone, VerifyCodeEnum verifyCodeEnum);
 
+    /**
+     * 发送短信验证码
+     * @param phone 手机
+     * @param verifyCodeEnum 验证码枚举
+     * @return Result
+     */
+    Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeEnum);
+
+    /**
+     * 发送邮箱验证码
+     * @param email 邮箱
+     * @param verifyCodeEnum 验证码枚举
+     * @return Result
+     */
+    Result<Void> sendEmailCode(String email,VerifyCodeEnum verifyCodeEnum);
 }

@@ -8,7 +8,8 @@ public interface SmsSender {
     /**
      * 根据手机号和模板id进行发送
      * @param phone  手机号
+     * @param code   验证码
      * @param templateId  模板id
      */
-    void sendSms(String phone,Integer templateId);
+    void sendSms(String phone,String code,Integer templateId);
 }

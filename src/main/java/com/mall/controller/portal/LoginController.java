@@ -47,12 +47,6 @@ public class LoginController {
 
     @PostMapping("/register.do")
     public Result<Void> register(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto,BindingResult bindingResult){
-        if(Objects.nonNull(userService.getBySubject(userDto.getUsername()))){
-            return Result.failed(SpringUtil.getMessage("user.username.exist"));
-        }
-        if(Objects.nonNull(userService.getBySubject(userDto.getEmail()))){
-            return Result.failed(SpringUtil.getMessage("user.email.exist"));
-        }
         if(Objects.nonNull(userService.getBySubject(userDto.getPhone()))){
             return Result.failed(SpringUtil.getMessage("user.phone.exist"));
         }
