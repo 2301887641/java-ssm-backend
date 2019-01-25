@@ -11,6 +11,6 @@ public class RegisterController {
 
     @GetMapping("/register.do")
     public String toRegister(){
-        return "register";
+        return "/WEB-INF/index.html";
     }
 }
