@@ -50,6 +50,11 @@
         <!-- hibernate校验器 -->
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
     </bean>
+    <!--配置视图解析器-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+         <property name="viewNames"></property>
+    </bean>
+
     <!--使用AspectJ提供的注解方式实现aop-->
     <!--如果项目用了spring MVC,一定要把AOP相关配置移动到MVC配置文件-->
     <aop:aspectj-autoproxy  proxy-target-class="true"/>
