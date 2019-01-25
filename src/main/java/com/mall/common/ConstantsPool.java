@@ -7,7 +7,7 @@ public interface ConstantsPool {
     /**
      * session相关
      */
-    interface Session{
+    interface Session {
         /**
          * 用户的session name
          */
@@ -15,7 +15,7 @@ public interface ConstantsPool {
         /**
          * 验证码session name
          */
-        String CAPTCHA_SESSION_NAME="captcha_show";
+        String CAPTCHA_SESSION_NAME = "captcha_show";
     }
 
     /**
@@ -34,5 +34,12 @@ public interface ConstantsPool {
          * 手机
          */
         String SUBJECT_PHONE = "phone";
+    }
+
+    /**
+     * 异常相关
+     */
+    interface Exception {
+        String CREATE_CAPTCHA_ERROR = "验证码生成失败";
     }
 }

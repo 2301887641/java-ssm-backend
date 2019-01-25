@@ -2,6 +2,7 @@ package com.mall.controller.portal;
 
 import com.google.code.kaptcha.Producer;
 import com.mall.common.ConstantsPool;
+import com.mall.exception.ConsoleLogException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,22 +32,14 @@ public class RegisterController {
     }
 
     @GetMapping("/captcha.do")
-    public void captcha(HttpSession session, HttpServletResponse response) throws IOException {
-        byte[] captchaChallengeAsJpeg;
-        ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
+    public void captcha(HttpSession session, HttpServletResponse response){
         String text = captchaProducer.createText();
-        BufferedImage image = captchaProducer.createImage(text);
         session.setAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME, text);
-        ImageIO.write(image, "jpg", jpegOutputStream);
-        //定义response输出类型为image/jpeg类型，使用response输出流输出图片的byte数组
-        captchaChallengeAsJpeg = jpegOutputStream.toByteArray();
-        response.setHeader("Cache-Control", "no-store");
-        response.setHeader("Pragma", "no-cache");
-        response.setDateHeader("Expires", 0);
-        response.setContentType("image/jpeg");
-        ServletOutputStream responseOutputStream = response.getOutputStream();
-        responseOutputStream.write(captchaChallengeAsJpeg);
-        responseOutputStream.flush();
-        responseOutputStream.close();
+        try {
+            ImageIO.write(captchaProducer.createImage(text), "jpg", response.getOutputStream());
+        } catch (Exception e) {
+            //控制台显示
+            throw new ConsoleLogException(ConstantsPool.Exception.CREATE_CAPTCHA_ERROR);
+        }
     }
 }
