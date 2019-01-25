@@ -52,7 +52,8 @@
     </bean>
     <!--配置视图解析器-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-         <property name="viewNames"></property>
+         <property name="prefix" value="/WEB-INF/"/>
+        <property name="suffix" value=".html"/>
     </bean>
 
     <!--使用AspectJ提供的注解方式实现aop-->
