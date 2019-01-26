@@ -1,20 +1,30 @@
 package com.mall.controller.portal;
 
 import com.google.code.kaptcha.Producer;
+import com.mall.annotation.DoValidParam;
 import com.mall.constant.ConstantsPool;
 import com.mall.common.Result;
+import com.mall.dto.UserDto;
+import com.mall.dto.UserValidationExtensionDto;
 import com.mall.exception.ConsoleLogException;
+import com.mall.group.userDto.ValidationUserDto;
 import com.mall.util.FrontUtil;
+import com.mall.util.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -28,17 +38,18 @@ public class RegisterController {
 
     @GetMapping("/register.do")
     public String toRegister(HttpServletRequest request) {
-        return FrontUtil.getTemplatePath("register","index");
+        return FrontUtil.getTemplatePath("register", "index");
     }
 
     @PostMapping("/register.do")
-    @Validated
-    public Result<Void> doRegister(@NotNull(message = "不能为空") String phone, String captcha){
+    @ResponseBody
+    @DoValidParam
+    public Result<Void> doRegister(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto, BindingResult result2,@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserValidationExtensionDto userValidationExtensionDto, BindingResult result) {
         return Result.success();
     }
 
     @GetMapping("/captcha.do")
-    public void captcha(HttpSession session, HttpServletResponse response){
+    public void captcha(HttpSession session, HttpServletResponse response) {
         String text = captchaProducer.createText();
         session.setAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME, text);
         try {
