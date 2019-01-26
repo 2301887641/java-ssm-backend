@@ -42,4 +42,11 @@ public interface ConstantsPool {
     interface Exception {
         String CREATE_CAPTCHA_ERROR = "验证码生成失败";
     }
+
+    /**
+     * 图片相关
+     */
+    interface Img {
+        String IMG_JPG = "jpg";
+    }
 }

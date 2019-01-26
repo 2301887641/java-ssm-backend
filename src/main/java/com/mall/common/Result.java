@@ -37,11 +37,11 @@ public class Result<T> implements Serializable {
     }
 
     public static<W> Result<W> failed(){
-        return new Result<W>(RestCodeEnum.EXCEPTION.getOrdinal());
+        return new Result<W>(RestCodeEnum.ERROR.getOrdinal());
     }
 
     public static<W> Result<W> failed(String restInfo){
-        return new Result<W>(RestCodeEnum.EXCEPTION.getOrdinal(),restInfo);
+        return new Result<W>(RestCodeEnum.ERROR.getOrdinal(),restInfo);
     }
 
     public static<W> Result<W> failed(int code,String restInfo){
