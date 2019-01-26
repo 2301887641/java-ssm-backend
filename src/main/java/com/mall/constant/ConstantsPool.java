@@ -1,4 +1,4 @@
-package com.mall.common;
+package com.mall.constant;
 
 /**
  * @author suiguozhen on 19/01/19 16:23

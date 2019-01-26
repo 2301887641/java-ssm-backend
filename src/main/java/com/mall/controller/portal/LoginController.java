@@ -1,7 +1,7 @@
 package com.mall.controller.portal;
 
 import com.mall.annotation.DoValidParam;
-import com.mall.common.ConstantsPool;
+import com.mall.constant.ConstantsPool;
 import com.mall.common.Result;
 import com.mall.dto.UserDto;
 import com.mall.group.userDto.ValidationUserDto;
@@ -42,18 +42,6 @@ public class LoginController {
     @GetMapping("/logout.do")
     public Result<Void> logout(HttpSession session){
         session.removeAttribute(ConstantsPool.Session.USER_SESSION_NAME);
-        return Result.success();
-    }
-
-    @PostMapping("/register.do")
-    public Result<Void> register(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto,BindingResult bindingResult){
-        if(Objects.nonNull(userService.getBySubject(userDto.getPhone()))){
-            return Result.failed(SpringUtil.getMessage("user.phone.exist"));
-        }
-        int saveId = userService.save(userDto);
-        if(saveId==0){
-            return Result.failed(SpringUtil.getMessage("validation.user.createFailed"));
-        }
         return Result.success();
     }
 
