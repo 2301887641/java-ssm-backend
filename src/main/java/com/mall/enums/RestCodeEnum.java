@@ -1,4 +1,4 @@
-package com.mall.common;
+package com.mall.enums;
 
 import lombok.Getter;
 

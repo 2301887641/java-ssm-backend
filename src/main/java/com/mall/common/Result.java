@@ -2,6 +2,7 @@ package com.mall.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.mall.enums.RestCodeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
