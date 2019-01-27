@@ -8,13 +8,7 @@ public interface BaseEnum {
 
     /**
      * 获得标号 默认返回标号 rest请求时
-     * @return
+     * @return integer
      */
     Integer getOrdinal();
-
-    /**
-     * 获得字符串
-     * @return
-     */
-    String getLabel();
 }

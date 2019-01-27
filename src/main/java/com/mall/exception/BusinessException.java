@@ -12,14 +12,6 @@ import com.mall.enums.RestCodeEnum;
 public class BusinessException extends LogicException {
 
     /**
-     * 有参构造
-     * @param enums  异常枚举
-     */
-    public BusinessException(BaseEnum enums){
-        super(enums.getOrdinal(),enums.getLabel());
-    }
-
-    /**
      * 自定义信息构造
      * @param message 错误信息
      */

@@ -27,9 +27,6 @@ public class UserDto extends BaseDto{
     private String password;
 
     private String email;
-    @NotNull(message="{validation.phone.required}",groups = {
-            ValidationUserDto.ValidationFrontUserRegister.class
-    })
     @Pattern(regexp= ConstantsPool.Regexp.PHONE_PATTERN,message = "{validation.phone.regexp}",groups = {
             ValidationUserDto.ValidationFrontUserRegister.class
     })

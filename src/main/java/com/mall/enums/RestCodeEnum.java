@@ -10,16 +10,14 @@ import lombok.Getter;
 @Getter
 public enum RestCodeEnum implements BaseEnum {
     /***操作成功*/
-    SUCCESS(200, "操作成功"),
+    SUCCESS(200),
     /*** 登陆失效*/
-    NOT_LOGIN(401, "未登录或登录已失效"),
+    NOT_LOGIN(401),
     /*** 未知错误*/
-    ERROR(500, "网络繁忙，请稍后重试");
+    ERROR(500);
     private Integer ordinal;
-    private String label;
 
-    RestCodeEnum(Integer ordinal, String label) {
+    RestCodeEnum(Integer ordinal) {
         this.ordinal = ordinal;
-        this.label = label;
     }
 }

@@ -12,14 +12,6 @@ public class ConsoleLogException extends LogicException{
 
     /**
      * 有参构造
-     * @param enums
-     */
-    public ConsoleLogException(BaseEnum enums){
-        super(enums.getOrdinal(),enums.getLabel());
-    }
-
-    /**
-     * 有参构造
      * @param message 异常信息
      */
     public ConsoleLogException(String message){
