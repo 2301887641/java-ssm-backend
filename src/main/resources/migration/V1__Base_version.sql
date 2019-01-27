@@ -45,9 +45,9 @@ CREATE TABLE mall_verify_code (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
-  code char(6) not null default "" comment "验证码",
-  count int(10) default 0 comment "发送记录数",
   type varchar(20) not null default "" comment "验证码业务类型",
+  template varchar(150) not null default "" comment "模板内容",
+  template_name varchar(30) not null default "" comment "模板名称",
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -59,20 +59,9 @@ CREATE TABLE mall_verify_code_record (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
+	count int(10) default 0 comment "发送记录数",
+	phone char(11) default 0 comment "手机号",
   code char(6) not null default "" comment "已发送验证码",
-  type varchar(20) not null default "" comment "验证码业务类型",
-	PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for mall_verify_code_template   短信模板表
--- ----------------------------
-DROP TABLE IF EXISTS mall_verify_code_template;
-CREATE TABLE mall_verify_code_template (
-	id INT(11) NOT NULL AUTO_INCREMENT,
-	create_time timestamp  not null  default CURRENT_TIMESTAMP,
-	update_time timestamp  not null  default CURRENT_TIMESTAMP,
-  content varchar(150) not null default "" comment "模板内容",
   type varchar(20) not null default "" comment "验证码业务类型",
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

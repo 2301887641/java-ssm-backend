@@ -3,11 +3,9 @@ package com.mall.service.impl;
 import com.mall.common.Result;
 import com.mall.constant.ConstantsMessage;
 import com.mall.dto.VerifyCodeDto;
-import com.mall.enums.RestCodeEnum;
 import com.mall.enums.VerifyCodeEnum;
 import com.mall.pojo.VerifyCodeTemplate;
 import com.mall.service.api.VerifyCodeService;
-import com.mall.service.api.VerifyCodeTemplateService;
 import com.mall.thirdparty.verifycode.api.SmsSender;
 import com.mall.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -28,15 +26,11 @@ import java.util.Objects;
 public class VerifyCodeServiceImpl implements VerifyCodeService {
     private static final Logger logger = LoggerFactory.getLogger(VerifyCodeServiceImpl.class);
 
-
     @Value("${verifyCode.restrict.number}")
     private Integer restrictNumber;
 
     @Value("${verifyCode.send.length}")
     private Integer codeLength;
-
-    @Autowired
-    private VerifyCodeTemplateService verifyCodeTemplateService;
 
     @Autowired
     private SmsSender smsSender;
@@ -56,13 +50,13 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             }
         }
         //查询是否存在模板
-        VerifyCodeTemplate verifyCodeTemplate = verifyCodeTemplateService.getByType(verifyCodeEnum);
-        if (Objects.isNull(verifyCodeTemplate)) {
-            logger.error(ConstantsMessage.Error.CODE_TEMPLATE_NOT_EXIST);
-            return Result.failed(SpringUtil.getMessage("exception.error.result"));
-        }
-        String code = RandomStringUtils.randomNumeric(codeLength);
-        smsSender.sendSms(phone, code,verifyCodeTemplate.getId());
+//        VerifyCodeTemplate verifyCodeTemplate = verifyCodeTemplateService.getByType(verifyCodeEnum);
+//        if (Objects.isNull(verifyCodeTemplate)) {
+//            logger.error(ConstantsMessage.Error.CODE_TEMPLATE_NOT_EXIST);
+//            return Result.failed(SpringUtil.getMessage("exception.network.error"));
+//        }
+//        String code = RandomStringUtils.randomNumeric(codeLength);
+//        smsSender.sendSms(phone, code,verifyCodeTemplate.getId());
         return Result.success();
     }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mall.dao.VerifyCodeMapper">
+    <sql id="baseColumn">
+        id,
+        type,
+        template,
+        create_time
+    </sql>
+
+    <resultMap id="baseResultMap" type="com.mall.pojo.User">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectByPhoneAndType" resultMap="baseResultMap">
+        select <include refid="baseColumn"/>
+        from mall_verify_code
+        where type=#{type}
+    </select>
+
+</mapper>
