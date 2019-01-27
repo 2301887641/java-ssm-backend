@@ -29,7 +29,6 @@ public class ValidationAspect {
                 Errors errors=(BindingResult) arg;
                if(errors.hasErrors()){
                    return Result.failed(errors.getFieldError().getDefaultMessage());
-                   break;
                }
             }
         }

@@ -31,11 +31,11 @@ public class LoginController {
     @PostMapping("/login.do")
     @DoValidParam
     public Result<Void> doLogin(HttpSession session, @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result){
-        UserDto user = userService.getByUsernameAndPassword(userDto.getUsername(),SecurityUtil.messageDigest(userDto.getPassword()));
-        if(Objects.isNull(user)){
-            return Result.failed(SpringUtil.getMessage("validation.user.isNull"));
-        }
-        session.setAttribute(ConstantsPool.Session.USER_SESSION_NAME,user);
+//        UserDto user = userService.getByUsernameAndPassword(userDto.getUsername(),SecurityUtil.messageDigest(userDto.getPassword()));
+//        if(Objects.isNull(user)){
+//            return Result.failed(SpringUtil.getMessage("validation.user.isNull"));
+//        }
+//        session.setAttribute(ConstantsPool.Session.USER_SESSION_NAME,user);
         return Result.success();
     }
 

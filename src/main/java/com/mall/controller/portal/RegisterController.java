@@ -6,8 +6,10 @@ import com.mall.constant.ConstantsPool;
 import com.mall.common.Result;
 import com.mall.dto.UserDto;
 import com.mall.dto.UserValidationExtensionDto;
+import com.mall.enums.VerifyCodeEnum;
 import com.mall.exception.ConsoleLogException;
 import com.mall.group.userDto.ValidationUserDto;
+import com.mall.service.api.VerifyCodeService;
 import com.mall.util.FrontUtil;
 import com.mall.util.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ public class RegisterController {
     @Autowired
     private Producer captchaProducer;
 
+    @Autowired
+    private VerifyCodeService verifyCodeService;
+
     @GetMapping("/register.do")
     public String toRegister(HttpServletRequest request) {
         return FrontUtil.getTemplatePath("register", "index");
@@ -44,8 +49,8 @@ public class RegisterController {
     @PostMapping("/register.do")
     @ResponseBody
     @DoValidParam
-    public Result<Void> doRegister(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto, BindingResult result2,@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserValidationExtensionDto userValidationExtensionDto, BindingResult result) {
-        return Result.success();
+    public Result<Void> doRegister(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto, BindingResult result2) {
+        return verifyCodeService.sendSmsCode(userDto.getPhone(), VerifyCodeEnum.REGISTER);
     }
 
     @GetMapping("/captcha.do")

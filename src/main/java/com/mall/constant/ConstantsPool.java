@@ -49,4 +49,11 @@ public interface ConstantsPool {
     interface Img {
         String IMG_JPG = "jpg";
     }
+
+    /**
+     * 正则表达式
+     */
+    interface Regexp{
+        String PHONE_PATTERN="^1([38]\\d|5[0-35-9]|7[3678])\\d{8}$";
+    }
 }
