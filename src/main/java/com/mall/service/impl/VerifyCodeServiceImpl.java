@@ -1,15 +1,13 @@
 package com.mall.service.impl;
 
 import com.mall.common.Result;
-import com.mall.constant.ConstantsMessage;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.enums.VerifyCodeEnum;
-import com.mall.pojo.VerifyCodeTemplate;
+import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.thirdparty.verifycode.api.SmsSender;
 import com.mall.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +31,9 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     private Integer codeLength;
 
     @Autowired
+    private VerifyCodeRecordService verifyCodeRecordService;
+
+    @Autowired
     private SmsSender smsSender;
 
     @Override
@@ -43,6 +44,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     @Override
     public Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeEnum) {
         //查询发送总数
+        verifyCodeRecordService.getTodayLastRecord(phone,verifyCodeEnum);
         VerifyCodeDto verifyCodeDto = getByPhoneAndType(phone, verifyCodeEnum);
         if (Objects.nonNull(verifyCodeDto)) {
             if (verifyCodeDto.getCount() >= restrictNumber) {

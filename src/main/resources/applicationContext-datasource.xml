@@ -70,9 +70,11 @@
             </array>
         </property>
     </bean>
+    <!--mapper扫描接口-->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.mall.dao"/>
     </bean>
+    <!--事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
         <property name="rollbackOnCommitFailure" value="true"/>

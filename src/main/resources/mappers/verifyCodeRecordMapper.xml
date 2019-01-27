@@ -10,7 +10,7 @@
         create_time
     </sql>
 
-    <resultMap id="baseResultMap" type="com.mall.pojo.VerifyCodeRecordDto">
+    <resultMap id="baseResultMap" type="com.mall.pojo.VerifyCodeRecord">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="type" column="username" jdbcType="INTEGER"/>
         <result property="phone" column="email" jdbcType="VARCHAR"/>
@@ -21,7 +21,7 @@
     <select id="selectTodayLastRecord" resultMap="baseResultMap">
         select <include refid="baseColumn"/>
         from mall_verify_code
-        where type=#{type}
+        where type=#{type} and createTime >=#{time}
     </select>
 
 </mapper>
