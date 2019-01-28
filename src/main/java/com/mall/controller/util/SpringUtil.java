@@ -1,4 +1,4 @@
-package com.mall.util;
+package com.mall.controller.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;

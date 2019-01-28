@@ -6,7 +6,7 @@ import com.mall.enums.VerifyCodeEnum;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.thirdparty.verifycode.api.SmsSender;
-import com.mall.util.SpringUtil;
+import com.mall.controller.util.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

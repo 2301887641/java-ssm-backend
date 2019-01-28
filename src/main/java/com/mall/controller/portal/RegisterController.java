@@ -1,13 +1,17 @@
 package com.mall.controller.portal;
 
 import com.google.code.kaptcha.Producer;
+import com.mall.annotation.DoValidParam;
 import com.mall.common.Result;
 import com.mall.constant.ConstantsPool;
+import com.mall.dto.UserDto;
 import com.mall.exception.ConsoleLogException;
+import com.mall.group.userDto.ValidationUserDto;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.util.FrontUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +51,9 @@ public class RegisterController {
 
     @PostMapping("/register.do")
     @ResponseBody
-    public Result<Void> doRegister(@NotNull @Pattern(message="{validation.phone.regexp}",regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone) {
+    @DoValidParam
+    public Result<Void> doRegister(@NotNull @Pattern(message="{validation.phone.regexp}",regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
+                                   @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result) {
         return Result.success();
 //        return verifyCodeService.sendSmsCode(userDto.getPhone(), VerifyCodeEnum.REGISTER);
     }
