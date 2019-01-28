@@ -32,7 +32,7 @@ public class VerifyCodeController {
     /**
      * 发送短信验证码
      * @param phone  手机
-     * @param verifyCodeEnum 类型
+     * @param verifyCodeType 类型
      * @param captcha 验证码 注册时需要
      * @return Result
      */
@@ -40,22 +40,15 @@ public class VerifyCodeController {
     public Result<Void> smsCode(@NotNull(message = "{validation.phone.required}")
                                 @Pattern(message="{validation.phone.regexp}",
                                 regexp = ConstantsPool.Regexp.PHONE_PATTERN)String phone,
-                                @NotNull(message = "{exception.network.error}") VerifyCodeEnum verifyCodeEnum,
+                                @NotNull(message = "{exception.network.error}") VerifyCodeEnum verifyCodeType,
                                 String captcha,
                                 HttpSession session){
-        try{
-            int i=1/0;
-        }catch(Exception e){
-            throw new ConsoleLogException(ConstantsPool.Exception.CAPTCHA_CREATE_ERROR);
-        }
-
-        if(VerifyCodeEnum.REGISTER.getOrdinal().equals(verifyCodeEnum.getOrdinal())){
+        if(VerifyCodeEnum.REGISTER.getOrdinal().equals(verifyCodeType.getOrdinal())){
             if(Strings.isNullOrEmpty(captcha)){
-                return Result.failed(SpringUtil.getMessage("validation.captcha.isNull"));
+                return Result.failed(SpringUtil.getMessage("verifyCode.captcha.isNull"));
             }
-            Code code = (Code)session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
-
+            verifyCodeService.validate((Code)session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME),captcha);
         }
-        return verifyCodeService.sendSmsCode(phone,verifyCodeEnum);
+        return verifyCodeService.sendSmsCode(phone,verifyCodeType);
     }
 }

@@ -2,15 +2,12 @@ package com.mall.service.impl;
 
 import com.mall.common.Code;
 import com.mall.common.Result;
+import com.mall.controller.util.SpringUtil;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.enums.VerifyCodeEnum;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.thirdparty.verifycode.api.SmsSender;
-import com.mall.controller.util.SpringUtil;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,9 +18,7 @@ import java.util.Objects;
  * @author suiguozhen on 19/01/24 10:56
  */
 @Service
-@Slf4j
 public class VerifyCodeServiceImpl implements VerifyCodeService {
-    private static final Logger logger = LoggerFactory.getLogger(VerifyCodeServiceImpl.class);
 
     @Value("${verifyCode.restrict.number}")
     private Integer restrictNumber;
@@ -71,7 +66,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     @Override
     public Result<Void> validate(Code code, String requestCode) {
         if(Objects.isNull(code)){
-
+            return Result.failed(SpringUtil.getMessage("verifyCode.not.exist"));
         }
 
 

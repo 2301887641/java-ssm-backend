@@ -28,18 +28,4 @@ public class ConsoleLogException extends LogicException{
     public ConsoleLogException(BaseEnum enums, String message){
         super(enums.getOrdinal(),message);
     }
-
-    /**
-     * java如何让自定义异常不追踪堆栈信息
-     * @return
-     */
-    @Override
-    public synchronized Throwable fillInStackTrace() {
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return MessageFormat.format("{0}[{1}]",this.key,this.info);
-    }
 }

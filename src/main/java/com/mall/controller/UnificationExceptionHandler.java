@@ -42,8 +42,6 @@ public class UnificationExceptionHandler {
 
     @ExceptionHandler(ConsoleLogException.class)
     public void consoleLogExceptionHandler(ConsoleLogException exception){
-        logger.debug(exception.getMessage());
-        System.out.println(exception.getMsg());
-        System.out.println(111);
+        logger.info(exception.getMsg());
     }
 }
