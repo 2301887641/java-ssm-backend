@@ -6,6 +6,7 @@ import com.mall.common.Result;
 import com.mall.constant.ConstantsPool;
 import com.mall.controller.util.SpringUtil;
 import com.mall.enums.VerifyCodeEnum;
+import com.mall.exception.ConsoleLogException;
 import com.mall.service.api.VerifyCodeService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,12 @@ public class VerifyCodeController {
                                 @NotNull(message = "{exception.network.error}") VerifyCodeEnum verifyCodeEnum,
                                 String captcha,
                                 HttpSession session){
+        try{
+            int i=1/0;
+        }catch(Exception e){
+            throw new ConsoleLogException(ConstantsPool.Exception.CAPTCHA_CREATE_ERROR);
+        }
+
         if(VerifyCodeEnum.REGISTER.getOrdinal().equals(verifyCodeEnum.getOrdinal())){
             if(Strings.isNullOrEmpty(captcha)){
                 return Result.failed(SpringUtil.getMessage("validation.captcha.isNull"));

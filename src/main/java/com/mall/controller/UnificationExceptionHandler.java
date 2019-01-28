@@ -2,6 +2,10 @@ package com.mall.controller;
 
 import com.mall.common.Result;
 import com.mall.controller.util.SpringUtil;
+import com.mall.exception.ConsoleLogException;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,7 +20,10 @@ import java.util.Set;
  */
 @ControllerAdvice
 @Controller
+@Slf4j
 public class UnificationExceptionHandler {
+    private static final Logger logger = LoggerFactory.getLogger(UnificationExceptionHandler.class);
+
 
     /**
      * 方法参数校验
@@ -31,5 +38,12 @@ public class UnificationExceptionHandler {
             return Result.failed(item.getMessage());
         }
         return Result.failed(SpringUtil.getMessage("exception.network.error"));
+    }
+
+    @ExceptionHandler(ConsoleLogException.class)
+    public void consoleLogExceptionHandler(ConsoleLogException exception){
+        logger.debug(exception.getMessage());
+        System.out.println(exception.getMsg());
+        System.out.println(111);
     }
 }

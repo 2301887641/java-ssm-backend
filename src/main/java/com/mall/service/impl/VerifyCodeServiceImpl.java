@@ -1,5 +1,6 @@
 package com.mall.service.impl;
 
+import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.enums.VerifyCodeEnum;
@@ -64,6 +65,16 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public Result<Void> sendEmailCode(String email, VerifyCodeEnum verifyCodeEnum) {
+        return null;
+    }
+
+    @Override
+    public Result<Void> validate(Code code, String requestCode) {
+        if(Objects.isNull(code)){
+
+        }
+
+
         return null;
     }
 }

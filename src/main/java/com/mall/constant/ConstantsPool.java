@@ -42,7 +42,7 @@ public interface ConstantsPool {
      * 异常相关
      */
     interface Exception {
-        String CREATE_CAPTCHA_ERROR = "验证码生成失败";
+        String CAPTCHA_CREATE_ERROR = "验证码获取失败";
         String CODE_TEMPLATE_NOT_EXIST="验证码模板不存在";
     }
 

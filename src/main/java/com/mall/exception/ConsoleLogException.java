@@ -4,6 +4,8 @@ package com.mall.exception;
 import com.mall.enums.BaseEnum;
 import com.mall.enums.RestCodeEnum;
 
+import java.text.MessageFormat;
+
 /**
  * log异常 后台拦截后直接呈现在控制台和日志中
  * @author suiguozhen on 18/10/23
@@ -25,5 +27,15 @@ public class ConsoleLogException extends LogicException{
      */
     public ConsoleLogException(BaseEnum enums, String message){
         super(enums.getOrdinal(),message);
+    }
+
+    @Override
+    public synchronized Throwable fillInStackTrace() {
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return MessageFormat.format("{0}[{1}]",this.key,this.info);
     }
 }
