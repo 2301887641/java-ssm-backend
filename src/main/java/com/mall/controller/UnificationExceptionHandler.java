@@ -40,6 +40,10 @@ public class UnificationExceptionHandler {
         return Result.failed(SpringUtil.getMessage("exception.network.error"));
     }
 
+    /**
+     * 日志记录异常
+     * @param exception ConsoleLogException记录无法避免的异常
+     */
     @ExceptionHandler(ConsoleLogException.class)
     public void consoleLogExceptionHandler(ConsoleLogException exception){
         logger.info(exception.getMsg());

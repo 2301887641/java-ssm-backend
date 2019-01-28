@@ -8,10 +8,12 @@ import com.mall.enums.VerifyCodeEnum;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.thirdparty.verifycode.api.SmsSender;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -38,10 +40,10 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     }
 
     @Override
-    public Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeEnum) {
+    public Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeType) {
         //查询发送总数
-        verifyCodeRecordService.getTodayLastRecord(phone,verifyCodeEnum);
-        VerifyCodeDto verifyCodeDto = getByPhoneAndType(phone, verifyCodeEnum);
+        verifyCodeRecordService.getTodayLastRecord(phone,verifyCodeType);
+        VerifyCodeDto verifyCodeDto = getByPhoneAndType(phone, verifyCodeType);
         if (Objects.nonNull(verifyCodeDto)) {
             if (verifyCodeDto.getCount() >= restrictNumber) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
@@ -65,11 +67,12 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public Result<Void> validate(Code code, String requestCode) {
-        if(Objects.isNull(code)){
+        if(Objects.isNull(code) || LocalDateTime.now().isAfter(code.getExpireTime())){
             return Result.failed(SpringUtil.getMessage("verifyCode.not.exist"));
         }
-
-
-        return null;
+        if(!StringUtils.equals(code.getCode(),requestCode)){
+            return Result.failed(SpringUtil.getMessage("verifyCode.not.match"));
+        }
+        return Result.success();
     }
 }

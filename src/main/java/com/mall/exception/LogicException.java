@@ -15,19 +15,13 @@ import java.text.MessageFormat;
 @Getter
 @Setter
 public class LogicException extends RuntimeException {
-    /**
-     * 状态码
-     */
+    /*** 状态码*/
     protected Integer code;
 
-    /**
-     * 错误消息
-     */
+    /*** 错误消息*/
     protected String msg;
 
-    /**
-     * 带有状态码和错误消息的构造函数
-     */
+    /*** 带有状态码和错误消息的构造函数*/
     public LogicException(Integer code, String msg) {
         super();
         this.code = code;
@@ -36,7 +30,7 @@ public class LogicException extends RuntimeException {
 
     /**
      * java如何让自定义异常不追踪堆栈信息
-     * @return
+     * @return this
      */
     @Override
     public synchronized Throwable fillInStackTrace() {

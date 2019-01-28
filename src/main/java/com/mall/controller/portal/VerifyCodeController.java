@@ -47,7 +47,11 @@ public class VerifyCodeController {
             if(Strings.isNullOrEmpty(captcha)){
                 return Result.failed(SpringUtil.getMessage("verifyCode.captcha.isNull"));
             }
-            verifyCodeService.validate((Code)session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME),captcha);
+            Result<Void> result = verifyCodeService.validate((Code) session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME), captcha);
+            if(!result.isSuccess()){
+                return result;
+            }
+            session.removeAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
         }
         return verifyCodeService.sendSmsCode(phone,verifyCodeType);
     }

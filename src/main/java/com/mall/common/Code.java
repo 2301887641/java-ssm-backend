@@ -12,9 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 public class Code {
     private String code;
-    /**
-     * 过期时间 当前时间加上秒数
-     */
+    /*** 过期时间 当前时间加上秒数*/
     private LocalDateTime expireTime;
 
     public Code(String code,Long time){
