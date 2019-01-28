@@ -29,6 +29,10 @@ public class ConsoleLogException extends LogicException{
         super(enums.getOrdinal(),message);
     }
 
+    /**
+     * java如何让自定义异常不追踪堆栈信息
+     * @return
+     */
     @Override
     public synchronized Throwable fillInStackTrace() {
         return this;
