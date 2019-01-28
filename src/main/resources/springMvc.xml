@@ -8,7 +8,7 @@
     <context:component-scan base-package="com.mall.controller,com.mall.common"/>
 
     <!--Spring处理返回值为String类型的结果时使用了StringHttpMessageConverter, 所以我们需要配置他的编码-->
-    <mvc:annotation-driven validator="validator">
+    <mvc:annotation-driven validator="validator" conversion-service="conversionService">
        <mvc:message-converters>
            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                <property name="supportedMediaTypes">
@@ -63,6 +63,15 @@
     <!--注册方法验证的后处理器-->
     <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
         <property name="validator" ref="validator"/>
+    </bean>
+    <!--Spring类型转换体系的核心接口,可以利用conversionServiceFactoryBean在Spring工厂容器中定义一个conversionService-->
+    <bean id="conversionService"
+          class="org.springframework.context.support.ConversionServiceFactoryBean">
+            <property name="converters">
+                <list>
+                    <bean class="com.mall.config.StringToEnumConverterFactory"/>
+                </list>
+            </property>
     </bean>
     <!--使用AspectJ提供的注解方式实现aop-->
     <!--如果项目用了spring MVC,一定要把AOP相关配置移动到MVC配置文件-->

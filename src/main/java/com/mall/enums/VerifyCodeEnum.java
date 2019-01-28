@@ -7,7 +7,7 @@ import lombok.Getter;
  * @author suiguozhen on 19/01/24 8:52
  */
 @Getter
-public enum VerifyCodeEnum {
+public enum VerifyCodeEnum implements BaseEnum{
     /**
      * 用户注册
      */
