@@ -1,5 +1,6 @@
 package com.mall.service.api;
 
+import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.enums.VerifyCodeEnum;
@@ -32,4 +33,12 @@ public interface VerifyCodeService {
      * @return Result
      */
     Result<Void> sendEmailCode(String email,VerifyCodeEnum verifyCodeEnum);
+
+    /**
+     * 校验验证码 图片验证码 短信验证码
+     * @param code  放在session或数据库中的code实体
+     * @param requestCode  前端请求携带的code
+     * @return Result
+     */
+    Result<Void> validate(Code code,String requestCode);
 }

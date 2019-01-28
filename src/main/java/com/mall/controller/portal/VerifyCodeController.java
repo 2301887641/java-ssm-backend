@@ -1,9 +1,13 @@
 package com.mall.controller.portal;
 
+import com.google.common.base.Strings;
+import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.constant.ConstantsPool;
+import com.mall.controller.util.SpringUtil;
 import com.mall.enums.VerifyCodeEnum;
 import com.mall.service.api.VerifyCodeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,8 +43,11 @@ public class VerifyCodeController {
                                 String captcha,
                                 HttpSession session){
         if(VerifyCodeEnum.REGISTER.getOrdinal().equals(verifyCodeEnum.getOrdinal())){
-            String cacheCaptcha = (String)session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
-            if()
+            if(Strings.isNullOrEmpty(captcha)){
+                return Result.failed(SpringUtil.getMessage("validation.captcha.isNull"));
+            }
+            Code code = (Code)session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
+
         }
         return verifyCodeService.sendSmsCode(phone,verifyCodeEnum);
     }
