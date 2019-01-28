@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface UserConverter {
-    UserConverter converter = Mappers.getMapper(UserConverter.class);
+    UserConverter CONVERTER = Mappers.getMapper(UserConverter.class);
     UserDto pojoToDto(User user);
     User dtoToPojo(UserDto dto);
 }

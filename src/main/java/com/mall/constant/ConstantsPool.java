@@ -1,6 +1,8 @@
 package com.mall.constant;
 
 /**
+ * 常量池 包含以下内容:
+ * 英文、正则等信息 不含有中文信息
  * @author suiguozhen on 19/01/19 16:23
  */
 public interface ConstantsPool {
@@ -41,6 +43,7 @@ public interface ConstantsPool {
      */
     interface Exception {
         String CREATE_CAPTCHA_ERROR = "验证码生成失败";
+        String CODE_TEMPLATE_NOT_EXIST="验证码模板不存在";
     }
 
     /**

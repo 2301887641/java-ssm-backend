@@ -1,6 +1,6 @@
 package com.mall.controller.portal;
 
-import com.mall.annotation.DoValidParam;
+import com.mall.annotation.DoValid;
 import com.mall.constant.ConstantsPool;
 import com.mall.common.Result;
 import com.mall.dto.UserDto;
@@ -28,7 +28,7 @@ public class LoginController {
     private UserService userService;
 
     @PostMapping("/login.do")
-    @DoValidParam
+    @DoValid
     public Result<Void> doLogin(HttpSession session, @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result){
 //        UserDto user = userService.getByUsernameAndPassword(userDto.getUsername(),SecurityUtil.messageDigest(userDto.getPassword()));
 //        if(Objects.isNull(user)){

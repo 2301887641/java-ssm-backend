@@ -18,16 +18,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getByUsernameAndPassword(String username,String password) {
-        return UserConverter.converter.pojoToDto(userMapper.selectByUsernameAndPassword(username,password));
+        return UserConverter.CONVERTER.pojoToDto(userMapper.selectByUsernameAndPassword(username,password));
     }
 
     @Override
     public int save(UserDto userDto) {
-        return userMapper.insert(UserConverter.converter.dtoToPojo(userDto));
+        return userMapper.insert(UserConverter.CONVERTER.dtoToPojo(userDto));
     }
 
     @Override
     public UserDto getBySubject(String subject) {
-        return UserConverter.converter.pojoToDto(userMapper.selectBySubject(subject));
+        return UserConverter.CONVERTER.pojoToDto(userMapper.selectBySubject(subject));
     }
 }

@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
  */
 @Mapper
 public interface VerifyCodeRecordConverter {
-    VerifyCodeRecordConverter converter= Mappers.getMapper(VerifyCodeRecordConverter.class);
+    VerifyCodeRecordConverter CONVERTER= Mappers.getMapper(VerifyCodeRecordConverter.class);
     VerifyCodeRecord dtoToPojo(VerifyCodeRecordDto verifyCodeRecordDto);
     VerifyCodeRecordDto pojoTodto(VerifyCodeRecord verifyCodeRecord);
 }

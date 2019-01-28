@@ -23,6 +23,6 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
 
     @Override
     public VerifyCodeRecordDto getTodayLastRecord(String phone,VerifyCodeEnum verifyCodeEnum) {
-        return VerifyCodeRecordConverter.converter.pojoTodto(verifyCodeRecordMapper.selectTodayLastRecord(phone,verifyCodeEnum,LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"))));
+        return VerifyCodeRecordConverter.CONVERTER.pojoTodto(verifyCodeRecordMapper.selectTodayLastRecord(phone,verifyCodeEnum,LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"))));
     }
 }

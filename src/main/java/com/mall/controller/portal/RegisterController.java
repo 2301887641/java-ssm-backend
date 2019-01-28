@@ -1,7 +1,7 @@
 package com.mall.controller.portal;
 
 import com.google.code.kaptcha.Producer;
-import com.mall.annotation.DoValidParam;
+import com.mall.annotation.DoValid;
 import com.mall.common.Result;
 import com.mall.constant.ConstantsPool;
 import com.mall.dto.UserDto;
@@ -44,14 +44,14 @@ public class RegisterController {
 
 //    @PostMapping("/register.do")
 //    @ResponseBody
-//    @DoValidParam
+//    @DoValid
 //    public Result<Void> doRegister(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto, BindingResult result) {
 //        return verifyCodeService.sendSmsCode(userDto.getPhone(), VerifyCodeEnum.REGISTER);
 //    }
 
     @PostMapping("/register.do")
     @ResponseBody
-    @DoValidParam
+    @DoValid
     public Result<Void> doRegister(@NotNull @Pattern(message="{validation.phone.regexp}",regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                    @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result) {
         return Result.success();
