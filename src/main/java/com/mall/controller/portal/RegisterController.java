@@ -47,7 +47,7 @@ public class RegisterController {
 
     @PostMapping("/register.do")
     @ResponseBody
-    public Result<Void> doRegister(@Pattern(message="{validation.phone.regexp}",regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone) {
+    public Result<Void> doRegister(@NotNull @Pattern(message="{validation.phone.regexp}",regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone) {
         return Result.success();
 //        return verifyCodeService.sendSmsCode(userDto.getPhone(), VerifyCodeEnum.REGISTER);
     }
