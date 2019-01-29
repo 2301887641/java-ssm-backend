@@ -1,7 +1,7 @@
 package com.mall.controller;
 
 import com.mall.common.Result;
-import com.mall.controller.util.SpringUtil;
+import com.mall.common.SpringUtil;
 import com.mall.exception.ConsoleLogException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

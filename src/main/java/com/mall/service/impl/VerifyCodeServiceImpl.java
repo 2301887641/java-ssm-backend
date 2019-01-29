@@ -2,7 +2,7 @@ package com.mall.service.impl;
 
 import com.mall.common.Code;
 import com.mall.common.Result;
-import com.mall.controller.util.SpringUtil;
+import com.mall.common.SpringUtil;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.enums.VerifyCodeEnum;
 import com.mall.service.api.VerifyCodeRecordService;
@@ -41,6 +41,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeType) {
+        String message = SpringUtil.getMessage("verifyCode.count.restrict");
         //查询发送总数
         verifyCodeRecordService.getTodayLastRecord(phone,verifyCodeType);
         VerifyCodeDto verifyCodeDto = getByPhoneAndType(phone, verifyCodeType);

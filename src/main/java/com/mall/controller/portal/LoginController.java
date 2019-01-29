@@ -6,7 +6,7 @@ import com.mall.common.Result;
 import com.mall.dto.UserDto;
 import com.mall.group.userDto.ValidationUserDto;
 import com.mall.service.api.UserService;
-import com.mall.controller.util.SpringUtil;
+import com.mall.common.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
