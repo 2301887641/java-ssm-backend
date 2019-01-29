@@ -17,7 +17,7 @@ public class SmsSenderImpl implements SmsSender {
     private static final Logger logger = LoggerFactory.getLogger(SmsSenderImpl.class);
 
     @Override
-    public void sendSms(String phone,String code, Integer templateId) {
-        logger.info("send sms, phone: {}, templateId: {}",phone,code,templateId);
+    public void sendSms(String phone,String code, String template) {
+        logger.info("send sms, phone: {}, templateId: {}",phone,code,template);
     }
 }

@@ -3,12 +3,17 @@ package com.mall.service.impl;
 import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
+import com.mall.constant.ConstantsPool;
+import com.mall.converter.VerifyCodeConverter;
+import com.mall.dao.VerifyCodeMapper;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeEnum;
+import com.mall.exception.BusinessException;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.thirdparty.verifycode.api.SmsSender;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,6 +40,9 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     @Autowired
     private SmsSender smsSender;
 
+    @Autowired
+    private VerifyCodeMapper verifyCodeMapper;
+
     @Override
     public Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeType) {
         //查询发送总数
@@ -43,16 +51,14 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             if (verifyCodeRecordDto.getCount() >= Integer.valueOf(SpringUtil.getPropertiesValue("verifyCode.restrict.number"))) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
             }
-//            validate(new Code(verifyCodeRecordDto.getCode(),verifyCodeRecordDto.)
         }
         //查询是否存在模板
-
-//        if (Objects.isNull(verifyCodeTemplate)) {
-//            logger.error(ConstantsMessage.Error.CODE_TEMPLATE_NOT_EXIST);
-//            return Result.failed(SpringUtil.getMessage("exception.network.error"));
-//        }
-//        String code = RandomStringUtils.randomNumeric(codeLength);
-//        smsSender.sendSms(phone, code,verifyCodeTemplate.getId());
+        VerifyCodeDto verifyCodeDto = getByType(verifyCodeType);
+        if(Objects.isNull(verifyCodeDto)){
+            throw new BusinessException(ConstantsPool.Exception.VERIFY_CODE_TEMPLATE_NOT_EXIST);
+        }
+        String code = RandomStringUtils.randomNumeric(codeLength);
+        smsSender.sendSms(phone, code,verifyCodeDto.getTemplate());
         return Result.success();
     }
 
@@ -70,5 +76,10 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             return Result.failed(SpringUtil.getMessage("verifyCode.not.match"));
         }
         return Result.success();
+    }
+
+    @Override
+    public VerifyCodeDto getByType(VerifyCodeEnum verifyCodeType) {
+        return VerifyCodeConverter.CONVERTER.pojoToDto(verifyCodeMapper.selectByType(verifyCodeType.getOrdinal()));
     }
 }

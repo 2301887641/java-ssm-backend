@@ -11,5 +11,5 @@ public interface SmsSender {
      * @param code   验证码
      * @param templateId  模板id
      */
-    void sendSms(String phone,String code,Integer templateId);
+    void sendSms(String phone,String code,String templateId);
 }

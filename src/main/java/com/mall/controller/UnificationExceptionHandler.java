@@ -2,6 +2,7 @@ package com.mall.controller;
 
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
+import com.mall.exception.BusinessException;
 import com.mall.exception.ConsoleLogException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -23,7 +24,6 @@ import java.util.Set;
 @Slf4j
 public class UnificationExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(UnificationExceptionHandler.class);
-
 
     /**
      * 方法参数校验
@@ -47,5 +47,16 @@ public class UnificationExceptionHandler {
     @ExceptionHandler(ConsoleLogException.class)
     public void consoleLogExceptionHandler(ConsoleLogException exception){
         logger.info(exception.getMsg());
+    }
+
+    /**
+     * 业务异常
+     * @param exception ConsoleLogException记录无法避免的异常
+     */
+    @ExceptionHandler(BusinessException.class)
+    @ResponseBody
+    public Result<Void> businessExceptionHandler(BusinessException exception){
+        logger.info(exception.getMsg());
+        return Result.failed(SpringUtil.getMessage("exception.network.error"));
     }
 }

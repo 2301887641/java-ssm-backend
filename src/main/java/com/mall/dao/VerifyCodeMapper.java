@@ -10,5 +10,10 @@ import org.apache.ibatis.annotations.Param;
  */
 @Mapper
 public interface VerifyCodeMapper {
-    VerifyCode selectByPhoneAndType(@Param("phone") String phone, @Param("type") VerifyCodeEnum verifyCodeEnum);
+    /**
+     * 根据验证码类型查找
+     * @param verifyCodeType 验证码类型
+     * @return VerifyCode
+     */
+    VerifyCode selectByType(Integer verifyCodeType);
 }

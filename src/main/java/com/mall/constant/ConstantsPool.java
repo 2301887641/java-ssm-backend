@@ -42,8 +42,8 @@ public interface ConstantsPool {
      * 异常相关
      */
     interface Exception {
-        String CAPTCHA_CREATE_ERROR = "验证码获取失败";
-        String CODE_TEMPLATE_NOT_EXIST="验证码模板不存在";
+        String CAPTCHA_CREATE_ERROR = "图片验证码生成失败";
+        String VERIFY_CODE_TEMPLATE_NOT_EXIST="短信验证码模板不存在";
     }
 
     /**

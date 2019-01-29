@@ -8,14 +8,18 @@
         create_time
     </sql>
 
-    <resultMap id="baseResultMap" type="com.mall.pojo.User">
+    <sql id="selectByTypeColumn">
+        id,
+        template
+    </sql>
+
+    <resultMap id="baseResultMap" type="com.mall.pojo.VerifyCode">
         <id property="id" column="id" jdbcType="INTEGER"/>
-        <result property="username" column="username" jdbcType="VARCHAR"/>
-        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="template" column="template" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="selectByPhoneAndType" resultMap="baseResultMap">
-        select <include refid="baseColumn"/>
+    <select id="selectByType" resultMap="baseResultMap">
+        select <include refid="selectByTypeColumn"/>
         from mall_verify_code
         where type=#{type}
     </select>

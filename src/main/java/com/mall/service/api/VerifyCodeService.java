@@ -34,4 +34,6 @@ public interface VerifyCodeService {
      * @return Result
      */
     Result<Void> validate(Code code,String requestCode);
+
+    VerifyCodeDto getByType(VerifyCodeEnum verifyCodeType);
 }
