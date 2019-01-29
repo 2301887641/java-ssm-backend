@@ -61,9 +61,9 @@
         <property name="mapperLocations" value="classpath:mappers/**.xml"/>
         <property name="typeAliasesPackage" value="com.mall.pojo"/>
         <property name="typeHandlers">
-            <list>
-                <ref bean="com.mall.config.EnumPersistenceTypeHandler"/>
-            </list>
+            <array>
+                <bean class="com.mall.config.EnumPersistenceTypeHandler"/>
+            </array>
         </property>
         <property name="plugins">
             <array>

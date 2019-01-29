@@ -64,7 +64,7 @@ public class RegisterController {
     @GetMapping("/captcha.do")
     public void captcha(HttpSession session, HttpServletResponse response) {
         String text = captchaProducer.createText();
-        session.setAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME, new Code(text, Long.valueOf(SpringUtil.getPropertiesValue("captchaCode.expire.time"))));
+        session.setAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME, new Code(text, Long.getLong(SpringUtil.getPropertiesValue("captchaCode.expire.time"))));
         try {
             ImageIO.write(captchaProducer.createImage(text), ConstantsPool.Img.IMG_JPG, response.getOutputStream());
         } catch (Exception e) {
