@@ -26,4 +26,9 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
     public VerifyCodeRecordDto getTodayLastRecord(String phone,VerifyCodeEnum verifyCodeEnum) {
         return VerifyCodeRecordConverter.CONVERTER.pojoTodto(verifyCodeRecordMapper.selectTodayLastRecord(phone,verifyCodeEnum,DateTimeUtil.getTodayStartTimestamp()));
     }
+
+    @Override
+    public int save(VerifyCodeRecordDto verifyCodeRecordDto) {
+        return 0;
+    }
 }

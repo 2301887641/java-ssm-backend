@@ -45,12 +45,14 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeType) {
-        //查询发送总数
         VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(phone, verifyCodeType);
         if (Objects.nonNull(verifyCodeRecordDto)) {
+            //查询发送总数
             if (verifyCodeRecordDto.getCount() >= Integer.valueOf(SpringUtil.getPropertiesValue("verifyCode.restrict.number"))) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
             }
+            //验证是否过期
+
         }
         //查询是否存在模板
         VerifyCodeDto verifyCodeDto = getByType(verifyCodeType);
@@ -59,6 +61,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         }
         String code = RandomStringUtils.randomNumeric(codeLength);
         smsSender.sendSms(phone, code,verifyCodeDto.getTemplate());
+
         return Result.success();
     }
 
