@@ -11,14 +11,17 @@ import java.sql.SQLException;
 
 /**
  * 枚举持久化类型处理器
+ *
  * @author suiguozhen on 19/01/29 16:14
  */
 public class EnumPersistenceTypeHandler<E extends Enum<E> & BaseEnum> extends BaseTypeHandler<E> {
 
     private Class<E> clazz;
 
-    public EnumPersistenceTypeHandler(){
-
+    public EnumPersistenceTypeHandler(Class<E> clazz) {
+        this.clazz = clazz;
+        String canonicalName = clazz.getCanonicalName();
+        System.out.println(111);
     }
 
     @Override
