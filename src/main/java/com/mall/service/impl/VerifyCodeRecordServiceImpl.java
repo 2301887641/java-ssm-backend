@@ -5,6 +5,7 @@ import com.mall.dao.VerifyCodeRecordMapper;
 import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeEnum;
 import com.mall.service.api.VerifyCodeRecordService;
+import com.mall.util.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,6 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
 
     @Override
     public VerifyCodeRecordDto getTodayLastRecord(String phone,VerifyCodeEnum verifyCodeEnum) {
-        return VerifyCodeRecordConverter.CONVERTER.pojoTodto(verifyCodeRecordMapper.selectTodayLastRecord(phone,verifyCodeEnum,LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"))));
+        return VerifyCodeRecordConverter.CONVERTER.pojoTodto(verifyCodeRecordMapper.selectTodayLastRecord(phone,verifyCodeEnum,DateTimeUtil.getTodayStartTimestamp()));
     }
 }

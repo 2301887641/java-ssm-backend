@@ -20,8 +20,8 @@
 
     <select id="selectTodayLastRecord" resultMap="baseResultMap">
         select <include refid="baseColumn"/>
-        from mall_verify_code
-        where type=#{type} and createTime >=#{time}
+        from mall_verify_code_record
+        where type=#{type} and create_time >=#{time}
     </select>
 
 </mapper>

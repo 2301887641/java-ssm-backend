@@ -6,9 +6,26 @@
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
 </head>
 <body>
+<form id="form" action="#">
        <p>注册用户</p>
-       <p>请输入手机号:<input name="phone"></p>
+    <input type="hidden" name="verifyCodeType" value="1">
+       <p>请输入手机号:<input name="phone" value="15254124776"></p>
        <p>验证码:<input name="captcha">  <img src="/captcha.do"></p>
-        <button type="button">注册</button>
+        <button type="button" id="register">注册</button>
+</form>
 </body>
 </html>
+<script>
+    $("#register").click(function(){
+         $.ajax({
+             url:"/smsCode.do",
+             type:"post",
+             data:$("#form").serialize(),
+             dataType:"json",
+             success:function(data){
+                 console.log(data)
+             }
+         })
+    })
+
+</script>

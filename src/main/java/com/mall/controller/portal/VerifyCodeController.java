@@ -15,6 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 验证码控制器
@@ -41,6 +46,7 @@ public class VerifyCodeController {
                                 @NotNull(message = "{exception.network.error}") VerifyCodeEnum verifyCodeType,
                                 String captcha,
                                 HttpSession session){
+
         if(VerifyCodeEnum.REGISTER.getOrdinal().equals(verifyCodeType.getOrdinal())){
             if(Strings.isNullOrEmpty(captcha)){
                 return Result.failed(SpringUtil.getMessage("verifyCode.captcha.isNull"));

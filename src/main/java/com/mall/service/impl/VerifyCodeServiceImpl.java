@@ -4,6 +4,7 @@ import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
 import com.mall.dto.VerifyCodeDto;
+import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeEnum;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
@@ -22,9 +23,6 @@ import java.util.Objects;
 @Service
 public class VerifyCodeServiceImpl implements VerifyCodeService {
 
-    @Value("${verifyCode.restrict.number}")
-    private Integer restrictNumber;
-
     @Value("${verifyCode.send.length}")
     private Integer codeLength;
 
@@ -32,26 +30,23 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     private VerifyCodeRecordService verifyCodeRecordService;
 
     @Autowired
+    private VerifyCodeService verifyCodeService;
+
+    @Autowired
     private SmsSender smsSender;
 
     @Override
-    public VerifyCodeDto getByPhoneAndType(String phone, VerifyCodeEnum verifyCodeEnum) {
-        return null;
-    }
-
-    @Override
     public Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeType) {
-        String message = SpringUtil.getMessage("verifyCode.count.restrict");
         //查询发送总数
-        verifyCodeRecordService.getTodayLastRecord(phone,verifyCodeType);
-        VerifyCodeDto verifyCodeDto = getByPhoneAndType(phone, verifyCodeType);
-        if (Objects.nonNull(verifyCodeDto)) {
-            if (verifyCodeDto.getCount() >= restrictNumber) {
+        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(phone, verifyCodeType);
+        if (Objects.nonNull(verifyCodeRecordDto)) {
+            if (verifyCodeRecordDto.getCount() >= Integer.valueOf(SpringUtil.getPropertiesValue("verifyCode.restrict.number"))) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
             }
+//            validate(new Code(verifyCodeRecordDto.getCode(),verifyCodeRecordDto.)
         }
         //查询是否存在模板
-//        VerifyCodeTemplate verifyCodeTemplate = verifyCodeTemplateService.getByType(verifyCodeEnum);
+
 //        if (Objects.isNull(verifyCodeTemplate)) {
 //            logger.error(ConstantsMessage.Error.CODE_TEMPLATE_NOT_EXIST);
 //            return Result.failed(SpringUtil.getMessage("exception.network.error"));
