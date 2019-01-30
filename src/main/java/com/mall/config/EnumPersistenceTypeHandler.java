@@ -21,17 +21,8 @@ import java.sql.SQLException;
 })
 public class EnumPersistenceTypeHandler<E extends BaseEnum> extends BaseTypeHandler<BaseEnum> {
 
-    private Class<E> clazz;
-
-//    public EnumPersistenceTypeHandler(Class<E> clazz) {
-//        this.clazz = clazz;
-//        String canonicalName = clazz.getCanonicalName();
-//        System.out.println(111);
-//    }
-
     /**
-     * 使用枚举查询数据库时 可以直接转换为枚举的ordinal
-     * VerifyCodeRecordDto getTodayLastRecord(String phone,VerifyCodeEnum verifyCodeEnum)
+     * 用于定义在Mybatis设置参数时该如何把Java类型的参数转换为对应的数据库类型
      * @param preparedStatement 执行的mybatis的statement
      * @param i   sql 参数索引位置
      * @param baseEnum  枚举类
