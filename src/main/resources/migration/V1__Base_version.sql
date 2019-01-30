@@ -62,7 +62,7 @@ CREATE TABLE mall_verify_code_record (
 	create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
 	count int(10) default 1 comment "发送记录数",
-	phone char(11) not null default 0 comment "手机号",
+	target char(11) not null default 0 comment "目标对象 手机号或邮箱",
   code char(6) not null default "" comment "已发送验证码",
   type varchar(20) not null default "" comment "验证码业务类型",
   send_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码发送时间 以这个时间为准因为发送和过期是同时插入实体的",

@@ -4,6 +4,7 @@ import com.mall.converter.VerifyCodeRecordConverter;
 import com.mall.dao.VerifyCodeRecordMapper;
 import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeBusinessEnum;
+import com.mall.pojo.VerifyCodeRecord;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.util.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,15 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
 
     @Transactional(rollbackFor = {Exception.class})
     @Override
-    public int save(VerifyCodeRecordDto verifyCodeRecordDto) {
-        return verifyCodeRecordMapper.save(VerifyCodeRecordConverter.CONVERTER.dtoToPojo(verifyCodeRecordDto));
+    public void update(VerifyCodeRecordDto verifyCodeRecordDto) {
+
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    @Override
+    public VerifyCodeRecordDto save(VerifyCodeRecordDto verifyCodeRecordDto) {
+        VerifyCodeRecord verifyCodeRecord = VerifyCodeRecordConverter.CONVERTER.dtoToPojo(verifyCodeRecordDto);
+        verifyCodeRecordMapper.save(verifyCodeRecord);
+        return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecord);
     }
 }

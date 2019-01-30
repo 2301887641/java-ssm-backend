@@ -4,17 +4,17 @@
     <sql id="baseColumn">
         id,
         type,
-        phone,
+        target,
         code,
         count,
-        create_time
+        expire_time
     </sql>
 
     <sql id="saveColumn">
           create_time,
           update_time,
           count,
-          phone,
+          target,
           code,
           type,
           expire_time
@@ -23,15 +23,15 @@
     <resultMap id="baseResultMap" type="com.mall.pojo.VerifyCodeRecord">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="type" column="username" jdbcType="INTEGER"/>
-        <result property="phone" column="email" jdbcType="VARCHAR"/>
-        <result property="code" column="email" jdbcType="VARCHAR"/>
-        <result property="count" column="email" jdbcType="INTEGER"/>
+        <result property="target" column="email" jdbcType="VARCHAR"/>
+        <result property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="count" column="count" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="selectTodayLastRecord" resultMap="baseResultMap">
         select <include refid="baseColumn"/>
         from mall_verify_code_record
-        where type = #{type} and create_time >= #{time}
+        where type = #{type} and send_time >= #{time}
     </select>
 
     <insert id="save">
@@ -41,7 +41,7 @@
         insert into mall_verify_code_record (
           create_time,
           update_time,
-          phone,
+          target,
           code,
           type,
           send_time,
@@ -49,11 +49,24 @@
          )values(
           #{createTime},
           #{updateTime},
-          #{phone},
+          #{target},
           #{code},
           #{verifyCodeType},
           #{sendTime},
           #{expireTime}
          )
     </insert>
+
+    <update id="update">
+         update mall_verify_code_record
+         set
+           count = #{count},
+           code = #{code},
+           sendTime = #{sendTime},
+           expire_time = #{expireTime}
+         where
+           target = #{target}
+           and
+           type = #{type}
+    </update>
 </mapper>

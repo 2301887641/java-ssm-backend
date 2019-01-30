@@ -53,20 +53,24 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     @Override
     public Result<Void> sendSmsCode(String phone, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
         VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(phone, verifyCodeBusinessEnum);
-        Result<VerifyCodeDto> result = preCheckSend(phone, verifyCodeBusinessEnum,verifyCodeRecordDto);
+        Result<VerifyCodeDto> result = preCheckSend(verifyCodeBusinessEnum,verifyCodeRecordDto);
         if (!result.isSuccess()) {
             return Result.failed(result.getRestInfo());
         }
         String code = RandomStringUtils.randomNumeric(verifyCodeLength);
         smsSender.sendSms(phone, code, result.getData().getTemplate());
+        LocalDateTime now = LocalDateTime.now();
         if(Objects.isNull(verifyCodeRecordDto)){
-            LocalDateTime now = LocalDateTime.now();
             //添加记录
-            int save = verifyCodeRecordService.save(VerifyCodeRecordDto.of(code, phone, now, now.plusSeconds(verifyCodeExpireTime), verifyCodeBusinessEnum));
+            verifyCodeRecordService.save(VerifyCodeRecordDto.of(code, phone, now, now.plusSeconds(verifyCodeExpireTime), verifyCodeBusinessEnum));
             return Result.success();
         }
+        verifyCodeRecordDto.setSendTime(now);
+        verifyCodeRecordDto.setExpireTime(now.plusSeconds(verifyCodeExpireTime));
+        verifyCodeRecordDto.setCode(code);
+        verifyCodeRecordDto.setCount(verifyCodeRecordDto.getCount()+1);
+        verifyCodeRecordService.update(verifyCodeRecordDto);
         return Result.success();
-
     }
 
     @Override
@@ -91,7 +95,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     }
 
     @Override
-    public Result<VerifyCodeDto> preCheckSend(String phone, VerifyCodeBusinessEnum verifyCodeBusinessEnum, VerifyCodeRecordDto verifyCodeRecordDto) {
+    public Result<VerifyCodeDto> preCheckSend(VerifyCodeBusinessEnum verifyCodeBusinessEnum, VerifyCodeRecordDto verifyCodeRecordDto) {
         if (Objects.nonNull(verifyCodeRecordDto)) {
             //查询发送总数
             if (verifyCodeRecordDto.getCount() >= verifyCodeRestrictNumber) {

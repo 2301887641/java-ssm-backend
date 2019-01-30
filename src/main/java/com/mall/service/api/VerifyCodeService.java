@@ -45,10 +45,9 @@ public interface VerifyCodeService {
 
     /**
      * 预检发送短信验证码
-     * @param target  手机号或邮箱
      * @param verifyCodeBusinessEnum 验证码业务类型
      * @param verifyCodeRecordDto 验证码记录dto
      * @return Result
      */
-    Result<VerifyCodeDto> preCheckSend(String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum, VerifyCodeRecordDto verifyCodeRecordDto);
+    Result<VerifyCodeDto> preCheckSend(VerifyCodeBusinessEnum verifyCodeBusinessEnum, VerifyCodeRecordDto verifyCodeRecordDto);
 }

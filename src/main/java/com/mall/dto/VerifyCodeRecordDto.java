@@ -13,17 +13,18 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class VerifyCodeRecordDto extends BaseDto{
+    private Integer id;
     private Integer count;
     private String code;
-    private String phone;
+    private String target;
     private LocalDateTime sendTime;
     private LocalDateTime expireTime;
     private VerifyCodeBusinessEnum verifyCodeType;
 
-    public static VerifyCodeRecordDto of( String code, String phone,LocalDateTime sendTime, LocalDateTime expireTime, VerifyCodeBusinessEnum verifyCodeType) {
+    public static VerifyCodeRecordDto of( String code, String target,LocalDateTime sendTime, LocalDateTime expireTime, VerifyCodeBusinessEnum verifyCodeType) {
         VerifyCodeRecordDto verifyCodeRecordDto = new VerifyCodeRecordDto();
         verifyCodeRecordDto.setCode(code);
-        verifyCodeRecordDto.setPhone(phone);
+        verifyCodeRecordDto.setTarget(target);
         verifyCodeRecordDto.setSendTime(sendTime);
         verifyCodeRecordDto.setExpireTime(expireTime);
         verifyCodeRecordDto.setVerifyCodeType(verifyCodeType);

@@ -14,10 +14,10 @@ public interface VerifyCodeRecordMapper {
      * 查询指定类型今天最后一条记录
      * @param verifyCodeBusinessEnum 类型
      * @param time  今天起始时间
-     * @param phone 手机号
+     * @param target 手机号或邮箱
      * @return VerifyCodeRecordService
      */
-    VerifyCodeRecord selectTodayLastRecord(@Param("phone")String phone, @Param("type") VerifyCodeBusinessEnum verifyCodeBusinessEnum, @Param("time") Long time);
+    VerifyCodeRecord selectTodayLastRecord(@Param("target")String target, @Param("type") VerifyCodeBusinessEnum verifyCodeBusinessEnum, @Param("time") Long time);
 
     /**
      * 保存完整记录
@@ -25,4 +25,10 @@ public interface VerifyCodeRecordMapper {
      * @return int
      */
     int save(VerifyCodeRecord verifyCodeRecord);
+
+    /**
+     * 修改记录
+     * @param verifyCodeRecord verifyCodeRecord
+     */
+    void update(VerifyCodeRecord verifyCodeRecord);
 }

@@ -18,7 +18,13 @@ public interface VerifyCodeRecordService {
     /**
      * 添加记录
      * @param verifyCodeRecordDto verifyCodeRecordDto
-     * @return int
+     * @return VerifyCodeRecordDto
      */
-    int save(VerifyCodeRecordDto verifyCodeRecordDto);
+    VerifyCodeRecordDto save(VerifyCodeRecordDto verifyCodeRecordDto);
+
+    /**
+     * 修改记录
+     * @param verifyCodeRecordDto verifyCodeRecordDto
+     */
+    void update(VerifyCodeRecordDto verifyCodeRecordDto);
 }
