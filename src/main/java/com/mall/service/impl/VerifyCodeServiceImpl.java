@@ -48,7 +48,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(phone, verifyCodeType);
         if (Objects.nonNull(verifyCodeRecordDto)) {
             //查询发送总数
-            if (verifyCodeRecordDto.getCount() >= Integer.valueOf(SpringUtil.getPropertiesValue("verifyCode.restrict.number"))) {
+            if (verifyCodeRecordDto.getCount() >= Integer.parseInt(SpringUtil.getPropertiesValue("verifyCode.restrict.number"))) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
             }
             //验证是否过期
