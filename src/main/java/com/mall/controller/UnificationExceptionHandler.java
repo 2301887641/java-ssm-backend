@@ -59,4 +59,16 @@ public class UnificationExceptionHandler {
         logger.info(exception.getMsg());
         return Result.failed(SpringUtil.getMessage("exception.network.error"));
     }
+
+    /**
+     * 拦截剩余所有异常:事务失败
+     * @param exception 所有异常
+     * @return result
+     */
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public Result<Void> exceptionHandler(Exception exception){
+        logger.info(exception.getMessage());
+        return Result.failed(SpringUtil.getMessage("exception.network.error"));
+    }
 }

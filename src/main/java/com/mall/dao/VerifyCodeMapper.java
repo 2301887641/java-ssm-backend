@@ -15,5 +15,5 @@ public interface VerifyCodeMapper {
      * @param verifyCodeType 验证码类型
      * @return VerifyCode
      */
-    VerifyCode selectByType(Integer verifyCodeType);
+    VerifyCode selectByType(VerifyCodeEnum verifyCodeType);
 }

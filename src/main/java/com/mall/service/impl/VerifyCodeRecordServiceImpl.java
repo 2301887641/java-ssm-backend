@@ -8,9 +8,7 @@ import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.util.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 验证码记录
@@ -27,8 +25,9 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
         return VerifyCodeRecordConverter.CONVERTER.pojoTodto(verifyCodeRecordMapper.selectTodayLastRecord(phone,verifyCodeEnum,DateTimeUtil.getTodayStartTimestamp()));
     }
 
+    @Transactional(rollbackFor = {Exception.class})
     @Override
     public int save(VerifyCodeRecordDto verifyCodeRecordDto) {
-        return 0;
+        return verifyCodeRecordMapper.save(VerifyCodeRecordConverter.CONVERTER.dtoToPojo(verifyCodeRecordDto));
     }
 }

@@ -35,9 +35,6 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     private VerifyCodeRecordService verifyCodeRecordService;
 
     @Autowired
-    private VerifyCodeService verifyCodeService;
-
-    @Autowired
     private SmsSender smsSender;
 
     @Autowired
@@ -61,7 +58,8 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         }
         String code = RandomStringUtils.randomNumeric(codeLength);
         smsSender.sendSms(phone, code,verifyCodeDto.getTemplate());
-
+        //添加记录
+        verifyCodeRecordService.save();
         return Result.success();
     }
 
@@ -83,6 +81,6 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public VerifyCodeDto getByType(VerifyCodeEnum verifyCodeType) {
-        return VerifyCodeConverter.CONVERTER.pojoToDto(verifyCodeMapper.selectByType(verifyCodeType.getOrdinal()));
+        return VerifyCodeConverter.CONVERTER.pojoToDto(verifyCodeMapper.selectByType(verifyCodeType));
     }
 }

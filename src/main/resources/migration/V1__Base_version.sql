@@ -45,10 +45,11 @@ CREATE TABLE mall_verify_code (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
-  type varchar(20) not null default "" comment "验证码业务类型",
+  type varchar(50) not null default "" comment "验证码业务类型",
   template varchar(150) not null default "" comment "模板内容",
   template_name varchar(30) not null default "" comment "模板名称",
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE KEY `type_unique` (`type`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

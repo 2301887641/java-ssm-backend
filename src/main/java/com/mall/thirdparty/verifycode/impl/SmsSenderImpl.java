@@ -18,6 +18,6 @@ public class SmsSenderImpl implements SmsSender {
 
     @Override
     public void sendSms(String phone,String code, String template) {
-        logger.info("send sms, phone: {}, templateId: {}",phone,code,template);
+        logger.info("send sms, phone: {}, code:{}, template: {}",phone,code,template);
     }
 }

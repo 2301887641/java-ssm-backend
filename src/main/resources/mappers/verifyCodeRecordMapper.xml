@@ -10,6 +10,16 @@
         create_time
     </sql>
 
+    <sql id="saveColumn">
+          create_time,
+          update_time,
+          count,
+          phone,
+          code,
+          type,
+          expire_time
+    </sql>
+
     <resultMap id="baseResultMap" type="com.mall.pojo.VerifyCodeRecord">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="type" column="username" jdbcType="INTEGER"/>
@@ -21,7 +31,26 @@
     <select id="selectTodayLastRecord" resultMap="baseResultMap">
         select <include refid="baseColumn"/>
         from mall_verify_code_record
-        where type=#{type} and create_time >=#{time}
+        where type = #{type} and create_time >= #{time}
     </select>
 
+    <insert id="save" keyColumn="id">
+        insert into mall_verify_code_record (
+          create_time,
+          update_time,
+          count,
+          phone,
+          code,
+          type,
+          expire_time
+         )values(
+          #{create_time},
+          #{update_time},
+          #{count},
+          #{phone},
+          #{code},
+          #{type},
+          #{expire_time}
+         )
+    </insert>
 </mapper>

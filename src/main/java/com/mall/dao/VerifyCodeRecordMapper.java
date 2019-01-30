@@ -18,4 +18,11 @@ public interface VerifyCodeRecordMapper {
      * @return VerifyCodeRecordService
      */
     VerifyCodeRecord selectTodayLastRecord(@Param("phone")String phone,@Param("type") VerifyCodeEnum verifyCodeEnum,@Param("time") Long time);
+
+    /**
+     * 保存完整记录
+     * @param verifyCodeRecord verifyCodeRecord
+     * @return int
+     */
+    int save(VerifyCodeRecord verifyCodeRecord);
 }
