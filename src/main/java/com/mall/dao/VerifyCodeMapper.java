@@ -1,9 +1,8 @@
 package com.mall.dao;
 
-import com.mall.enums.VerifyCodeEnum;
+import com.mall.enums.VerifyCodeBusinessEnum;
 import com.mall.pojo.VerifyCode;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * @author suiguozhen on 19-1-27 下午2:28
@@ -15,5 +14,5 @@ public interface VerifyCodeMapper {
      * @param verifyCodeType 验证码类型
      * @return VerifyCode
      */
-    VerifyCode selectByType(VerifyCodeEnum verifyCodeType);
+    VerifyCode selectByType(VerifyCodeBusinessEnum verifyCodeType);
 }

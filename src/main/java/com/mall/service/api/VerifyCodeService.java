@@ -3,7 +3,8 @@ package com.mall.service.api;
 import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.dto.VerifyCodeDto;
-import com.mall.enums.VerifyCodeEnum;
+import com.mall.dto.VerifyCodeRecordDto;
+import com.mall.enums.VerifyCodeBusinessEnum;
 
 /**
  * 验证码服务类
@@ -14,18 +15,18 @@ public interface VerifyCodeService {
     /**
      * 发送短信验证码
      * @param phone 手机
-     * @param verifyCodeEnum 验证码枚举
+     * @param verifyCodeBusinessEnum 验证码枚举
      * @return Result
      */
-    Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeEnum);
+    Result<Void> sendSmsCode(String phone, VerifyCodeBusinessEnum verifyCodeBusinessEnum);
 
     /**
      * 发送邮箱验证码
      * @param email 邮箱
-     * @param verifyCodeEnum 验证码枚举
+     * @param verifyCodeBusinessEnum 验证码枚举
      * @return Result
      */
-    Result<Void> sendEmailCode(String email,VerifyCodeEnum verifyCodeEnum);
+    Result<Void> sendEmailCode(String email,VerifyCodeBusinessEnum verifyCodeBusinessEnum);
 
     /**
      * 校验验证码 图片验证码 短信验证码
@@ -35,5 +36,19 @@ public interface VerifyCodeService {
      */
     Result<Void> validate(Code code,String requestCode);
 
-    VerifyCodeDto getByType(VerifyCodeEnum verifyCodeType);
+    /**
+     * 根据类型查询
+     * @param verifyCodeType 类型
+     * @return  VerifyCodeDto
+     */
+    VerifyCodeDto getByType(VerifyCodeBusinessEnum verifyCodeType);
+
+    /**
+     * 预检发送短信验证码
+     * @param target  手机号或邮箱
+     * @param verifyCodeBusinessEnum 验证码业务类型
+     * @param verifyCodeRecordDto 验证码记录dto
+     * @return Result
+     */
+    Result<VerifyCodeDto> preCheckSend(String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum, VerifyCodeRecordDto verifyCodeRecordDto);
 }

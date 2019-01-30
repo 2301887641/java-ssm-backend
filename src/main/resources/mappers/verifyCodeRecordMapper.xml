@@ -34,13 +34,17 @@
         where type = #{type} and create_time >= #{time}
     </select>
 
-    <insert id="save" keyColumn="id">
+    <insert id="save">
+        <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into mall_verify_code_record (
           create_time,
           update_time,
           phone,
           code,
           type,
+          send_time,
           expire_time
          )values(
           #{createTime},
@@ -48,6 +52,7 @@
           #{phone},
           #{code},
           #{verifyCodeType},
+          #{sendTime},
           #{expireTime}
          )
     </insert>

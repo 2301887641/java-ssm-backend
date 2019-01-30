@@ -8,8 +8,10 @@ import com.mall.converter.VerifyCodeConverter;
 import com.mall.dao.VerifyCodeMapper;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.dto.VerifyCodeRecordDto;
-import com.mall.enums.VerifyCodeEnum;
+import com.mall.enums.VerifyCodeBusinessEnum;
+import com.mall.enums.VerifyCodeTypeEnum;
 import com.mall.exception.BusinessException;
+import com.mall.pojo.VerifyCode;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.thirdparty.verifycode.api.SmsSender;
@@ -23,10 +25,21 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
+ * 验证码
+ *
  * @author suiguozhen on 19/01/24 10:56
  */
 @Service
 public class VerifyCodeServiceImpl implements VerifyCodeService {
+
+    @Value("${verifyCode.expire.time}")
+    private Long verifyCodeExpireTime;
+
+    @Value("${verifyCode.send.length}")
+    private int verifyCodeLength;
+
+    @Value("${verifyCode.restrict.number}")
+    private Integer verifyCodeRestrictNumber;
 
     @Autowired
     private VerifyCodeRecordService verifyCodeRecordService;
@@ -38,46 +51,62 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     private VerifyCodeMapper verifyCodeMapper;
 
     @Override
-    public Result<Void> sendSmsCode(String phone, VerifyCodeEnum verifyCodeType) {
-        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(phone, verifyCodeType);
-        if (Objects.nonNull(verifyCodeRecordDto)) {
-            //查询发送总数
-            if (verifyCodeRecordDto.getCount() >= Integer.parseInt(SpringUtil.getPropertiesValue("verifyCode.restrict.number"))) {
-                return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
-            }
-            //验证是否过期
-
+    public Result<Void> sendSmsCode(String phone, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
+        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(phone, verifyCodeBusinessEnum);
+        Result<VerifyCodeDto> result = preCheckSend(phone, verifyCodeBusinessEnum,verifyCodeRecordDto);
+        if (!result.isSuccess()) {
+            return Result.failed(result.getRestInfo());
         }
-        //查询是否存在模板
-        VerifyCodeDto verifyCodeDto = getByType(verifyCodeType);
-        if(Objects.isNull(verifyCodeDto)){
-            throw new BusinessException(ConstantsPool.Exception.VERIFY_CODE_TEMPLATE_NOT_EXIST);
+        String code = RandomStringUtils.randomNumeric(verifyCodeLength);
+        smsSender.sendSms(phone, code, result.getData().getTemplate());
+        if(Objects.isNull(verifyCodeRecordDto)){
+            LocalDateTime now = LocalDateTime.now();
+            //添加记录
+            int save = verifyCodeRecordService.save(VerifyCodeRecordDto.of(code, phone, now, now.plusSeconds(verifyCodeExpireTime), verifyCodeBusinessEnum));
+            return Result.success();
         }
-        String code = RandomStringUtils.randomNumeric(Integer.parseInt(SpringUtil.getPropertiesValue("verifyCode.send.length")));
-        smsSender.sendSms(phone, code,verifyCodeDto.getTemplate());
-        //添加记录
-        verifyCodeRecordService.save(VerifyCodeRecordDto.of(code,phone,LocalDateTime.now().plusSeconds(Long.parseLong(SpringUtil.getPropertiesValue("verifyCode.expire.time"))),verifyCodeType));
         return Result.success();
+
     }
 
     @Override
-    public Result<Void> sendEmailCode(String email, VerifyCodeEnum verifyCodeEnum) {
+    public Result<Void> sendEmailCode(String email, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
         return null;
     }
 
     @Override
     public Result<Void> validate(Code code, String requestCode) {
-        if(Objects.isNull(code) || LocalDateTime.now().isAfter(code.getExpireTime())){
+        if (Objects.isNull(code) || LocalDateTime.now().isAfter(code.getExpireTime())) {
             return Result.failed(SpringUtil.getMessage("verifyCode.not.exist"));
         }
-        if(!StringUtils.equals(code.getCode(),requestCode)){
+        if (!StringUtils.equals(code.getCode(), requestCode)) {
             return Result.failed(SpringUtil.getMessage("verifyCode.not.match"));
         }
         return Result.success();
     }
 
     @Override
-    public VerifyCodeDto getByType(VerifyCodeEnum verifyCodeType) {
-        return VerifyCodeConverter.CONVERTER.pojoToDto(verifyCodeMapper.selectByType(verifyCodeType));
+    public VerifyCodeDto getByType(VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
+        return VerifyCodeConverter.CONVERTER.pojoToDto(verifyCodeMapper.selectByType(verifyCodeBusinessEnum));
+    }
+
+    @Override
+    public Result<VerifyCodeDto> preCheckSend(String phone, VerifyCodeBusinessEnum verifyCodeBusinessEnum, VerifyCodeRecordDto verifyCodeRecordDto) {
+        if (Objects.nonNull(verifyCodeRecordDto)) {
+            //查询发送总数
+            if (verifyCodeRecordDto.getCount() >= verifyCodeRestrictNumber) {
+                return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
+            }
+            //验证是否过期
+            if (LocalDateTime.now().isAfter(verifyCodeRecordDto.getExpireTime())) {
+                return Result.failed(SpringUtil.getMessage("verifyCode.not.exist"));
+            }
+        }
+        //查询是否存在模板
+        VerifyCodeDto verifyCodeDto = getByType(verifyCodeBusinessEnum);
+        if (Objects.isNull(verifyCodeDto)) {
+            throw new BusinessException(ConstantsPool.Exception.VERIFY_CODE_TEMPLATE_NOT_EXIST);
+        }
+        return Result.success(verifyCodeDto);
     }
 }

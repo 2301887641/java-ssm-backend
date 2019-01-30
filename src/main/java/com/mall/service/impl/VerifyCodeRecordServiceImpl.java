@@ -3,7 +3,7 @@ package com.mall.service.impl;
 import com.mall.converter.VerifyCodeRecordConverter;
 import com.mall.dao.VerifyCodeRecordMapper;
 import com.mall.dto.VerifyCodeRecordDto;
-import com.mall.enums.VerifyCodeEnum;
+import com.mall.enums.VerifyCodeBusinessEnum;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.util.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
     private VerifyCodeRecordMapper verifyCodeRecordMapper;
 
     @Override
-    public VerifyCodeRecordDto getTodayLastRecord(String phone,VerifyCodeEnum verifyCodeEnum) {
-        return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecordMapper.selectTodayLastRecord(phone,verifyCodeEnum,DateTimeUtil.getTodayStartTimestamp()));
+    public VerifyCodeRecordDto getTodayLastRecord(String phone,VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
+        return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecordMapper.selectTodayLastRecord(phone, verifyCodeBusinessEnum,DateTimeUtil.getTodayStartTimestamp()));
     }
 
     @Transactional(rollbackFor = {Exception.class})

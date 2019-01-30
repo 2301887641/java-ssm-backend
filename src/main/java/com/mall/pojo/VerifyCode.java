@@ -1,6 +1,6 @@
 package com.mall.pojo;
 
-import com.mall.enums.VerifyCodeEnum;
+import com.mall.enums.VerifyCodeBusinessEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class VerifyCode extends BasePojo{
     private Integer id;
-    private VerifyCodeEnum verifyCodeType;
+    private VerifyCodeBusinessEnum verifyCodeType;
     private String template;
     private String templateName;
 }

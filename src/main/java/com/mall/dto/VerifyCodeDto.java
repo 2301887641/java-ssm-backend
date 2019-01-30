@@ -1,6 +1,6 @@
 package com.mall.dto;
 
-import com.mall.enums.VerifyCodeEnum;
+import com.mall.enums.VerifyCodeBusinessEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Setter
 public class VerifyCodeDto extends BaseDto {
     private Integer id;
-    private VerifyCodeEnum verifyCodeType;
+    private VerifyCodeBusinessEnum verifyCodeType;
     private String template;
     private String templateName;
 }

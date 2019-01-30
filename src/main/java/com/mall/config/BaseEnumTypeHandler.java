@@ -1,10 +1,8 @@
 package com.mall.config;
 
 import com.mall.enums.BaseEnum;
-import com.mall.enums.VerifyCodeEnum;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.MappedTypes;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;

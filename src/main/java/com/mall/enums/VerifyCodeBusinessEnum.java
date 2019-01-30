@@ -7,7 +7,7 @@ import lombok.Getter;
  * @author suiguozhen on 19/01/24 8:52
  */
 @Getter
-public enum VerifyCodeEnum implements BaseEnum{
+public enum VerifyCodeBusinessEnum implements BaseEnum{
     /**
      * 用户注册
      */
@@ -15,7 +15,7 @@ public enum VerifyCodeEnum implements BaseEnum{
     private Integer ordinal;
     private String label;
 
-    VerifyCodeEnum(Integer ordinal, String label){
+    VerifyCodeBusinessEnum(Integer ordinal, String label){
         this.ordinal=ordinal;
         this.label=label;
     }

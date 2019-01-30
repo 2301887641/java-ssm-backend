@@ -5,7 +5,7 @@ import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.constant.ConstantsPool;
 import com.mall.common.SpringUtil;
-import com.mall.enums.VerifyCodeEnum;
+import com.mall.enums.VerifyCodeBusinessEnum;
 import com.mall.service.api.VerifyCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -15,11 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 
 /**
  * 验证码控制器
@@ -43,11 +38,11 @@ public class VerifyCodeController {
     public Result<Void> smsCode(@NotNull(message = "{validation.phone.required}")
                                 @Pattern(message="{validation.phone.regexp}",
                                 regexp = ConstantsPool.Regexp.PHONE_PATTERN)String phone,
-                                @NotNull(message = "{exception.network.error}") VerifyCodeEnum verifyCodeType,
+                                @NotNull(message = "{exception.network.error}") VerifyCodeBusinessEnum verifyCodeType,
                                 String captcha,
                                 HttpSession session){
 
-        if(VerifyCodeEnum.REGISTER.getOrdinal().equals(verifyCodeType.getOrdinal())){
+        if(VerifyCodeBusinessEnum.REGISTER.getOrdinal().equals(verifyCodeType.getOrdinal())){
             if(Strings.isNullOrEmpty(captcha)){
                 return Result.failed(SpringUtil.getMessage("verifyCode.captcha.isNull"));
             }
