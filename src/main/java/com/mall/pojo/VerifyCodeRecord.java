@@ -15,6 +15,7 @@ public class VerifyCodeRecord extends BasePojo{
     private Integer count;
     private String code;
     private String phone;
+    private VerifyCodeEnum verifyCodeType;
     private LocalDateTime expireTime;
     private VerifyCodeEnum verifyCodeEnum;
 }

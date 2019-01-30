@@ -51,6 +51,7 @@ CREATE TABLE mall_verify_code (
 	PRIMARY KEY (id),
 	UNIQUE KEY `type_unique` (`type`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `mall`.`mall_verify_code` (`id`, `create_time`, `update_time`, `type`, `template`, `template_name`) VALUES (1, '2019-01-30 03:12:39', '2019-01-30 03:12:41', '1', '注册短信', '短信注册');
 
 -- ----------------------------
 -- Table structure for mall_verify_code_record   验证码记录表
@@ -60,8 +61,8 @@ CREATE TABLE mall_verify_code_record (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
-	count int(10) default 0 comment "发送记录数",
-	phone char(11) default 0 comment "手机号",
+	count int(10) default 1 comment "发送记录数",
+	phone char(11) not null default 0 comment "手机号",
   code char(6) not null default "" comment "已发送验证码",
   type varchar(20) not null default "" comment "验证码业务类型",
   expire_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码过期时间",

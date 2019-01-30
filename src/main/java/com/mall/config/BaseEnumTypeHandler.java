@@ -16,10 +16,7 @@ import java.sql.SQLException;
  *
  * @author suiguozhen on 19/01/29 16:14
  */
-@MappedTypes({
-        VerifyCodeEnum.class
-})
-public class EnumPersistenceTypeHandler<E extends BaseEnum> extends BaseTypeHandler<BaseEnum> {
+public class BaseEnumTypeHandler<E extends BaseEnum> extends BaseTypeHandler<E> {
 
     /**
      * 用于定义在Mybatis设置参数时该如何把Java类型的参数转换为对应的数据库类型

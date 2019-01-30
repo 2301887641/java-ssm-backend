@@ -28,9 +28,6 @@ import java.util.Objects;
 @Service
 public class VerifyCodeServiceImpl implements VerifyCodeService {
 
-    @Value("${verifyCode.send.length}")
-    private Integer codeLength;
-
     @Autowired
     private VerifyCodeRecordService verifyCodeRecordService;
 
@@ -56,10 +53,10 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         if(Objects.isNull(verifyCodeDto)){
             throw new BusinessException(ConstantsPool.Exception.VERIFY_CODE_TEMPLATE_NOT_EXIST);
         }
-        String code = RandomStringUtils.randomNumeric(codeLength);
+        String code = RandomStringUtils.randomNumeric(Integer.parseInt(SpringUtil.getPropertiesValue("verifyCode.send.length")));
         smsSender.sendSms(phone, code,verifyCodeDto.getTemplate());
         //添加记录
-        verifyCodeRecordService.save();
+        verifyCodeRecordService.save(VerifyCodeRecordDto.of(code,phone,LocalDateTime.now().plusSeconds(Long.parseLong(SpringUtil.getPropertiesValue("verifyCode.expire.time"))),verifyCodeType));
         return Result.success();
     }
 

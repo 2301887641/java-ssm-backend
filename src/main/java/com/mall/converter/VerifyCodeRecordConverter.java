@@ -12,5 +12,5 @@ import org.mapstruct.factory.Mappers;
 public interface VerifyCodeRecordConverter {
     VerifyCodeRecordConverter CONVERTER= Mappers.getMapper(VerifyCodeRecordConverter.class);
     VerifyCodeRecord dtoToPojo(VerifyCodeRecordDto verifyCodeRecordDto);
-    VerifyCodeRecordDto pojoTodto(VerifyCodeRecord verifyCodeRecord);
+    VerifyCodeRecordDto pojoToDto(VerifyCodeRecord verifyCodeRecord);
 }

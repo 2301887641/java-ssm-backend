@@ -38,19 +38,17 @@
         insert into mall_verify_code_record (
           create_time,
           update_time,
-          count,
           phone,
           code,
           type,
           expire_time
          )values(
-          #{create_time},
-          #{update_time},
-          #{count},
+          #{createTime},
+          #{updateTime},
           #{phone},
           #{code},
-          #{type},
-          #{expire_time}
+          #{verifyCodeType},
+          #{expireTime}
          )
     </insert>
 </mapper>
