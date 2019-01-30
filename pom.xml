@@ -20,6 +20,7 @@
         <mybatisVersion>3.4.1</mybatisVersion>
         <!--mybatis和spring集成-->
         <mybatisSpringVersion>1.3.0</mybatisSpringVersion>
+        <mybatisTypehandlersJsr310Version>1.0.1</mybatisTypehandlersJsr310Version>
         <servletVersion>9.0.4</servletVersion>
         <aspectjweaverVersion>1.7.3</aspectjweaverVersion>
         <jacksonVersion>2.9.8</jacksonVersion>
@@ -103,6 +104,11 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>${mybatisVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-typehandlers-jsr310</artifactId>
+            <version>${mybatisTypehandlersJsr310Version}</version>
         </dependency>
         <!--json序列化-->
         <dependency>

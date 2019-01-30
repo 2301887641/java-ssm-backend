@@ -45,7 +45,7 @@ CREATE TABLE mall_verify_code (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
-  type varchar(50) not null default "" comment "验证码业务类型",
+  type tinyint(1) not null default 0 comment "验证码业务类型",
   template varchar(150) not null default "" comment "模板内容",
   template_name varchar(30) not null default "" comment "模板名称",
 	PRIMARY KEY (id),
@@ -64,7 +64,7 @@ CREATE TABLE mall_verify_code_record (
 	count int(10) default 1 comment "发送记录数",
 	target char(11) not null default 0 comment "目标对象 手机号或邮箱",
   code char(6) not null default "" comment "已发送验证码",
-  type varchar(20) not null default "" comment "验证码业务类型",
+  type tinyint(1) not null default 0 comment "验证码业务类型",
   send_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码发送时间 以这个时间为准因为发送和过期是同时插入实体的",
   expire_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码过期时间",
 	PRIMARY KEY (id)

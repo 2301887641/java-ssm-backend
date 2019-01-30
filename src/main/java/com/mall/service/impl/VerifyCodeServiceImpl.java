@@ -101,10 +101,6 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             if (verifyCodeRecordDto.getCount() >= verifyCodeRestrictNumber) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
             }
-            //验证是否过期
-            if (LocalDateTime.now().isAfter(verifyCodeRecordDto.getExpireTime())) {
-                return Result.failed(SpringUtil.getMessage("verifyCode.not.exist"));
-            }
         }
         //查询是否存在模板
         VerifyCodeDto verifyCodeDto = getByType(verifyCodeBusinessEnum);

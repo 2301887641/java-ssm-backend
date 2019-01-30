@@ -29,7 +29,7 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
     @Transactional(rollbackFor = {Exception.class})
     @Override
     public void update(VerifyCodeRecordDto verifyCodeRecordDto) {
-
+        verifyCodeRecordMapper.update(VerifyCodeRecordConverter.CONVERTER.dtoToPojo(verifyCodeRecordDto));
     }
 
     @Transactional(rollbackFor = {Exception.class})

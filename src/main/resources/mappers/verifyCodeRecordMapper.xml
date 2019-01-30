@@ -22,11 +22,11 @@
 
     <resultMap id="baseResultMap" type="com.mall.pojo.VerifyCodeRecord">
         <id property="id" column="id" jdbcType="INTEGER"/>
-        <result property="type" column="username" jdbcType="INTEGER"/>
-        <result property="target" column="email" jdbcType="VARCHAR"/>
+        <result property="verifyCodeType" column="type" jdbcType="INTEGER"/>
+        <result property="target" column="target" jdbcType="VARCHAR"/>
         <result property="code" column="code" jdbcType="VARCHAR"/>
         <result property="count" column="count" jdbcType="INTEGER"/>
-        <result property="expireTime" column="expire_time" jdbcType="INTEGER"/>
+        <result property="expireTime" column="expire_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <select id="selectTodayLastRecord" resultMap="baseResultMap">
@@ -63,11 +63,11 @@
          set
            count = #{count},
            code = #{code},
-           sendTime = #{sendTime},
+           send_time = #{sendTime},
            expire_time = #{expireTime}
          where
            target = #{target}
            and
-           type = #{type}
+           type = #{verifyCodeType}
     </update>
 </mapper>

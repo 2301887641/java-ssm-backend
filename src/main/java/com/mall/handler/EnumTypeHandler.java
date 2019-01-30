@@ -12,4 +12,7 @@ import org.apache.ibatis.type.MappedTypes;
         VerifyCodeBusinessEnum.class
 })
 public class EnumTypeHandler<E extends BaseEnum> extends BaseEnumTypeHandler<E> {
+    public EnumTypeHandler(Class<E> type) {
+        super(type);
+    }
 }
