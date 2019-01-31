@@ -50,7 +50,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     private VerifyCodeMapper verifyCodeMapper;
 
     @Override
-    public Result<Void> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
+    public Result<String> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
         VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(target, verifyCodeBusinessEnum);
         Result<VerifyCodeDto> result = preCheckSend(verifyCodeBusinessEnum,verifyCodeRecordDto);
         if (!result.isSuccess()) {
@@ -61,14 +61,14 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         LocalDateTime now = LocalDateTime.now();
         if(Objects.isNull(verifyCodeRecordDto)){
             verifyCodeRecordService.save(VerifyCodeRecordDto.of(code, target, now, now.plusSeconds(verifyCodeExpireTime), verifyCodeBusinessEnum));
-            return Result.success();
+            return Result.success(code);
         }
         verifyCodeRecordDto.setSendTime(now);
         verifyCodeRecordDto.setExpireTime(now.plusSeconds(verifyCodeExpireTime));
         verifyCodeRecordDto.setCode(code);
         verifyCodeRecordDto.setCount(verifyCodeRecordDto.getCount()+1);
         verifyCodeRecordService.update(verifyCodeRecordDto);
-        return Result.success();
+        return Result.success(code);
     }
 
     @Override

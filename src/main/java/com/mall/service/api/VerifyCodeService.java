@@ -20,7 +20,7 @@ public interface VerifyCodeService {
      * @param verifyCodeBusinessEnum 验证码枚举
      * @return Result
      */
-    Result<Void> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum);
+    Result<String> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum);
 
     /**
      * 校验验证码 图片验证码 短信验证码

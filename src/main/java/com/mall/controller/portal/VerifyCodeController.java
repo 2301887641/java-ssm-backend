@@ -37,7 +37,7 @@ public class VerifyCodeController {
      * @return Result
      */
     @PostMapping("/smsCode.do")
-    public Result<Void> smsCode(@NotNull(message = "{validation.phone.required}")
+    public Result<String> smsCode(@NotNull(message = "{validation.phone.required}")
                                 @Pattern(message = "{validation.phone.regexp}",
                                         regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                 @NotNull(message = "{exception.network.error}") VerifyCodeBusinessEnum verifyCodeType,
@@ -49,7 +49,7 @@ public class VerifyCodeController {
             }
             Result<Void> result = verifyCodeService.validate((Code) session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME), captcha);
             if (!result.isSuccess()) {
-                return result;
+                return Result.failed(result.getRestInfo());
             }
             session.removeAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
         }
