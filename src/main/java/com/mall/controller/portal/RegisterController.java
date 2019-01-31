@@ -19,6 +19,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.plugin2.message.Message;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,9 @@ import javax.validation.constraints.Pattern;
 @Controller
 @Validated
 public class RegisterController {
+    /*** 目录*/
+    private static final String TEMPLATE_DIR = "register";
+    private static final String TEMPLATE_NAME = "index";
 
     @Autowired
     private Producer captchaProducer;
@@ -42,7 +46,17 @@ public class RegisterController {
 
     @GetMapping("/register.do")
     public String toRegister(HttpServletRequest request) {
-        return FrontUtil.getTemplatePath("register", "index");
+        return FrontUtil.getTemplatePath(TEMPLATE_DIR, TEMPLATE_NAME);
+    }
+
+    @PostMapping("/register.do")
+    @ResponseBody
+    @DoValid
+    public Result<Void> doRegister(@NotNull @Pattern(message = "{phone.incorrect.format}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
+                                   @NotNull(message = "{password.required}")String password,
+                                   @NotNull(message = "{verifyCode.captcha.required}")String verifyCode) {
+
+        return Result.success();
     }
 
 //    @PostMapping("/register.do")
@@ -52,15 +66,20 @@ public class RegisterController {
 //        return verifyCodeService.sendCode(userDto.getPhone(), VerifyCodeBusinessEnum.REGISTER);
 //    }
 
-    @PostMapping("/register.do")
-    @ResponseBody
-    @DoValid
-    public Result<Void> doRegister(@NotNull @Pattern(message="{validation.phone.regexp}",regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
-                                   @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result) {
-        return Result.success();
-//        return verifyCodeService.sendCode(userDto.getPhone(), VerifyCodeBusinessEnum.REGISTER);
-    }
+//    @PostMapping("/register.do")
+//    @ResponseBody
+//    @DoValid
+//    public Result<Void> doRegister(@NotNull @Pattern(message = "{validation.phone.regexp}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
+//                                   @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result) {
+//        return Result.success();
+//    }
 
+    /**
+     * 验证码
+     *
+     * @param session  session对象
+     * @param response 响应对象
+     */
     @GetMapping("/captcha.do")
     public void captcha(HttpSession session, HttpServletResponse response) {
         String text = captchaProducer.createText();

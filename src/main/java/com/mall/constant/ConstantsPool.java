@@ -58,5 +58,6 @@ public interface ConstantsPool {
      */
     interface Regexp{
         String PHONE_PATTERN="^1([38]\\d|5[0-35-9]|7[3678])\\d{8}$";
+        String PASSWORD_PATTERN="^(?![A-Za-z]+$)(?!\\d+$)(?![\\W_]+$).{6,20}$";
     }
 }

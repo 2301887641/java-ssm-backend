@@ -37,15 +37,15 @@ public class VerifyCodeController {
      * @return Result
      */
     @PostMapping("/smsCode.do")
-    public Result<String> smsCode(@NotNull(message = "{validation.phone.required}")
-                                @Pattern(message = "{validation.phone.regexp}",
+    public Result<String> smsCode(@NotNull(message = "{phone.required}")
+                                @Pattern(message = "{phone.incorrect.format}",
                                         regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                 @NotNull(message = "{exception.network.error}") VerifyCodeBusinessEnum verifyCodeType,
                                 String captcha,
                                 HttpSession session) {
         if (VerifyCodeBusinessEnum.REGISTER.getOrdinal().equals(verifyCodeType.getOrdinal())) {
             if (Strings.isNullOrEmpty(captcha)) {
-                return Result.failed(SpringUtil.getMessage("verifyCode.captcha.isNull"));
+                return Result.failed(SpringUtil.getMessage("verifyCode.captcha.required"));
             }
             Result<Void> result = verifyCodeService.validate((Code) session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME), captcha);
             if (!result.isSuccess()) {
