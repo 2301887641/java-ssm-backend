@@ -46,14 +46,7 @@ public class LoginController {
 
     @GetMapping("/register/{subject}/{type}.do")
     public Result<String> verifyUser(@PathVariable String subject,@PathVariable String type){
-        switch(type){
-            case ConstantsPool.Subject.SUBJECT_PHONE:
-            case ConstantsPool.Subject.SUBJECT_USERNAME:
-                if(Objects.isNull(userService.getBySubject(subject))){
-                    return Result.failed(SpringUtil.getMessage("user."+type+".exist"));
-                }
-                return Result.success();
-        }
+
         return Result.failed();
     }
 }

@@ -4,6 +4,7 @@ import com.mall.common.Result;
 import com.mall.common.SpringUtil;
 import com.mall.exception.BusinessException;
 import com.mall.exception.ConsoleLogException;
+import com.mall.exception.NetworkException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,11 +52,21 @@ public class UnificationExceptionHandler {
 
     /**
      * 业务异常
-     * @param exception ConsoleLogException记录无法避免的异常
+     * @param exception 返回自定义的信息
      */
     @ExceptionHandler(BusinessException.class)
     @ResponseBody
     public Result<Void> businessExceptionHandler(BusinessException exception){
+        return Result.failed(exception.getMsg());
+    }
+
+    /**
+     * 只返回网络异常
+     * @param exception 网络异常
+     */
+    @ExceptionHandler(NetworkException.class)
+    @ResponseBody
+    public Result<Void> networkExceptionHandler(NetworkException exception){
         logger.info(exception.getMsg());
         return Result.failed(SpringUtil.getMessage("exception.network.error"));
     }

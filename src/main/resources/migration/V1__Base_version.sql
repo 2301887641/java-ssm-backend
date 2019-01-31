@@ -10,9 +10,9 @@ CREATE TABLE `mall_user` (
   `email` varchar(50) DEFAULT NULL,
   `question` varchar(100) DEFAULT NULL COMMENT '找回密码问题',
   `answer` varchar(100) DEFAULT NULL COMMENT '找回密码答案',
-  `is_admin` tinyint(1) NOT NULL default 1 COMMENT '是否管理员 1不是',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `update_time` datetime NOT NULL COMMENT '最后一次更新时间',
+  `is_admin` tinyint(1) NOT NULL default 1 COMMENT '是否管理员 1不是 2是',
+  create_time timestamp  not null  default CURRENT_TIMESTAMP,
+	update_time timestamp  not null  default CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name_unique` (`username`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,5 +1,6 @@
 package com.mall.dao;
 
+import com.mall.dto.UserDto;
 import com.mall.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -11,10 +12,10 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
     /**
      * 根据用户主体数据进行查找
-     * @param subject 用户主体数据
-     * @return user
+     * @param userDto 用户主体数据
+     * @return int
      */
-    User selectBySubject(String subject);
+    int subjectIsExist(String username);
 
     /**
      * 用户登录
@@ -27,7 +28,6 @@ public interface UserMapper {
     /**
      * 用户注册
      * @param user user
-     * @return user
      */
-    int save(User user);
+    void save(User user);
 }

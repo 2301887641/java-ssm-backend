@@ -10,7 +10,7 @@ import com.mall.dto.VerifyCodeDto;
 import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeBusinessEnum;
 import com.mall.enums.VerifyCodeTypeEnum;
-import com.mall.exception.BusinessException;
+import com.mall.exception.NetworkException;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.thirdparty.verifycode.api.Sender;
@@ -98,7 +98,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         //查询是否存在模板
         VerifyCodeDto verifyCodeDto = getByType(verifyCodeBusinessEnum);
         if (Objects.isNull(verifyCodeDto)) {
-            throw new BusinessException(ConstantsPool.Exception.VERIFY_CODE_TEMPLATE_NOT_EXIST);
+            throw new NetworkException(ConstantsPool.Exception.VERIFY_CODE_TEMPLATE_NOT_EXIST);
         }
         return Result.success(verifyCodeDto);
     }

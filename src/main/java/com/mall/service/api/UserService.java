@@ -26,7 +26,7 @@ public interface UserService{
     /**
      * 根据用户主体数据查找
      * @param subject 用户主体数据
-     * @return userDto
+     * @return int
      */
-    UserDto getBySubject(String subject);
+    int subjectIsExist(String subject);
 }

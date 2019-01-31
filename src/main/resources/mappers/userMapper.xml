@@ -18,21 +18,11 @@
         <result property="email" column="email" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <select id="selectBySubject" resultType="int">
+    <select id="subjectIsExist" resultType="java.lang.Integer">
         select
         count(1)
         from mall_user
-        <where>
-            <if test="username !=null and username !=''">
-                username = #{username}
-            </if>
-            <if test="email !=null and email !=''">
-                email = #{email}
-            </if>
-            <if test="phone !=null and phone !=''">
-                phone = #{phone}
-            </if>
-        </where>
+        where username = #{username}
     </select>
 
     <select id="selectByUsernameAndPassword" resultMap="baseResultMap">
