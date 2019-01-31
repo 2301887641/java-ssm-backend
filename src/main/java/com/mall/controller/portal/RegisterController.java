@@ -1,25 +1,23 @@
 package com.mall.controller.portal;
 
 import com.google.code.kaptcha.Producer;
-import com.mall.annotation.DoValid;
 import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
 import com.mall.constant.ConstantsPool;
-import com.mall.dto.UserDto;
+import com.mall.dto.VerifyCodeRecordDto;
+import com.mall.enums.VerifyCodeBusinessEnum;
 import com.mall.exception.ConsoleLogException;
-import com.mall.group.userDto.ValidationUserDto;
+import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.util.FrontUtil;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sun.plugin2.message.Message;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.Objects;
 
 /**
  * @author suiguozhen on 19/01/25 16:10
@@ -44,6 +43,9 @@ public class RegisterController {
     @Autowired
     private VerifyCodeService verifyCodeService;
 
+    @Autowired
+    private VerifyCodeRecordService verifyCodeRecordService;
+
     @GetMapping("/register.do")
     public String toRegister(HttpServletRequest request) {
         return FrontUtil.getTemplatePath(TEMPLATE_DIR, TEMPLATE_NAME);
@@ -51,10 +53,17 @@ public class RegisterController {
 
     @PostMapping("/register.do")
     @ResponseBody
-    @DoValid
-    public Result<Void> doRegister(@NotNull @Pattern(message = "{phone.incorrect.format}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
-                                   @NotNull(message = "{password.required}")String password,
-                                   @NotNull(message = "{verifyCode.required}")String verifyCode) {
+    public Result<Void> doRegister(@NotNull(message = "{phone.required}") @Pattern(message = "{phone.incorrect.format}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
+                                   @Pattern(message = "{password.incorrect.format}",regexp= ConstantsPool.Regexp.PASSWORD_PATTERN )String password,
+                                   @NotBlank(message = "{verifyCode.required}")String verifyCode) {
+        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(phone, VerifyCodeBusinessEnum.REGISTER);
+        if(Objects.isNull(verifyCodeRecordDto)){
+            return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
+        }
+        Result<Void> result = verifyCodeService.validate(new Code(verifyCodeRecordDto.getCode(), verifyCodeRecordDto.getExpireTime()), verifyCode);
+        if(!result.isSuccess()){
+               return result;
+        }
 
         return Result.success();
     }

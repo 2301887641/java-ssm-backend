@@ -43,7 +43,7 @@ public class VerifyCodeController {
                                 @NotNull(message = "{exception.network.error}") VerifyCodeBusinessEnum verifyCodeType,
                                 String captcha,
                                 HttpSession session) {
-        if (VerifyCodeBusinessEnum.REGISTER.getOrdinal().equals(verifyCodeType.getOrdinal())) {
+        if (VerifyCodeBusinessEnum.REGISTER.equals(verifyCodeType)) {
             if (Strings.isNullOrEmpty(captcha)) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.required"));
             }

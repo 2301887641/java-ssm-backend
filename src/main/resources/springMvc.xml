@@ -6,7 +6,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
     <!--配置包扫描-->
     <context:component-scan base-package="com.mall.controller"/>
-
     <!--Spring处理返回值为String类型的结果时使用了StringHttpMessageConverter, 所以我们需要配置他的编码-->
     <mvc:annotation-driven validator="validator" conversion-service="conversionService">
        <mvc:message-converters>
@@ -34,13 +33,13 @@
         <property name="maxInMemorySize" value="4096"/>
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
-
     <!--使用hibernate的validator-->
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
         <!--指定校验使用的资源文件，在文件中配置校验错误信息，如果不设置则默认为classpath下的ValidationMessages.properties -->
         <property name="validationMessageSource" ref="messageSource"/>
         <!-- hibernate校验器 -->
         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <!--配置快速失败-->
         <property name="validationPropertyMap">
             <map>
                 <entry key="hibernate.validator.fail_fast" value="true"/>

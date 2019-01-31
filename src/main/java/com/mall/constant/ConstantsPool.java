@@ -3,6 +3,7 @@ package com.mall.constant;
 /**
  * 常量池 包含以下内容:
  * 英文、正则等信息 不含有中文信息
+ *
  * @author suiguozhen on 19/01/19 16:23
  */
 public interface ConstantsPool {
@@ -43,7 +44,7 @@ public interface ConstantsPool {
      */
     interface Exception {
         String CAPTCHA_CREATE_ERROR = "图片验证码生成失败";
-        String VERIFY_CODE_TEMPLATE_NOT_EXIST="验证码模板不存在";
+        String VERIFY_CODE_TEMPLATE_NOT_EXIST = "验证码模板不存在";
     }
 
     /**
@@ -56,8 +57,8 @@ public interface ConstantsPool {
     /**
      * 正则表达式
      */
-    interface Regexp{
-        String PHONE_PATTERN="^1([38]\\d|5[0-35-9]|7[3678])\\d{8}$";
-        String PASSWORD_PATTERN="^(?![A-Za-z]+$)(?!\\d+$)(?![\\W_]+$).{6,20}$";
+    interface Regexp {
+        String PHONE_PATTERN = "^1([38]\\d|5[0-35-9]|7[3678])\\d{8}$";
+        String PASSWORD_PATTERN = "^(?![A-Za-z]+$)(?!\\d+$)(?![\\W_]+$).{6,20}$";
     }
 }

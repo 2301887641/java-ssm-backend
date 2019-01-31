@@ -16,7 +16,7 @@ import javax.validation.constraints.Pattern;
 @Setter
 public class UserDto extends BaseDto{
     private Integer id;
-    @NotNull(message="{validation.username.required}",groups = {
+    @NotNull(message="{username.required}",groups = {
             ValidationUserDto.ValidationFrontUserLogin.class
     })
     private String username;
