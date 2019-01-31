@@ -21,7 +21,7 @@ public interface UserService{
      * @param userDto userDto
      * @return int
      */
-    int save(UserDto userDto);
+    UserDto save(UserDto userDto);
 
     /**
      * 根据用户主体数据查找

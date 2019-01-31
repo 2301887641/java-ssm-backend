@@ -5,12 +5,18 @@ import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
 import com.mall.constant.ConstantsPool;
+import com.mall.dto.UserDto;
 import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeBusinessEnum;
 import com.mall.exception.ConsoleLogException;
+import com.mall.service.api.UserService;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.util.FrontUtil;
+import com.mall.util.SecurityUtil;
+import com.mall.util.StringUtil;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +50,9 @@ public class RegisterController {
     private VerifyCodeService verifyCodeService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private VerifyCodeRecordService verifyCodeRecordService;
 
     @GetMapping("/register.do")
@@ -64,7 +73,7 @@ public class RegisterController {
         if(!result.isSuccess()){
                return result;
         }
-
+        userService.save(UserDto.of(phone,StringUtil.createFullName()+RandomStringUtils.randomNumeric(Integer.parseInt(SpringUtil.getPropertiesValue("nickname.random.length"))),SecurityUtil.messageDigest(password)));
         return Result.success();
     }
 

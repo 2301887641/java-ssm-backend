@@ -29,5 +29,5 @@ public interface UserMapper {
      * @param user user
      * @return user
      */
-    int insert(User user);
+    int save(User user);
 }

@@ -1,40 +1,29 @@
 package com.mall.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mall.constant.ConstantsPool;
-import com.mall.group.userDto.ValidationUserDto;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-
 /**
+ * 用户
  * @author suiguozhen on 19/01/19 14:46
  */
 @Getter
 @Setter
 public class UserDto extends BaseDto{
     private Integer id;
-    @NotNull(message="{username.required}",groups = {
-            ValidationUserDto.ValidationFrontUserLogin.class
-    })
+    private String nickname;
     private String username;
-    @NotNull(message="{validation.password.required}",groups = {
-            ValidationUserDto.ValidationFrontUserLogin.class
-    })
-    @JsonIgnore
     private String password;
-
     private String email;
-    @Pattern(regexp= ConstantsPool.Regexp.PHONE_PATTERN,message = "{validation.phone.regexp}",groups = {
-            ValidationUserDto.ValidationFrontUserRegister.class
-    })
-    private String phone;
-
     private String question;
-
     private String answer;
-
     private Integer role;
+
+    public static UserDto of(String username,String nickname,String password){
+        UserDto userDto = new UserDto();
+        userDto.setNickname(nickname);
+        userDto.setPassword(password);
+        userDto.setUsername(username);
+        return userDto;
+    }
 }
