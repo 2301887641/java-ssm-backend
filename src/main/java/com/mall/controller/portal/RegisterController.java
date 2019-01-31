@@ -54,7 +54,7 @@ public class RegisterController {
     @DoValid
     public Result<Void> doRegister(@NotNull @Pattern(message = "{phone.incorrect.format}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                    @NotNull(message = "{password.required}")String password,
-                                   @NotNull(message = "{verifyCode.captcha.required}")String verifyCode) {
+                                   @NotNull(message = "{verifyCode.required}")String verifyCode) {
 
         return Result.success();
     }

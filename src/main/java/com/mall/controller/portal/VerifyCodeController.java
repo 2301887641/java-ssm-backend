@@ -45,7 +45,7 @@ public class VerifyCodeController {
                                 HttpSession session) {
         if (VerifyCodeBusinessEnum.REGISTER.getOrdinal().equals(verifyCodeType.getOrdinal())) {
             if (Strings.isNullOrEmpty(captcha)) {
-                return Result.failed(SpringUtil.getMessage("verifyCode.captcha.required"));
+                return Result.failed(SpringUtil.getMessage("verifyCode.required"));
             }
             Result<Void> result = verifyCodeService.validate((Code) session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME), captcha);
             if (!result.isSuccess()) {

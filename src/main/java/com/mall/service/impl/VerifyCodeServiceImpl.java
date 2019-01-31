@@ -74,10 +74,10 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     @Override
     public Result<Void> validate(Code code, String requestCode) {
         if (Objects.isNull(code) || LocalDateTime.now().isAfter(code.getExpireTime())) {
-            return Result.failed(SpringUtil.getMessage("verifyCode.not.exist"));
+            return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
         }
         if (!StringUtils.equals(code.getCode(), requestCode)) {
-            return Result.failed(SpringUtil.getMessage("verifyCode.not.match"));
+            return Result.failed(SpringUtil.getMessage("verifyCode.mismatching"));
         }
         return Result.success();
     }
@@ -92,7 +92,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         if (Objects.nonNull(verifyCodeRecordDto)) {
             //查询发送总数
             if (verifyCodeRecordDto.getCount() >= verifyCodeRestrictNumber) {
-                return Result.failed(SpringUtil.getMessage("verifyCode.count.restrict"));
+                return Result.failed(SpringUtil.getMessage("verifyCode.restrict"));
             }
         }
         //查询是否存在模板
