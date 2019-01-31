@@ -79,6 +79,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         if (!StringUtils.equals(code.getCode(), requestCode)) {
             return Result.failed(SpringUtil.getMessage("verifyCode.mismatching"));
         }
+
         return Result.success();
     }
 

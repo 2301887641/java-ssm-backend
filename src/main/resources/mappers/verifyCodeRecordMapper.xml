@@ -57,7 +57,7 @@
           #{expireTime}
          )
     </insert>
-
+    <!--再次发送更新同一条-->
     <update id="update">
          update mall_verify_code_record
          set

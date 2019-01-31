@@ -65,10 +65,11 @@ CREATE TABLE mall_verify_code_record (
 	create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
 	count int(10) default 1 comment "发送记录数",
-	target char(11) not null default 0 comment "目标对象 手机号或邮箱",
+	target char(11) not null comment "目标对象 手机号或邮箱",
   code char(6) not null default "" comment "已发送验证码",
   type tinyint(1) not null default 0 comment "验证码业务类型",
   send_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码发送时间 以这个时间为准因为发送和过期是同时插入实体的",
   expire_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码过期时间",
+  is_checked tinyint(1) not null default 0 comment "是否已验证 0没有 1已验证"
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

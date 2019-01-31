@@ -20,4 +20,5 @@ public class VerifyCodeRecord extends BasePojo{
     private VerifyCodeBusinessEnum verifyCodeType;
     private LocalDateTime sendTime;
     private LocalDateTime expireTime;
+    private Boolean isChecked;
 }
