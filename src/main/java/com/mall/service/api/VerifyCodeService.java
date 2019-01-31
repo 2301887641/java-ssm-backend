@@ -5,6 +5,7 @@ import com.mall.common.Result;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeBusinessEnum;
+import com.mall.enums.VerifyCodeTypeEnum;
 
 /**
  * 验证码服务类
@@ -13,20 +14,13 @@ import com.mall.enums.VerifyCodeBusinessEnum;
 public interface VerifyCodeService {
 
     /**
-     * 发送短信验证码
-     * @param phone 手机
+     * 发送短信或邮箱验证码
+     * @param verifyCodeTypeEnum 类型 区分手机或邮箱
+     * @param target 手机或邮箱
      * @param verifyCodeBusinessEnum 验证码枚举
      * @return Result
      */
-    Result<Void> sendSmsCode(String phone, VerifyCodeBusinessEnum verifyCodeBusinessEnum);
-
-    /**
-     * 发送邮箱验证码
-     * @param email 邮箱
-     * @param verifyCodeBusinessEnum 验证码枚举
-     * @return Result
-     */
-    Result<Void> sendEmailCode(String email,VerifyCodeBusinessEnum verifyCodeBusinessEnum);
+    Result<Void> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum);
 
     /**
      * 校验验证码 图片验证码 短信验证码
@@ -44,7 +38,7 @@ public interface VerifyCodeService {
     VerifyCodeDto getByType(VerifyCodeBusinessEnum verifyCodeType);
 
     /**
-     * 预检发送短信验证码
+     * 预检发送验证码
      * @param verifyCodeBusinessEnum 验证码业务类型
      * @param verifyCodeRecordDto 验证码记录dto
      * @return Result

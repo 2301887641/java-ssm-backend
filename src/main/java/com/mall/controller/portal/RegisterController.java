@@ -49,7 +49,7 @@ public class RegisterController {
 //    @ResponseBody
 //    @DoValid
 //    public Result<Void> doRegister(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto, BindingResult result) {
-//        return verifyCodeService.sendSmsCode(userDto.getPhone(), VerifyCodeBusinessEnum.REGISTER);
+//        return verifyCodeService.sendCode(userDto.getPhone(), VerifyCodeBusinessEnum.REGISTER);
 //    }
 
     @PostMapping("/register.do")
@@ -58,7 +58,7 @@ public class RegisterController {
     public Result<Void> doRegister(@NotNull @Pattern(message="{validation.phone.regexp}",regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                    @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result) {
         return Result.success();
-//        return verifyCodeService.sendSmsCode(userDto.getPhone(), VerifyCodeBusinessEnum.REGISTER);
+//        return verifyCodeService.sendCode(userDto.getPhone(), VerifyCodeBusinessEnum.REGISTER);
     }
 
     @GetMapping("/captcha.do")

@@ -11,10 +11,9 @@ import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeBusinessEnum;
 import com.mall.enums.VerifyCodeTypeEnum;
 import com.mall.exception.BusinessException;
-import com.mall.pojo.VerifyCode;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
-import com.mall.thirdparty.verifycode.api.SmsSender;
+import com.mall.thirdparty.verifycode.api.Sender;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,24 +44,23 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     private VerifyCodeRecordService verifyCodeRecordService;
 
     @Autowired
-    private SmsSender smsSender;
+    private Sender sender;
 
     @Autowired
     private VerifyCodeMapper verifyCodeMapper;
 
     @Override
-    public Result<Void> sendSmsCode(String phone, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
-        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(phone, verifyCodeBusinessEnum);
+    public Result<Void> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
+        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(target, verifyCodeBusinessEnum);
         Result<VerifyCodeDto> result = preCheckSend(verifyCodeBusinessEnum,verifyCodeRecordDto);
         if (!result.isSuccess()) {
             return Result.failed(result.getRestInfo());
         }
         String code = RandomStringUtils.randomNumeric(verifyCodeLength);
-        smsSender.sendSms(phone, code, result.getData().getTemplate());
+        sender.sendStrategy(verifyCodeTypeEnum,target, code, result.getData().getTemplate());
         LocalDateTime now = LocalDateTime.now();
         if(Objects.isNull(verifyCodeRecordDto)){
-            //添加记录
-            verifyCodeRecordService.save(VerifyCodeRecordDto.of(code, phone, now, now.plusSeconds(verifyCodeExpireTime), verifyCodeBusinessEnum));
+            verifyCodeRecordService.save(VerifyCodeRecordDto.of(code, target, now, now.plusSeconds(verifyCodeExpireTime), verifyCodeBusinessEnum));
             return Result.success();
         }
         verifyCodeRecordDto.setSendTime(now);
@@ -71,11 +69,6 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         verifyCodeRecordDto.setCount(verifyCodeRecordDto.getCount()+1);
         verifyCodeRecordService.update(verifyCodeRecordDto);
         return Result.success();
-    }
-
-    @Override
-    public Result<Void> sendEmailCode(String email, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
-        return null;
     }
 
     @Override
