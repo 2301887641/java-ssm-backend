@@ -20,6 +20,7 @@ public class VerifyCodeRecordDto extends BaseDto{
     private LocalDateTime sendTime;
     private LocalDateTime expireTime;
     private VerifyCodeBusinessEnum verifyCodeType;
+    private Boolean isChecked;
 
     public static VerifyCodeRecordDto of( String code, String target,LocalDateTime sendTime, LocalDateTime expireTime, VerifyCodeBusinessEnum verifyCodeType) {
         VerifyCodeRecordDto verifyCodeRecordDto = new VerifyCodeRecordDto();
