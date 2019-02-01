@@ -1,5 +1,7 @@
 package com.mall.util;
 
+import com.mall.enums.VerifyCodeTypeEnum;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
