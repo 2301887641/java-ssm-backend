@@ -1,7 +1,6 @@
 package com.mall.controller.portal;
 
 import com.google.code.kaptcha.Producer;
-import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
 import com.mall.constant.ConstantsPool;
@@ -17,7 +16,6 @@ import com.mall.util.FrontUtil;
 import com.mall.util.SecurityUtil;
 import com.mall.util.StringUtil;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
