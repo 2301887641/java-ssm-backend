@@ -70,6 +70,6 @@ CREATE TABLE mall_verify_code_record (
   type tinyint(1) not null default 0 comment "验证码业务类型",
   send_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码发送时间 以这个时间为准因为发送和过期是同时插入实体的",
   expire_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码过期时间",
-  is_checked tinyint(1) not null default 0 comment "是否已验证 0没有 1已验证"
+  is_checked tinyint(1) not null default 0 comment "是否已验证 0没有 1已验证",
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

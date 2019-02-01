@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
     /**
      * 根据用户主体数据进行查找
-     * @param userDto 用户主体数据
+     * @param username 用户主体数据
      * @return int
      */
     int subjectIsExist(String username);

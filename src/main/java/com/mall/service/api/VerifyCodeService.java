@@ -24,11 +24,12 @@ public interface VerifyCodeService {
 
     /**
      * 校验验证码 图片验证码 短信验证码
-     * @param code  放在session或数据库中的code实体
+     * @param verifyCodeTypeEnum 验证码类型
+     * @param verifyCodeRecordDto  验证码实体
      * @param requestCode  前端请求携带的code
      * @return Result
      */
-    Result<Void> validate(Code code,String requestCode);
+    Result<Void> validate(VerifyCodeTypeEnum verifyCodeTypeEnum,VerifyCodeRecordDto verifyCodeRecordDto,String requestCode);
 
     /**
      * 根据类型查询

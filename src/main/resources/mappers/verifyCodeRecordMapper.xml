@@ -28,13 +28,17 @@
         <result property="count" column="count" jdbcType="INTEGER"/>
         <result property="expireTime" column="expire_time" jdbcType="TIMESTAMP"/>
     </resultMap>
-
+    <!--根据类型查询当天的一条-->
     <select id="selectTodayLastRecord" resultMap="baseResultMap">
         select <include refid="baseColumn"/>
         from mall_verify_code_record
-        where type = #{type} and send_time >= #{time}
+        where
+        target = #{target} and
+        type = #{verifyCodeType} and
+        send_time >= #{sendTime} and
+        is_checked = #{isChecked}
     </select>
-
+    <!--统一插入-->
     <insert id="save">
         <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
@@ -69,5 +73,12 @@
            target = #{target}
            and
            type = #{verifyCodeType}
+    </update>
+    <!--更新已检查-->
+    <update id="updateForIsChecked">
+          update mall_verify_code_record
+          set
+            is_checked = #{isChecked}
+          where id = #{id}
     </update>
 </mapper>

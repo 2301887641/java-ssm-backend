@@ -8,6 +8,7 @@ import com.mall.constant.ConstantsPool;
 import com.mall.dto.UserDto;
 import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeBusinessEnum;
+import com.mall.enums.VerifyCodeTypeEnum;
 import com.mall.exception.ConsoleLogException;
 import com.mall.service.api.UserService;
 import com.mall.service.api.VerifyCodeRecordService;
@@ -31,6 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -65,11 +67,11 @@ public class RegisterController {
     public Result<Void> doRegister(@NotNull(message = "{phone.required}") @Pattern(message = "{phone.incorrect.format}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                    @Pattern(message = "{password.incorrect.format}",regexp= ConstantsPool.Regexp.PASSWORD_PATTERN )String password,
                                    @NotBlank(message = "{verifyCode.required}")String verifyCode) {
-        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(phone, VerifyCodeBusinessEnum.REGISTER);
+        VerifyCodeRecordDto verifyCodeRecordDto = null;
         if(Objects.isNull(verifyCodeRecordDto)){
             return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
         }
-        Result<Void> result = verifyCodeService.validate(new Code(verifyCodeRecordDto.getCode(), verifyCodeRecordDto.getExpireTime()), verifyCode);
+        Result<Void> result = verifyCodeService.validate(VerifyCodeTypeEnum.SMS,verifyCodeRecordDto, verifyCode);
         if(!result.isSuccess()){
                return result;
         }
@@ -101,7 +103,7 @@ public class RegisterController {
     @GetMapping("/captcha.do")
     public void captcha(HttpSession session, HttpServletResponse response) {
         String text = captchaProducer.createText();
-        session.setAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME, new Code(text, Long.parseLong(SpringUtil.getPropertiesValue("captchaCode.expire.time"))));
+        session.setAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME,VerifyCodeRecordDto.of(text, LocalDateTime.now().plusSeconds(Long.parseLong(SpringUtil.getPropertiesValue("captchaCode.expire.time")))));
         try {
             ImageIO.write(captchaProducer.createImage(text), ConstantsPool.Img.IMG_JPG, response.getOutputStream());
         } catch (Exception e) {

@@ -9,11 +9,10 @@ import com.mall.enums.VerifyCodeBusinessEnum;
 public interface VerifyCodeRecordService {
     /**
      * 获取指定手机号和类型的最后一条记录
-     * @param phone 手机号
-     * @param verifyCodeBusinessEnum 类型
+     * @param verifyCodeRecordDto  实体
      * @return VerifyCodeRecordDto
      */
-    VerifyCodeRecordDto getTodayLastRecord(String phone,VerifyCodeBusinessEnum verifyCodeBusinessEnum);
+    VerifyCodeRecordDto getTodayLastRecord(VerifyCodeRecordDto verifyCodeRecordDto);
 
     /**
      * 添加记录
@@ -27,4 +26,11 @@ public interface VerifyCodeRecordService {
      * @param verifyCodeRecordDto verifyCodeRecordDto
      */
     void update(VerifyCodeRecordDto verifyCodeRecordDto);
+
+    /**
+     * 更新检查
+     * @param id  id字段
+     * @param isChecked 是否已检查
+     */
+    void updateForIsChecked(Integer id,Boolean isChecked);
 }

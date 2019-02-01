@@ -17,4 +17,12 @@ public class DateTimeUtil {
     public static Long getTodayStartTimestamp(){
        return LocalDateTime.of(LocalDate.now(),  LocalTime.of(0, 0, 0)).toEpochSecond(ZoneOffset.of("+8"));
     }
+
+    /**
+     * 获取今日00:00的LocalDateTime
+     * @return LocalDateTime
+     */
+    public static LocalDateTime getTodayLocalDateTime(){
+        return LocalDateTime.of(LocalDate.now(ZoneOffset.of("+8")),LocalTime.of(0,0,0));
+    }
 }

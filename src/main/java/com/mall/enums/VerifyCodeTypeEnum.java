@@ -11,7 +11,8 @@ import lombok.Getter;
 public enum VerifyCodeTypeEnum implements BaseEnum {
     /*** 验证码类型*/
     SMS(1, "短信"),
-    EMAIL(2, "邮箱");
+    EMAIL(2, "邮箱"),
+    CAPTCHA(3,"图片");
 
     private Integer ordinal;
     private String label;

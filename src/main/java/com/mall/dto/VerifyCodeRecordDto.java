@@ -22,6 +22,15 @@ public class VerifyCodeRecordDto extends BaseDto{
     private VerifyCodeBusinessEnum verifyCodeType;
     private Boolean isChecked;
 
+    /**
+     * 第一次发送短信或邮箱保存
+     * @param code 验证码
+     * @param target  目标
+     * @param sendTime  发送时间
+     * @param expireTime  过期时间
+     * @param verifyCodeType 验证码类型
+     * @return VerifyCodeRecordDto
+     */
     public static VerifyCodeRecordDto of( String code, String target,LocalDateTime sendTime, LocalDateTime expireTime, VerifyCodeBusinessEnum verifyCodeType) {
         VerifyCodeRecordDto verifyCodeRecordDto = new VerifyCodeRecordDto();
         verifyCodeRecordDto.setCode(code);
@@ -29,6 +38,34 @@ public class VerifyCodeRecordDto extends BaseDto{
         verifyCodeRecordDto.setSendTime(sendTime);
         verifyCodeRecordDto.setExpireTime(expireTime);
         verifyCodeRecordDto.setVerifyCodeType(verifyCodeType);
+        return verifyCodeRecordDto;
+    }
+
+    /**
+     * 再次发送短信或邮箱
+     * @param code 验证码
+     * @param expireTime 过期时间
+     * @return VerifyCodeRecordDto
+     */
+    public static VerifyCodeRecordDto of(String code,LocalDateTime expireTime){
+        VerifyCodeRecordDto verifyCodeRecordDto = new VerifyCodeRecordDto();
+        verifyCodeRecordDto.setCode(code);
+        verifyCodeRecordDto.setExpireTime(expireTime);
+        return verifyCodeRecordDto;
+    }
+
+    /**
+     * 获取指定目标今天指定类型的记录
+     * @param target 目标对象
+     * @param isChecked  是否已检查
+     * @param verifyCodeBusinessEnum 类型
+     * @return VerifyCodeRecordDto
+     */
+    public static VerifyCodeRecordDto of(String target,Boolean isChecked,VerifyCodeBusinessEnum verifyCodeBusinessEnum){
+        VerifyCodeRecordDto verifyCodeRecordDto = new VerifyCodeRecordDto();
+        verifyCodeRecordDto.setTarget(target);
+        verifyCodeRecordDto.setIsChecked(isChecked);
+        verifyCodeRecordDto.setVerifyCodeType(verifyCodeBusinessEnum);
         return verifyCodeRecordDto;
     }
 }

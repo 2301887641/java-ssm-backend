@@ -5,6 +5,7 @@ import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
 import com.mall.constant.ConstantsPool;
+import com.mall.dto.VerifyCodeRecordDto;
 import com.mall.enums.VerifyCodeBusinessEnum;
 import com.mall.enums.VerifyCodeTypeEnum;
 import com.mall.service.api.VerifyCodeService;
@@ -47,7 +48,7 @@ public class VerifyCodeController {
             if (Strings.isNullOrEmpty(captcha)) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.required"));
             }
-            Result<Void> result = verifyCodeService.validate((Code) session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME), captcha);
+            Result<Void> result = verifyCodeService.validate(VerifyCodeTypeEnum.CAPTCHA,(VerifyCodeRecordDto)(session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME)),captcha);
             if (!result.isSuccess()) {
                 return Result.failed(result.getRestInfo());
             }

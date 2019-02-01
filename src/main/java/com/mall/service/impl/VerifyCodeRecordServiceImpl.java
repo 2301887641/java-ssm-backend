@@ -22,8 +22,9 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
     private VerifyCodeRecordMapper verifyCodeRecordMapper;
 
     @Override
-    public VerifyCodeRecordDto getTodayLastRecord(String phone,VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
-        return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecordMapper.selectTodayLastRecord(phone, verifyCodeBusinessEnum,DateTimeUtil.getTodayStartTimestamp()));
+    public VerifyCodeRecordDto getTodayLastRecord(VerifyCodeRecordDto verifyCodeRecordDto) {
+        verifyCodeRecordDto.setSendTime(DateTimeUtil.getTodayLocalDateTime());
+        return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecordMapper.selectTodayLastRecord(verifyCodeRecordDto));
     }
 
     @Transactional(rollbackFor = {Exception.class})
@@ -38,5 +39,11 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
         VerifyCodeRecord verifyCodeRecord = VerifyCodeRecordConverter.CONVERTER.dtoToPojo(verifyCodeRecordDto);
         verifyCodeRecordMapper.save(verifyCodeRecord);
         return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecord);
+    }
+
+    @Transactional(rollbackFor = {Exception.class})
+    @Override
+    public void updateForIsChecked(Integer id, Boolean isChecked) {
+        verifyCodeRecordMapper.updateForIsChecked(id,isChecked);
     }
 }

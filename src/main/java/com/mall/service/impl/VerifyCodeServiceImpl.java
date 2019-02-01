@@ -51,7 +51,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public Result<String> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
-        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(target, verifyCodeBusinessEnum);
+        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(VerifyCodeRecordDto.of(target,false,verifyCodeBusinessEnum));
         Result<VerifyCodeDto> result = preCheckSend(verifyCodeBusinessEnum,verifyCodeRecordDto);
         if (!result.isSuccess()) {
             return Result.failed(result.getRestInfo());
@@ -72,14 +72,16 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     }
 
     @Override
-    public Result<Void> validate(Code code, String requestCode) {
-        if (Objects.isNull(code) || LocalDateTime.now().isAfter(code.getExpireTime())) {
+    public Result<Void> validate(VerifyCodeTypeEnum verifyCodeTypeEnum,VerifyCodeRecordDto verifyCodeRecordDto, String requestCode) {
+        if (Objects.isNull(verifyCodeRecordDto) || LocalDateTime.now().isAfter(verifyCodeRecordDto.getExpireTime())) {
             return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
         }
-        if (!StringUtils.equals(code.getCode(), requestCode)) {
+        if (!StringUtils.equals(verifyCodeRecordDto.getCode(), requestCode)) {
             return Result.failed(SpringUtil.getMessage("verifyCode.mismatching"));
         }
-
+        if(VerifyCodeTypeEnum.SMS.equals(verifyCodeTypeEnum)){
+            verifyCodeRecordService.updateForIsChecked(verifyCodeRecordDto.getId(),true);
+        }
         return Result.success();
     }
 
