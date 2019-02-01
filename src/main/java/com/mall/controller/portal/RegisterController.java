@@ -67,7 +67,7 @@ public class RegisterController {
     public Result<Void> doRegister(@NotNull(message = "{phone.required}") @Pattern(message = "{phone.incorrect.format}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                    @Pattern(message = "{password.incorrect.format}",regexp= ConstantsPool.Regexp.PASSWORD_PATTERN )String password,
                                    @NotBlank(message = "{verifyCode.required}")String verifyCode) {
-        VerifyCodeRecordDto verifyCodeRecordDto = null;
+        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(VerifyCodeRecordDto.of(phone,VerifyCodeBusinessEnum.REGISTER));
         if(Objects.isNull(verifyCodeRecordDto)){
             return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
         }

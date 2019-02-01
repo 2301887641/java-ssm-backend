@@ -51,7 +51,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public Result<String> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
-        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(VerifyCodeRecordDto.of(target,false,verifyCodeBusinessEnum));
+        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(VerifyCodeRecordDto.of(target,verifyCodeBusinessEnum));
         Result<VerifyCodeDto> result = preCheckSend(verifyCodeBusinessEnum,verifyCodeRecordDto);
         if (!result.isSuccess()) {
             return Result.failed(result.getRestInfo());
@@ -80,6 +80,9 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             return Result.failed(SpringUtil.getMessage("verifyCode.mismatching"));
         }
         if(VerifyCodeTypeEnum.SMS.equals(verifyCodeTypeEnum)){
+            if(verifyCodeRecordDto.getIsChecked()){
+                return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
+            }
             verifyCodeRecordService.updateForIsChecked(verifyCodeRecordDto.getId(),true);
         }
         return Result.success();
@@ -96,6 +99,10 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
             //查询发送总数
             if (verifyCodeRecordDto.getCount() >= verifyCodeRestrictNumber) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.restrict"));
+            }
+            //修复 是否已检查
+            if(verifyCodeRecordDto.getIsChecked()){
+                verifyCodeRecordService.updateForIsChecked(verifyCodeRecordDto.getId(),false);
             }
         }
         //查询是否存在模板

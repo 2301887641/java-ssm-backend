@@ -57,14 +57,12 @@ public class VerifyCodeRecordDto extends BaseDto{
     /**
      * 获取指定目标今天指定类型的记录
      * @param target 目标对象
-     * @param isChecked  是否已检查
      * @param verifyCodeBusinessEnum 类型
      * @return VerifyCodeRecordDto
      */
-    public static VerifyCodeRecordDto of(String target,Boolean isChecked,VerifyCodeBusinessEnum verifyCodeBusinessEnum){
+    public static VerifyCodeRecordDto of(String target,VerifyCodeBusinessEnum verifyCodeBusinessEnum){
         VerifyCodeRecordDto verifyCodeRecordDto = new VerifyCodeRecordDto();
         verifyCodeRecordDto.setTarget(target);
-        verifyCodeRecordDto.setIsChecked(isChecked);
         verifyCodeRecordDto.setVerifyCodeType(verifyCodeBusinessEnum);
         return verifyCodeRecordDto;
     }
