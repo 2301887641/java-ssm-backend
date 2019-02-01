@@ -31,9 +31,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
+ * 注册
  * @author suiguozhen on 19/01/25 16:10
  */
 @Controller
@@ -66,9 +66,6 @@ public class RegisterController {
                                    @Pattern(message = "{password.incorrect.format}",regexp= ConstantsPool.Regexp.PASSWORD_PATTERN )String password,
                                    @NotBlank(message = "{verifyCode.required}")String verifyCode) {
         VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(VerifyCodeRecordDto.of(phone,VerifyCodeBusinessEnum.REGISTER));
-        if(Objects.isNull(verifyCodeRecordDto)){
-            return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
-        }
         Result<Void> result = verifyCodeService.validate(VerifyCodeTypeEnum.SMS,verifyCodeRecordDto, verifyCode);
         if(!result.isSuccess()){
                return result;
@@ -77,24 +74,8 @@ public class RegisterController {
         return Result.success();
     }
 
-//    @PostMapping("/register.do")
-//    @ResponseBody
-//    @DoValid
-//    public Result<Void> doRegister(@Validated({ValidationUserDto.ValidationFrontUserRegister.class}) UserDto userDto, BindingResult result) {
-//        return verifyCodeService.sendCode(userDto.getPhone(), VerifyCodeBusinessEnum.REGISTER);
-//    }
-
-//    @PostMapping("/register.do")
-//    @ResponseBody
-//    @DoValid
-//    public Result<Void> doRegister(@NotNull @Pattern(message = "{validation.phone.regexp}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
-//                                   @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result) {
-//        return Result.success();
-//    }
-
     /**
      * 验证码
-     *
      * @param session  session对象
      * @param response 响应对象
      */
