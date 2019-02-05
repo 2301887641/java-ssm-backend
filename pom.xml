@@ -9,6 +9,8 @@
     <modules>
         <module>mall-dao</module>
         <module>mall-service</module>
+        <module>mall-core</module>
+        <module>mall-portal</module>
     </modules>
     <packaging>pom</packaging>
     <name>mall</name>
