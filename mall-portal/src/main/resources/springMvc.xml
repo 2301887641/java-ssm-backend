@@ -60,7 +60,7 @@
           class="org.springframework.context.support.ConversionServiceFactoryBean">
             <property name="converters">
                 <list>
-                    <bean class="com.mall.config.StringToEnumConverterFactory"/>
+                    <bean class="com.mall.core.config.StringToEnumConverterFactory"/>
                 </list>
             </property>
     </bean>
