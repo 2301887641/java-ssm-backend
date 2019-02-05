@@ -2,10 +2,10 @@ package com.mall.controller.portal;
 
 import com.mall.annotation.DoValid;
 import com.mall.core.constant.ConstantsPool;
-import com.mall.common.Result;
-import com.mall.service.dto.UserDto;
+import com.mall.core.message.Result;
 import com.mall.group.userDto.ValidationUserDto;
 import com.mall.service.api.UserService;
+import com.mall.service.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;

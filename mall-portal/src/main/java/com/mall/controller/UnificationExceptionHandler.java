@@ -1,4 +1,4 @@
-package com.mall.core.handler;
+package com.mall.controller;
 
 import com.mall.core.context.SpringUtil;
 import com.mall.core.exception.BusinessException;
