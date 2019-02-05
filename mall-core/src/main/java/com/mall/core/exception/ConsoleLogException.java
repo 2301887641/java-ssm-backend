@@ -1,8 +1,8 @@
 package com.mall.core.exception;
 
 
-import com.mall.dao.enums.BaseEnum;
-import com.mall.dao.enums.RestCodeEnum;
+import com.mall.core.enums.BaseEnum;
+import com.mall.core.enums.RestCodeEnum;
 
 /**
  * log异常 后台拦截后直接呈现在控制台和日志中

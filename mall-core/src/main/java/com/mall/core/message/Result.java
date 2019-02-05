@@ -1,8 +1,8 @@
-package com.mall.common;
+package com.mall.core.message;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.mall.dao.enums.RestCodeEnum;
+import com.mall.core.enums.RestCodeEnum;
 import lombok.Getter;
 import lombok.Setter;
 

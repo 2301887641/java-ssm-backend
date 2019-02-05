@@ -1,4 +1,4 @@
-package com.mall.dao.enums;
+package com.mall.core.enums;
 
 /**
  * 枚举父类 统一实现接口

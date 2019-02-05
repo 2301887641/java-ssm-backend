@@ -1,7 +1,8 @@
 package com.mall.core.exception;
 
-import com.mall.dao.enums.BaseEnum;
-import com.mall.dao.enums.RestCodeEnum;
+
+import com.mall.core.enums.BaseEnum;
+import com.mall.core.enums.RestCodeEnum;
 
 /**
  * 返回网络异常
