@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mall.dao.UserMapper">
+<mapper namespace="com.mall.dao.mapper.UserMapper">
     <sql id="baseColumn">
         id,
         username,
@@ -12,7 +12,7 @@
         create_time
     </sql>
 
-    <resultMap id="baseResultMap" type="com.mall.pojo.User">
+    <resultMap id="baseResultMap" type="com.mall.dao.pojo.User">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>

@@ -1,7 +1,6 @@
-package com.mall.dao;
+package com.mall.dao.mapper;
 
-import com.mall.dto.UserDto;
-import com.mall.pojo.User;
+import com.mall.dao.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

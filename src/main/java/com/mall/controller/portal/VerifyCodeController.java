@@ -1,13 +1,12 @@
 package com.mall.controller.portal;
 
 import com.google.common.base.Strings;
-import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
 import com.mall.constant.ConstantsPool;
 import com.mall.dto.VerifyCodeRecordDto;
-import com.mall.enums.VerifyCodeBusinessEnum;
-import com.mall.enums.VerifyCodeTypeEnum;
+import com.mall.dao.enums.VerifyCodeBusinessEnum;
+import com.mall.dao.enums.VerifyCodeTypeEnum;
 import com.mall.service.api.VerifyCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

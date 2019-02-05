@@ -6,7 +6,11 @@
     <groupId>com.mall</groupId>
     <artifactId>mall</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <modules>
+        <module>mall-dao</module>
+        <module>mall-service</module>
+    </modules>
+    <packaging>pom</packaging>
     <name>mall</name>
     <url>http://www.mall.com</url>
 

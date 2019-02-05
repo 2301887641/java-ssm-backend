@@ -1,11 +1,10 @@
 package com.mall.service.api;
 
-import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.dto.VerifyCodeRecordDto;
-import com.mall.enums.VerifyCodeBusinessEnum;
-import com.mall.enums.VerifyCodeTypeEnum;
+import com.mall.dao.enums.VerifyCodeBusinessEnum;
+import com.mall.dao.enums.VerifyCodeTypeEnum;
 
 /**
  * 验证码服务类

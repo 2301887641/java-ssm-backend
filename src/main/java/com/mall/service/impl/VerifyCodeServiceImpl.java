@@ -1,6 +1,5 @@
 package com.mall.service.impl;
 
-import com.mall.common.Code;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
 import com.mall.constant.ConstantsPool;
@@ -8,8 +7,8 @@ import com.mall.converter.VerifyCodeConverter;
 import com.mall.dao.VerifyCodeMapper;
 import com.mall.dto.VerifyCodeDto;
 import com.mall.dto.VerifyCodeRecordDto;
-import com.mall.enums.VerifyCodeBusinessEnum;
-import com.mall.enums.VerifyCodeTypeEnum;
+import com.mall.dao.enums.VerifyCodeBusinessEnum;
+import com.mall.dao.enums.VerifyCodeTypeEnum;
 import com.mall.exception.NetworkException;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;

@@ -1,9 +1,7 @@
-package com.mall.pojo;
+package com.mall.dao.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Date;
 
 /**
  * 用户

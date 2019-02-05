@@ -1,7 +1,7 @@
 package com.mall.converter;
 
 import com.mall.dto.VerifyCodeDto;
-import com.mall.pojo.VerifyCode;
+import com.mall.dao.pojo.VerifyCode;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

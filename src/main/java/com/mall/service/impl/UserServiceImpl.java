@@ -5,7 +5,7 @@ import com.mall.converter.UserConverter;
 import com.mall.dao.UserMapper;
 import com.mall.dto.UserDto;
 import com.mall.exception.BusinessException;
-import com.mall.pojo.User;
+import com.mall.dao.pojo.User;
 import com.mall.service.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

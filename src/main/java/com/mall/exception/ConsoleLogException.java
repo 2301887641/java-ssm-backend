@@ -1,10 +1,8 @@
 package com.mall.exception;
 
 
-import com.mall.enums.BaseEnum;
-import com.mall.enums.RestCodeEnum;
-
-import java.text.MessageFormat;
+import com.mall.dao.enums.BaseEnum;
+import com.mall.dao.enums.RestCodeEnum;
 
 /**
  * log异常 后台拦截后直接呈现在控制台和日志中

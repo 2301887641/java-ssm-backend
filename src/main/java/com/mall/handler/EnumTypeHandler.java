@@ -1,8 +1,8 @@
 package com.mall.handler;
 
 import com.mall.config.BaseEnumTypeHandler;
-import com.mall.enums.BaseEnum;
-import com.mall.enums.VerifyCodeBusinessEnum;
+import com.mall.dao.enums.BaseEnum;
+import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import org.apache.ibatis.type.MappedTypes;
 
 /**

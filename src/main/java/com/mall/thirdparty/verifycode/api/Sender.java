@@ -1,6 +1,6 @@
 package com.mall.thirdparty.verifycode.api;
 
-import com.mall.enums.VerifyCodeTypeEnum;
+import com.mall.dao.enums.VerifyCodeTypeEnum;
 
 /**
  * 短信发送管理器接口

@@ -1,7 +1,7 @@
 package com.mall.converter;
 
 import com.mall.dto.UserDto;
-import com.mall.pojo.User;
+import com.mall.dao.pojo.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

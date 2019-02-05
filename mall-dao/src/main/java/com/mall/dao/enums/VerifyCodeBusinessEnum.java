@@ -1,4 +1,4 @@
-package com.mall.enums;
+package com.mall.dao.enums;
 
 import lombok.Getter;
 

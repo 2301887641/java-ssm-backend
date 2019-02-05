@@ -1,8 +1,7 @@
-package com.mall.dao;
+package com.mall.dao.mapper;
 
-import com.mall.dto.VerifyCodeRecordDto;
-import com.mall.enums.VerifyCodeBusinessEnum;
-import com.mall.pojo.VerifyCodeRecord;
+
+import com.mall.dao.pojo.VerifyCodeRecord;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,10 +12,10 @@ import org.apache.ibatis.annotations.Param;
 public interface VerifyCodeRecordMapper {
     /**
      * 查询指定类型今天最后一条记录
-     * @param verifyCodeRecordDto 实体
+     * @param verifyCodeRecord 实体
      * @return VerifyCodeRecordService
      */
-    VerifyCodeRecord selectTodayLastRecord(VerifyCodeRecordDto verifyCodeRecordDto);
+    VerifyCodeRecord selectTodayLastRecord(VerifyCodeRecord verifyCodeRecord);
 
     /**
      * 保存完整记录

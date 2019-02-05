@@ -1,6 +1,6 @@
 package com.mall.config;
 
-import com.mall.enums.BaseEnum;
+import com.mall.dao.enums.BaseEnum;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.convert.converter.ConverterFactory;
 

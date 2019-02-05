@@ -1,6 +1,6 @@
 package com.mall.dto;
 
-import com.mall.enums.VerifyCodeBusinessEnum;
+import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import lombok.Getter;
 import lombok.Setter;
 

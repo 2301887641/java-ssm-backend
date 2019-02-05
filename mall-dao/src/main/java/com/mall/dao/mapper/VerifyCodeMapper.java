@@ -1,7 +1,7 @@
-package com.mall.dao;
+package com.mall.dao.mapper;
 
-import com.mall.enums.VerifyCodeBusinessEnum;
-import com.mall.pojo.VerifyCode;
+import com.mall.dao.enums.VerifyCodeBusinessEnum;
+import com.mall.dao.pojo.VerifyCode;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

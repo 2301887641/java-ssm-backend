@@ -1,6 +1,6 @@
 package com.mall.thirdparty.verifycode.impl;
 
-import com.mall.enums.VerifyCodeTypeEnum;
+import com.mall.dao.enums.VerifyCodeTypeEnum;
 import com.mall.thirdparty.verifycode.api.Sender;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
