@@ -1,7 +1,7 @@
 package com.mall.controller.portal;
 
 import com.mall.annotation.DoValid;
-import com.mall.constant.ConstantsPool;
+import com.mall.core.constant.ConstantsPool;
 import com.mall.common.Result;
 import com.mall.service.dto.UserDto;
 import com.mall.group.userDto.ValidationUserDto;

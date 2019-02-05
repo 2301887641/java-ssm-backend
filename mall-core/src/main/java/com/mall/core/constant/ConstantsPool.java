@@ -1,4 +1,4 @@
-package com.mall.constant;
+package com.mall.core.constant;
 
 /**
  * 常量池 包含以下内容:

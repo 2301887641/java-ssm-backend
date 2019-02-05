@@ -2,7 +2,8 @@ package com.mall.service.impl;
 
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
-import com.mall.constant.ConstantsPool;
+import com.mall.core.constant.ConstantsPool;
+import com.mall.core.context.SpringUtil;
 import com.mall.core.message.Result;
 import com.mall.dao.mapper.VerifyCodeMapper;
 import com.mall.service.converter.VerifyCodeConverter;

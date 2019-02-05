@@ -3,7 +3,7 @@ package com.mall.controller.portal;
 import com.google.code.kaptcha.Producer;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
-import com.mall.constant.ConstantsPool;
+import com.mall.core.constant.ConstantsPool;
 import com.mall.service.dto.UserDto;
 import com.mall.service.dto.VerifyCodeRecordDto;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;

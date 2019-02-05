@@ -1,10 +1,10 @@
 package com.mall.service.api;
 
-import com.mall.common.Result;
-import com.mall.service.dto.VerifyCodeDto;
-import com.mall.service.dto.VerifyCodeRecordDto;
+import com.mall.core.message.Result;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
+import com.mall.service.dto.VerifyCodeDto;
+import com.mall.service.dto.VerifyCodeRecordDto;
 
 /**
  * 验证码服务类
@@ -28,7 +28,7 @@ public interface VerifyCodeService {
      * @param requestCode  前端请求携带的code
      * @return Result
      */
-    Result<Void> validate(VerifyCodeTypeEnum verifyCodeTypeEnum,VerifyCodeRecordDto verifyCodeRecordDto,String requestCode);
+    Result<Void> validate(VerifyCodeTypeEnum verifyCodeTypeEnum, VerifyCodeRecordDto verifyCodeRecordDto, String requestCode);
 
     /**
      * 根据类型查询
