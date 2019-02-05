@@ -11,7 +11,7 @@
         <module>mall-service</module>
         <module>mall-core</module>
         <module>mall-portal</module>
-        <module>mall-thirdparty</module>
+        <module>mall-manager</module>
     </modules>
     <packaging>pom</packaging>
     <name>mall</name>
