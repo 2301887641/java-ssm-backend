@@ -1,4 +1,4 @@
-package com.mall.common;
+package com.mall.core.context;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.EmbeddedValueResolverAware;

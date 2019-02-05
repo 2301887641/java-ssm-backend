@@ -1,5 +1,6 @@
 package com.mall.dao.enums;
 
+import com.mall.core.enums.BaseEnum;
 import lombok.Getter;
 
 /**

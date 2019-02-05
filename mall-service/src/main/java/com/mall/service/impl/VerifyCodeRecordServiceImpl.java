@@ -1,11 +1,11 @@
 package com.mall.service.impl;
 
-import com.mall.service.converter.VerifyCodeRecordConverter;
-import com.mall.dao.VerifyCodeRecordMapper;
-import com.mall.service.dto.VerifyCodeRecordDto;
+import com.mall.core.util.DateTimeUtil;
+import com.mall.dao.mapper.VerifyCodeRecordMapper;
 import com.mall.dao.pojo.VerifyCodeRecord;
 import com.mall.service.api.VerifyCodeRecordService;
-import com.mall.core.util.DateTimeUtil;
+import com.mall.service.converter.VerifyCodeRecordConverter;
+import com.mall.service.dto.VerifyCodeRecordDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,7 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
     @Override
     public VerifyCodeRecordDto getTodayLastRecord(VerifyCodeRecordDto verifyCodeRecordDto) {
         verifyCodeRecordDto.setSendTime(DateTimeUtil.getTodayLocalDateTime());
-        return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecordMapper.selectTodayLastRecord(verifyCodeRecordDto));
+        return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecordMapper.selectTodayLastRecord(VerifyCodeRecordConverter.CONVERTER.dtoToPojo(verifyCodeRecordDto)));
     }
 
     @Transactional(rollbackFor = {Exception.class})

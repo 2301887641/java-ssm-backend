@@ -1,5 +1,6 @@
 package com.mall.dao.enums;
 
+import com.mall.core.enums.BaseEnum;
 import lombok.Getter;
 
 /**
@@ -7,7 +8,7 @@ import lombok.Getter;
  * @author suiguozhen on 19/01/24 8:52
  */
 @Getter
-public enum VerifyCodeBusinessEnum implements BaseEnum{
+public enum VerifyCodeBusinessEnum implements BaseEnum {
     /**
      * 用户注册
      */

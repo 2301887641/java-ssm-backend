@@ -3,6 +3,8 @@ package com.mall.service.impl;
 import com.mall.common.Result;
 import com.mall.common.SpringUtil;
 import com.mall.constant.ConstantsPool;
+import com.mall.core.message.Result;
+import com.mall.dao.mapper.VerifyCodeMapper;
 import com.mall.service.converter.VerifyCodeConverter;
 import com.mall.dao.VerifyCodeMapper;
 import com.mall.service.dto.VerifyCodeDto;
@@ -49,7 +51,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
     private VerifyCodeMapper verifyCodeMapper;
 
     @Override
-    public Result<String> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
+    public Result<String> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum, String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum) {
         VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(VerifyCodeRecordDto.of(target,verifyCodeBusinessEnum));
         Result<VerifyCodeDto> result = preCheckSend(verifyCodeBusinessEnum,verifyCodeRecordDto);
         if (!result.isSuccess()) {
