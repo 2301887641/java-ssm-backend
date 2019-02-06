@@ -1,4 +1,4 @@
-package com.mall.thirdparty.verifycode.api;
+package com.mall.manager.verifyCode.api;
 
 import com.mall.dao.enums.VerifyCodeTypeEnum;
 
