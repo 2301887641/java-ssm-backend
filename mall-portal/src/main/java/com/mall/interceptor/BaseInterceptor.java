@@ -1,4 +1,4 @@
-package com.mall.plugin;
+package com.mall.interceptor;
 
 import com.mall.dao.pojo.BasePojo;
 import org.apache.ibatis.executor.Executor;
@@ -18,7 +18,7 @@ import java.util.Properties;
         type = Executor.class,
         method = "update",
         args = {MappedStatement.class, Object.class})})
-public class BasePlugin implements Interceptor {
+public class BaseInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {

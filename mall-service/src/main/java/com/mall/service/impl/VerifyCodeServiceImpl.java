@@ -12,7 +12,7 @@ import com.mall.service.api.VerifyCodeService;
 import com.mall.service.converter.VerifyCodeConverter;
 import com.mall.service.dto.VerifyCodeDto;
 import com.mall.service.dto.VerifyCodeRecordDto;
-import com.mall.manager.verifyCode.api.Sender;
+import com.mall.thirdparty.verifycode.api.Sender;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

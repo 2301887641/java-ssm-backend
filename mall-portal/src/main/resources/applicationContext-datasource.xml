@@ -28,32 +28,35 @@
         <property name="fileEncoding" value="utf-8"/>
     </bean>
     <!--配置数据源-->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${db.driverClassName}"/>
-        <property name="url" value="${db.url}"/>
-        <property name="username" value="${db.username}"/>
-        <property name="password" value="${db.password}"/>
-        <!--  连接池启动时的初始值  -->
-        <property name="initialSize" value="${db.initialSize}"/>
-        <!--  连接池的最大值  -->
-        <property name="maxActive" value="${db.maxActive}"/>
-        <!--
-        最大空闲值.当经过一个高峰时间后,连接池可以慢慢将已经用不到的连接慢慢释放一部分,一直减少到maxIdle为止
-       -->
-        <property name="maxIdle" value="${db.maxIdle}"/>
-        <!--  最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请  -->
-        <property name="minIdle" value="${db.minIdle}"/>
-        <!--  最大建立连接等待时间。如果超过此时间将接到异常。设为－1表示无限制  -->
-        <property name="maxWait" value="${db.maxWait}"/>
-        <property name="defaultAutoCommit" value="${db.defaultAutoCommit}"/>
-        <!--  #连接的超时时间，默认为半小时。  -->
-        <property name="minEvictableIdleTimeMillis" value="${db.minEvictableIdleTimeMillis}"/>
-        <!-- # 失效检查线程运行时间间隔，要小于MySQL默认 -->
-        <property name="timeBetweenEvictionRunsMillis" value="40000"/>
-        <!-- # 检查连接是否有效 -->
-        <property name="testWhileIdle" value="true"/>
-        <!-- # 检查连接有效性的SQL语句 -->
-        <property name="validationQuery" value="SELECT 1 FROM dual"/>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="${datasource.initialSize}" />
+        <property name="minIdle" value="${datasource.minIdle}" />
+        <property name="maxActive" value="${datasource.maxActive}" />
+        <!--配置获取连接等待超时的时间-->
+        <property name="maxWait" value="${datasource.maxWait}" />
+        <!--配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒-->
+        <property name="timeBetweenEvictionRunsMillis" value="${datasource.timeBetweenEvictionRunsMillis}" />
+        <!--配置一个连接在池中最小生存的时间，单位是毫秒-->
+        <property name="minEvictableIdleTimeMillis" value="${datasource.minEvictableIdleTimeMillis}" />
+        <property name="validationQuery" value="${datasource.validationQuery}" />
+        <property name="testWhileIdle" value="${datasource.testWhileIdle}" />
+        <property name="testOnBorrow" value="${datasource.testOnBorrow}" />
+        <property name="testOnReturn" value="${datasource.testOnReturn}" />
+        <!--打开PSCache，并且指定每个连接上PSCache的大小-->
+        <property name="poolPreparedStatements" value="${datasource.poolPreparedStatements}" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${datasource.maxPoolPreparedStatementPerConnectionSize}" />
+        <!--配置监控统计拦截的filters-->
+        <property name="filters" value="${datasource.filters}" />
+        <!--通过connectProperties属性来打开mergeSql功能；慢SQL记录-->
+        <property name="connectionProperties" value="${datasource.connectionProperties}" />
+        <!--合并多个DruidDataSource的监控数据-->
+        <!-- 配置监控统计拦截的filters -->
+        <property name="useGlobalDataSourceStat" value="${datasource.useGlobalDataSourceStat}" />
     </bean>
     <!--配置sqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -63,15 +66,15 @@
         <!--自定义类型处理器使用包扫描的方式-->
         <property name="typeHandlersPackage" value="com.mall.handler"/>
         <property name="plugins">
-            <array>
+            <list>
                 <!--分页插件-->
                 <bean class="com.github.pagehelper.PageHelper">
                     <property name="properties">
                         <value>dialect=mysql</value>
                     </property>
                 </bean>
-                <bean class="com.mall.plugin.BasePlugin"/>
-            </array>
+                <bean class="com.mall.interceptor.BaseInterceptor"/>
+            </list>
         </property>
     </bean>
     <!--mapper扫描接口-->
