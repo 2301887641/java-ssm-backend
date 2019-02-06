@@ -1,6 +1,6 @@
 package com.mall.aspect;
 
-import com.mall.core.message.Result;
+import com.mall.core.foundation.Result;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

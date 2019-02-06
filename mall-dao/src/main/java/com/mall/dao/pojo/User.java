@@ -1,5 +1,6 @@
 package com.mall.dao.pojo;
 
+import com.mall.core.foundation.BasePojo;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class User extends BasePojo{
+public class User extends BasePojo {
     private Integer id;
     private String nickname;
     private String username;

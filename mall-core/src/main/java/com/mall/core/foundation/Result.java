@@ -1,4 +1,4 @@
-package com.mall.core.message;
+package com.mall.core.foundation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -1,14 +1,15 @@
 package com.mall.core.exception;
 
 
-import com.mall.core.enums.BaseEnum;
+import com.mall.core.foundation.BaseEnum;
 import com.mall.core.enums.RestCodeEnum;
+import com.mall.core.foundation.BaseException;
 
 /**
  * log异常 后台拦截后直接呈现在控制台和日志中
  * @author suiguozhen on 18/10/23
  */
-public class ConsoleLogException extends LogicException{
+public class ConsoleLogException extends BaseException {
 
     /**
      * 有参构造

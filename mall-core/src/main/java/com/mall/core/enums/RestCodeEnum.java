@@ -1,5 +1,6 @@
 package com.mall.core.enums;
 
+import com.mall.core.foundation.BaseEnum;
 import lombok.Getter;
 
 /**

@@ -1,6 +1,6 @@
-package com.mall.core.config;
+package com.mall.core.foundation;
 
-import com.mall.core.enums.BaseEnum;
+import com.mall.core.foundation.BaseEnum;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 

@@ -1,5 +1,6 @@
 package com.mall.dao.pojo;
 
+import com.mall.core.foundation.BasePojo;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class VerifyCode extends BasePojo{
+public class VerifyCode extends BasePojo {
     private Integer id;
     private VerifyCodeBusinessEnum verifyCodeType;
     private String template;

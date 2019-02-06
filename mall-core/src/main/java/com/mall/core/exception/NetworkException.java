@@ -1,14 +1,15 @@
 package com.mall.core.exception;
 
 
-import com.mall.core.enums.BaseEnum;
+import com.mall.core.foundation.BaseEnum;
 import com.mall.core.enums.RestCodeEnum;
+import com.mall.core.foundation.BaseException;
 
 /**
  * 返回网络异常
  * @author suiguozhen on 19/01/31 15:34
  */
-public class NetworkException extends LogicException{
+public class NetworkException extends BaseException {
     /**
      * 自定义信息构造
      * @param message 错误信息

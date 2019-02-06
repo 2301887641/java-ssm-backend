@@ -1,6 +1,6 @@
 package com.mall.service.api;
 
-import com.mall.core.message.Result;
+import com.mall.core.foundation.Result;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
 import com.mall.service.dto.VerifyCodeDto;

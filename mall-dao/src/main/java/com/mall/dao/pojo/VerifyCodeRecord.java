@@ -1,5 +1,6 @@
 package com.mall.dao.pojo;
 
+import com.mall.core.foundation.BasePojo;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-public class VerifyCodeRecord extends BasePojo{
+public class VerifyCodeRecord extends BasePojo {
     private Integer id;
     private Integer count;
     private String code;

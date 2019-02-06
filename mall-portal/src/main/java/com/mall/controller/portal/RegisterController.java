@@ -4,7 +4,7 @@ import com.google.code.kaptcha.Producer;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.context.SpringUtil;
 import com.mall.core.exception.ConsoleLogException;
-import com.mall.core.message.Result;
+import com.mall.core.foundation.Result;
 import com.mall.core.util.FrontUtil;
 import com.mall.core.util.SecurityUtil;
 import com.mall.core.util.StringUtil;
@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;

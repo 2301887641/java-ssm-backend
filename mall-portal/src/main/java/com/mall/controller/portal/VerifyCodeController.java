@@ -3,7 +3,7 @@ package com.mall.controller.portal;
 import com.google.common.base.Strings;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.context.SpringUtil;
-import com.mall.core.message.Result;
+import com.mall.core.foundation.Result;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
 import com.mall.service.api.VerifyCodeService;

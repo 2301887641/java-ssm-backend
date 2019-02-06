@@ -4,7 +4,7 @@ import com.mall.core.context.SpringUtil;
 import com.mall.core.exception.BusinessException;
 import com.mall.core.exception.ConsoleLogException;
 import com.mall.core.exception.NetworkException;
-import com.mall.core.message.Result;
+import com.mall.core.foundation.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

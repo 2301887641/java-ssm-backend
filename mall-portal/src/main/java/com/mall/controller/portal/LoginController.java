@@ -2,7 +2,7 @@ package com.mall.controller.portal;
 
 import com.mall.annotation.DoValid;
 import com.mall.core.constant.ConstantsPool;
-import com.mall.core.message.Result;
+import com.mall.core.foundation.Result;
 import com.mall.group.userDto.ValidationUserDto;
 import com.mall.service.api.UserService;
 import com.mall.service.dto.UserDto;

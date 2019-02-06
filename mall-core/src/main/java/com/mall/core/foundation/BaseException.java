@@ -1,4 +1,4 @@
-package com.mall.core.exception;
+package com.mall.core.foundation;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +14,7 @@ import java.text.MessageFormat;
  */
 @Getter
 @Setter
-public class LogicException extends RuntimeException {
+public class BaseException extends RuntimeException {
     /*** 状态码*/
     protected Integer code;
 
@@ -22,7 +22,7 @@ public class LogicException extends RuntimeException {
     protected String msg;
 
     /*** 带有状态码和错误消息的构造函数*/
-    public LogicException(Integer code, String msg) {
+    public BaseException(Integer code, String msg) {
         super();
         this.code = code;
         this.msg = msg;

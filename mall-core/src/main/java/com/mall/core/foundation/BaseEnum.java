@@ -1,4 +1,4 @@
-package com.mall.core.enums;
+package com.mall.core.foundation;
 
 /**
  * 枚举父类 统一实现接口

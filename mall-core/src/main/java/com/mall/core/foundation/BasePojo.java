@@ -1,4 +1,4 @@
-package com.mall.dao.pojo;
+package com.mall.core.foundation;
 
 import lombok.Getter;
 import lombok.Setter;

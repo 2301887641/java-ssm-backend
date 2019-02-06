@@ -1,6 +1,6 @@
-package com.mall.plugin;
+package com.mall.core.foundation;
 
-import com.mall.dao.pojo.BasePojo;
+import com.mall.core.foundation.BasePojo;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;

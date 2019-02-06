@@ -3,7 +3,7 @@ package com.mall.service.impl;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.context.SpringUtil;
 import com.mall.core.exception.NetworkException;
-import com.mall.core.message.Result;
+import com.mall.core.foundation.Result;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
 import com.mall.dao.mapper.VerifyCodeMapper;
