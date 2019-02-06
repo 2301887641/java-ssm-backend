@@ -21,8 +21,8 @@
         <property name="ignoreUnresolvablePlaceholders" value="true"/>
         <property name="locations">
             <list>
-                <value>classpath:src/main/resources/datasource.properties</value>
-                <value>classpath:src/main/resources/mall.properties</value>
+                <value>classpath:datasource.properties</value>
+                <value>classpath:mall.properties</value>
             </list>
         </property>
         <property name="fileEncoding" value="utf-8"/>
@@ -58,7 +58,7 @@
     <!--配置sqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath:src/main/resources/mappers/userMapper.xml"/>
+        <property name="mapperLocations" value="classpath:mappers/**.xml"/>
         <property name="typeAliasesPackage" value="com.mall.dao.pojo"/>
         <!--自定义类型处理器使用包扫描的方式-->
         <property name="typeHandlersPackage" value="com.mall.handler"/>

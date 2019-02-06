@@ -18,6 +18,6 @@
         <property name="defaultEncoding" value="utf-8"/>
     </bean>
     <!--引入其他-->
-    <import resource="classpath:src/main/resources/applicationContext-datasource.xml"/>
-    <import resource="classpath:src/main/resources/applicationContext-configuration.xml"/>
+    <import resource="classpath:applicationContext-datasource.xml"/>
+    <import resource="classpath:applicationContext-configuration.xml"/>
 </beans>
