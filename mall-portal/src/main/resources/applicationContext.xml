@@ -20,4 +20,5 @@
     <!--引入其他-->
     <import resource="classpath:applicationContext-datasource.xml"/>
     <import resource="classpath:applicationContext-configuration.xml"/>
+    <import resource="classpath:applicationContext-shiro.xml"/>
 </beans>
