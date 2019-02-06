@@ -45,6 +45,7 @@ public interface ConstantsPool {
     interface Exception {
         String CAPTCHA_CREATE_ERROR = "图片验证码生成失败";
         String VERIFY_CODE_TEMPLATE_NOT_EXIST = "验证码模板不存在";
+        String MESSAGE_DIGEST_CREATE_ERROR="md5生成失败";
     }
 
     /**

@@ -1,5 +1,8 @@
 package com.mall.core.util;
 
+import com.mall.core.constant.ConstantsPool;
+import com.mall.core.exception.NetworkException;
+
 import java.security.MessageDigest;
 import java.util.Objects;
 
@@ -22,7 +25,7 @@ public class SecurityUtil {
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             result = byteArrayToHexString(messageDigest.digest(message.getBytes("utf-8")));
         } catch (Exception exception) {
-            //todo 异常需要处理
+            throw new NetworkException(ConstantsPool.Exception.MESSAGE_DIGEST_CREATE_ERROR);
         }
         return result.toUpperCase();
     }
