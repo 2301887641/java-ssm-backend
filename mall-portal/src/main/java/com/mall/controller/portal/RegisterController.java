@@ -56,7 +56,7 @@ public class RegisterController {
     private VerifyCodeRecordService verifyCodeRecordService;
 
     @GetMapping("/register.do")
-    public String toRegister(HttpServletRequest request) {
+    public String toRegister() {
         return FrontUtil.getTemplatePath(TEMPLATE_DIR, TEMPLATE_NAME);
     }
 
