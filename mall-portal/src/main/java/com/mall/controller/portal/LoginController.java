@@ -35,11 +35,6 @@ public class LoginController {
         return FrontUtil.getTemplatePath(TEMPLATE_DIR,TEMPLATE_NAME);
     }
 
-    @GetMapping("/login.do")
-    public String toLogin1() {
-        return FrontUtil.getTemplatePath(TEMPLATE_DIR,TEMPLATE_NAME);
-    }
-
     @PostMapping("/login.do")
     @DoValid
     public Result<Void> doLogin(HttpSession session, @Validated({ValidationUserDto.ValidationFrontUserLogin.class}) UserDto userDto, BindingResult result) {
