@@ -15,8 +15,6 @@ import java.security.MessageDigest;
  */
 public class SecurityUtil {
 
-    private static final int hashIterations = 1024;
-
     /**
      * md5加密
      *
@@ -53,47 +51,4 @@ public class SecurityUtil {
     }
 
     private static final String[] HEX_DIGIT = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
-
-    /**
-     * shiro自带md5加密
-     *
-     * @param message        要加密的信息
-     * @param salt           盐值
-     * @param hashIterations 散列次数 比如2次:messageDigest(messageDigest(xxx))
-     * @return string
-     */
-    public static String messageDigest(String message, String salt, int hashIterations) {
-        return new SimpleHash("md5", message, salt, hashIterations).toString();
-    }
-
-    /**
-     * shiro自带md5加密
-     * @param message 要加密的信息
-     * @param salt  盐值
-     * @return  string
-     */
-    public static String messageDigest(String message, String salt) {
-        return new SimpleHash("md5", message, salt, hashIterations).toString();
-    }
-
-    /**
-     * sha256散列加密
-     * @param message 要加密的信息
-     * @param salt 盐值
-     * @param hashIterations 散列次数
-     * @return String
-     */
-    public static String sha256(String message,String salt,int hashIterations){
-        return new SimpleHash("SHA-256",message,salt,hashIterations).toString();
-    }
-
-    /**
-     * sha256散列加密
-     * @param message 要加密的信息
-     * @param salt 盐值
-     * @return String
-     */
-    public static String sha256(String message,String salt){
-        return new SimpleHash("SHA-256",message,salt,hashIterations).toString();
-    }
 }

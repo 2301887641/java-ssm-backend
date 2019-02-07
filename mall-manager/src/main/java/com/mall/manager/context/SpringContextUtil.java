@@ -1,4 +1,4 @@
-package com.mall.core.context;
+package com.mall.manager.context;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
