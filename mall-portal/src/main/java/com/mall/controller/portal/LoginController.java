@@ -1,6 +1,6 @@
 package com.mall.controller.portal;
 
-import com.mall.annotation.DoValid;
+import com.mall.core.annotation.DoValid;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.foundation.Result;
 import com.mall.group.userDto.ValidationUserDto;

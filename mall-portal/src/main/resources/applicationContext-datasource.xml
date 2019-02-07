@@ -14,19 +14,6 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd
        ">
-    <!--读取配置文件-->
-    <bean id="propertyPlaceholderConfigurer"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="order" value="2"/>
-        <property name="ignoreUnresolvablePlaceholders" value="true"/>
-        <property name="locations">
-            <list>
-                <value>classpath:datasource.properties</value>
-                <value>classpath:mall.properties</value>
-            </list>
-        </property>
-        <property name="fileEncoding" value="utf-8"/>
-    </bean>
     <!--配置数据源-->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
@@ -60,11 +47,14 @@
     </bean>
     <!--配置sqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--数据源-->
         <property name="dataSource" ref="dataSource"/>
+        <!--mapper.xml位置-->
         <property name="mapperLocations" value="classpath:mappers/**.xml"/>
         <property name="typeAliasesPackage" value="com.mall.dao.pojo"/>
         <!--自定义类型处理器使用包扫描的方式-->
         <property name="typeHandlersPackage" value="com.mall.handler"/>
+        <!--配置mybatis插件-->
         <property name="plugins">
             <array>
                 <!--分页插件-->

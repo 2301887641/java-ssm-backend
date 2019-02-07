@@ -8,9 +8,31 @@
                 <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
                     <!--配置加密方式-->
                     <property name="hashAlgorithmName" value="SHA-256"/>
-                    <property name="hashIterations" value=""
+                    <!--散列迭代次数-->
+                    <property name="hashIterations" value="${encryption.hashIterations}"/>
+                    <!--表示是否存储散列后的密码为16进制，需要和生成密码时的一样，默认是base64-->
+                    <!--此处最需要注意的就是HashedCredentialsMatcher的算法需要和生成密码时的算法一样。
+                    另外HashedCredentialsMatcher会自动根据AuthenticationInfo的类型是否是SaltedAuthenticationInfo来获取credentialsSalt盐-->
+                    <property name="storedCredentialsHexEncoded" value="true"/>
                 </bean>
             </property>
         </bean>
-
+        <!--安全管理器-->
+        <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+            <!--将自定义realm注入到securityManager-->
+            <property name="realm" ref="usernamePasswordCaptchaRealm"/>
+        </bean>
+        <!--shiro拦截器-->
+        <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+            <!--注入安全管理器-->
+            <property name="securityManager" ref="securityManager"/>
+            <!--登录链接-->
+            <property name="loginUrl" value="/login.html"/>
+            <!--成功登录链接-->
+            <property name="successUrl" value="/index.html"/>
+            <!--未授权页面-->
+            <property name="unauthorizedUrl" value="/login.html"/>
+            <!--过滤链定义-->
+            <property name="filterChainDefinitions" value="/**=authc"/>
+        </bean>
 </beans>

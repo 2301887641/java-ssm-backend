@@ -1,5 +1,6 @@
 package com.mall.manager.util;
 
+import com.mall.manager.context.SpringUtil;
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 /**
@@ -7,7 +8,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
  * @author suiguozhen on 19-2-7 上午9:04
  */
 public class ShiroUtil {
-    private static final int hashIterations = 1024;
+    private static final int hashIterations = Integer.parseInt(SpringUtil.getPropertiesValue("encryption.hashIterations"));
 
     /**
      * shiro自带md5加密

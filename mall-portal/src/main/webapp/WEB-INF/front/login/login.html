@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+</head>
+<body>
+<form id="form" action="#">
+       <p>注册用户</p>
+    <input type="hidden" name="verifyCodeType" value="1">
+       <p>请输入手机号:<input name="phone" value="15254124776"></p>
+       <p>验证码:<input name="captcha">  <img src="/captcha.do"></p>
+        <button type="button" id="register">获取验证码</button>
+</form>
+
+<form id="form2" action="#">
+    <p>注册用户二</p>
+    <input type="hidden" name="phone" value="15254124771">
+    <p>请输入密码:<input type="password" name="password"></p>
+    <p>验证码:<input name="verifyCode"></p>
+    <button type="button" id="register2">提交注册</button>
+</form>
+
+</body>
+</html>
+<script>
+    $("#register").click(function(){
+         $.ajax({
+             url:"/smsCode.do",
+             type:"post",
+             data:$("#form").serialize(),
+             dataType:"json",
+             success:function(data){
+                 console.log(data)
+             }
+         })
+    })
+
+    $("#register2").click(function(){
+        $.ajax({
+            url:"/register.do",
+            type:"post",
+            data:$("#form2").serialize(),
+            dataType:"json",
+            success:function(data){
+                console.log(data)
+            }
+        })
+    })
+</script>
