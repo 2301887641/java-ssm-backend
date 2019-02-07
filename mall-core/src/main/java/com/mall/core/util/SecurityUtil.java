@@ -5,10 +5,11 @@ import com.mall.core.exception.NetworkException;
 import org.apache.shiro.crypto.hash.SimpleHash;
 
 import java.security.MessageDigest;
-import java.util.Objects;
 
 /**
  * 安全相关
+ *  原始md5和shiro的md5以及散列
+ *
  *
  * @author suiguozhen on 19/01/19 16:30
  */
@@ -76,13 +77,23 @@ public class SecurityUtil {
     }
 
     /**
-     *  sha256散列加密
+     * sha256散列加密
      * @param message 要加密的信息
      * @param salt 盐值
      * @param hashIterations 散列次数
      * @return String
      */
     public static String sha256(String message,String salt,int hashIterations){
-        return new SimpleHash("sha256",message,salt,hashIterations).toString();
+        return new SimpleHash("SHA-256",message,salt,hashIterations).toString();
+    }
+
+    /**
+     * sha256散列加密
+     * @param message 要加密的信息
+     * @param salt 盐值
+     * @return String
+     */
+    public static String sha256(String message,String salt){
+        return new SimpleHash("SHA-256",message,salt,hashIterations).toString();
     }
 }
