@@ -1,6 +1,6 @@
 package com.mall.service.impl;
 
-import com.mall.core.util.DateTimeUtil;
+import com.mall.core.util.LocalDateTimeUtil;
 import com.mall.dao.mapper.VerifyCodeRecordMapper;
 import com.mall.dao.pojo.VerifyCodeRecord;
 import com.mall.service.api.VerifyCodeRecordService;
@@ -22,7 +22,7 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
 
     @Override
     public VerifyCodeRecordDto getTodayLastRecord(VerifyCodeRecordDto verifyCodeRecordDto) {
-        verifyCodeRecordDto.setSendTime(DateTimeUtil.getTodayLocalDateTime());
+        verifyCodeRecordDto.setSendTime(LocalDateTimeUtil.getTodayLocalDateTime());
         return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecordMapper.selectTodayLastRecord(VerifyCodeRecordConverter.CONVERTER.dtoToPojo(verifyCodeRecordDto)));
     }
 

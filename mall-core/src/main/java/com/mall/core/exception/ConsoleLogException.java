@@ -2,7 +2,7 @@ package com.mall.core.exception;
 
 
 import com.mall.core.foundation.BaseEnum;
-import com.mall.core.enums.RestCodeEnum;
+import com.mall.core.foundation.RestCodeEnum;
 import com.mall.core.foundation.BaseException;
 
 /**

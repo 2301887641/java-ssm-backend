@@ -10,7 +10,7 @@ import java.time.ZoneOffset;
  * 时间工具类
  * @author suiguozhen on 19/01/29 10:34
  */
-public class DateTimeUtil {
+public class LocalDateTimeUtil {
     /**
      * 获取今日00:00的时间戳
      * @return Long

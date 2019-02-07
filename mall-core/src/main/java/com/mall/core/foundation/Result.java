@@ -2,7 +2,6 @@ package com.mall.core.foundation;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.mall.core.enums.RestCodeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
