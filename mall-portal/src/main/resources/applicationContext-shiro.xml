@@ -17,6 +17,8 @@
                 </bean>
             </property>
         </bean>
+        <!--shiro自定义拦截表单验证-->
+        <bean id="loginAuthenticationFilter" class="com.mall.security.filter.LoginAuthenticationFilter"/>
         <!--安全管理器-->
         <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
             <!--将自定义realm注入到securityManager-->
@@ -32,12 +34,19 @@
             <property name="successUrl" value="/index.html"/>
             <!--未授权页面-->
             <property name="unauthorizedUrl" value="/login2.html"/>
+            <!--配置过滤器-->
+            <property name="filters">
+                <map>
+                    <entry key="authc" value-ref="loginAuthenticationFilter"/>
+                </map>
+            </property>
             <!--过滤链定义-->
             <property name="filterChainDefinitions">
                 <value>
                     /css/** = anon
                     /js/** = anon
                     /images/** = anon
+                    /captcha.do = anon
                     /login.jspx = authc
                     /** = authc
                 </value>
