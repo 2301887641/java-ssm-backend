@@ -52,4 +52,8 @@
     <servlet-name>dispatchServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>dispatchServlet</servlet-name>
+    <url-pattern>*.jspx</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -27,16 +27,19 @@
             <!--注入安全管理器-->
             <property name="securityManager" ref="securityManager"/>
             <!--登录链接-->
-            <property name="loginUrl" value="/login.html"/>
+            <property name="loginUrl" value="/login.jspx"/>
             <!--成功登录链接-->
             <property name="successUrl" value="/index.html"/>
             <!--未授权页面-->
-            <property name="unauthorizedUrl" value="/login.html"/>
+            <property name="unauthorizedUrl" value="/login2.html"/>
             <!--过滤链定义-->
             <property name="filterChainDefinitions">
                 <value>
-                    /login.html=anon
-                    /**=authc
+                    /css/** = anon
+                    /js/** = anon
+                    /images/** = anon
+                    /login.jspx = anon
+                    /** = authc
                 </value>
             </property>
         </bean>

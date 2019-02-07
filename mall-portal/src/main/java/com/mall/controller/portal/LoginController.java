@@ -12,9 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
@@ -32,8 +30,13 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/login.html")
+    @GetMapping("/login.jspx")
     public String toLogin() {
+        return FrontUtil.getTemplatePath(TEMPLATE_DIR,TEMPLATE_NAME);
+    }
+
+    @GetMapping("/login.do")
+    public String toLogin1() {
         return FrontUtil.getTemplatePath(TEMPLATE_DIR,TEMPLATE_NAME);
     }
 

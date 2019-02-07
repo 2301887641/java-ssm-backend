@@ -1,4 +1,4 @@
-package com.mall.handler;
+package com.mall.dao.handler;
 
 import com.mall.core.foundation.BaseEnumTypeHandler;
 import com.mall.core.foundation.BaseEnum;

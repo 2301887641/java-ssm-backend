@@ -7,25 +7,17 @@
 </head>
 <body>
 <form id="form" action="#">
-       <p>注册用户</p>
-    <input type="hidden" name="verifyCodeType" value="1">
-       <p>请输入手机号:<input name="phone" value="15254124776"></p>
-       <p>验证码:<input name="captcha">  <img src="/captcha.do"></p>
-        <button type="button" id="register">获取验证码</button>
+       <p>登录</p>
+       <p>请输入手机号:<input name="username" value="15254124776"></p>
+       <p>密码:<input name="password"></p>
+        <button type="button" id="login">登录</button>
 </form>
 
-<form id="form2" action="#">
-    <p>注册用户二</p>
-    <input type="hidden" name="phone" value="15254124771">
-    <p>请输入密码:<input type="password" name="password"></p>
-    <p>验证码:<input name="verifyCode"></p>
-    <button type="button" id="register2">提交注册</button>
-</form>
 
 </body>
 </html>
 <script>
-    $("#register").click(function(){
+    $("#login").click(function(){
          $.ajax({
              url:"/smsCode.do",
              type:"post",
