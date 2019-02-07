@@ -1,4 +1,4 @@
-package com.mall.annotation;
+package com.mall.core.annotation;
 
 import java.lang.annotation.*;
 

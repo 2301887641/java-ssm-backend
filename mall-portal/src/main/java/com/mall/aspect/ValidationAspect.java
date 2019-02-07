@@ -18,7 +18,7 @@ import org.springframework.validation.Errors;
 @Aspect
 public class ValidationAspect {
 
-    @Pointcut("@annotation(com.mall.annotation.DoValid)")
+    @Pointcut("@annotation(com.mall.core.annotation.DoValid)")
     public void pointcut() {
     }
 
