@@ -33,6 +33,11 @@
             <!--未授权页面-->
             <property name="unauthorizedUrl" value="/login.html"/>
             <!--过滤链定义-->
-            <property name="filterChainDefinitions" value="/**=authc"/>
+            <property name="filterChainDefinitions">
+                <value>
+                    /login.html=anon
+                    /**=authc
+                </value>
+            </property>
         </bean>
 </beans>
