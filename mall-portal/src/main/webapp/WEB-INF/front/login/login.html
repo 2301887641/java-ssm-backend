@@ -19,7 +19,7 @@
 <script>
     $("#login").click(function(){
          $.ajax({
-             url:"/smsCode.do",
+             url:"/login.jspx",
              type:"post",
              data:$("#form").serialize(),
              dataType:"json",
@@ -29,15 +29,4 @@
          })
     })
 
-    $("#register2").click(function(){
-        $.ajax({
-            url:"/register.do",
-            type:"post",
-            data:$("#form2").serialize(),
-            dataType:"json",
-            success:function(data){
-                console.log(data)
-            }
-        })
-    })
 </script>

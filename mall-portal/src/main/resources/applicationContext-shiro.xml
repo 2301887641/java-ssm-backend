@@ -38,7 +38,7 @@
                     /css/** = anon
                     /js/** = anon
                     /images/** = anon
-                    /login.jspx = anon
+                    /login.jspx = authc
                     /** = authc
                 </value>
             </property>
