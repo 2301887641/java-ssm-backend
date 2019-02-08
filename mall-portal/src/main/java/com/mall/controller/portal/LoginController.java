@@ -9,6 +9,7 @@ import com.mall.manager.util.ShiroUtil;
 import com.mall.service.api.UserService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.service.dto.VerifyCodeRecordDto;
+import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -44,28 +45,29 @@ public class LoginController {
 
     @GetMapping("/login.jspx")
     public String toLogin() {
-        return FrontUtil.getTemplatePath(TEMPLATE_DIR,TEMPLATE_NAME);
+        return FrontUtil.getTemplatePath(TEMPLATE_DIR, TEMPLATE_NAME);
     }
 
     @PostMapping("/login.jspx")
     @ResponseBody
-    public Result<Void> doLogin(HttpServletRequest request,@NotBlank(message = "{phone.required}") String username,
+    public Result<Void> doLogin(HttpServletRequest request, @NotBlank(message = "{phone.required}") String username,
                                 @NotBlank(message = "{password.required}") String password,
                                 @NotBlank(message = "{verifyCode.required}") String captcha) {
+        Subject subject = ShiroUtil.getSubject();
         try {
             VerifyCodeRecordDto verifyCodeRecordDto = (VerifyCodeRecordDto) request.getSession().getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
             Result<Void> validate = verifyCodeService.validate(VerifyCodeTypeEnum.CAPTCHA, verifyCodeRecordDto, captcha);
-            if(!validate.isSuccess()){
+            if (!validate.isSuccess()) {
                 return validate;
             }
-            Subject subject = ShiroUtil.getSubject();
             subject.login(new UsernamePasswordToken(username, password));
-        } catch (UnknownAccountException e) {
+        } catch (UnknownAccountException | IncorrectCredentialsException e) {
             return Result.failed(SpringUtil.getMessage("validation.user.isNull"));
-        } catch(){
-
         }
-        return Result.success();
+        if(subject.isAuthenticated()){
+            return Result.success();
+        }
+        return Result.failed(SpringUtil.getMessage("validation.user.isNull"));
     }
 
     @GetMapping("/logout.jspx")

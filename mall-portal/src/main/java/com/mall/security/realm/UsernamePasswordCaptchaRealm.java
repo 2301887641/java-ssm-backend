@@ -32,6 +32,6 @@ public class UsernamePasswordCaptchaRealm extends AuthorizingRealm {
         if(Objects.isNull(userDto)){
             throw new UnknownAccountException();
         }
-        return new SimpleAuthenticationInfo();
+        return new SimpleAuthenticationInfo(userDto,userDto.getPassword(),getName());
     }
 }

@@ -40,8 +40,10 @@
                     /css/** = anon
                     /js/** = anon
                     /images/** = anon
-                    /captcha.do = anon
+                    /captcha.jspx = anon
+                    /smsCode.jspx = anon
                     /login.jspx = anon
+                    /register.jspx = anon
                     /** = authc
                 </value>
             </property>

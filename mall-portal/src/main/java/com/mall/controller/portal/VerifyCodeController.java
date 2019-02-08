@@ -36,7 +36,7 @@ public class VerifyCodeController {
      * @param captcha        验证码 注册时需要
      * @return Result
      */
-    @PostMapping("/smsCode.do")
+    @PostMapping("/smsCode.jspx")
     public Result<String> smsCode(@NotNull(message = "{phone.required}")
                                 @Pattern(message = "{phone.incorrect.format}",
                                         regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,

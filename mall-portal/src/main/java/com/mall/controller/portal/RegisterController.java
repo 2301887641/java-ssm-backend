@@ -70,7 +70,7 @@ public class RegisterController {
         if(!result.isSuccess()){
                return result;
         }
-        userService.save(UserDto.of(phone,StringUtil.createFullName()+RandomStringUtils.randomNumeric(Integer.parseInt(SpringUtil.getPropertiesValue("nickname.random.length"))),SecurityUtil.messageDigest(password)));
+        userService.save(UserDto.of(phone,StringUtil.createFullName()+RandomStringUtils.randomNumeric(Integer.parseInt(SpringUtil.getPropertiesValue("nickname.random.length"))), ShiroUtil.sha256(password,phone)));
         return Result.success();
     }
 
