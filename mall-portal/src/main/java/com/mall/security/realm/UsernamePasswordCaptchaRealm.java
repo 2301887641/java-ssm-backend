@@ -22,9 +22,7 @@ public class UsernamePasswordCaptchaRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
-        if(Objects.nonNull(usernamePasswordToken)){
-            throw new UnknownAccountException("abcasdfsa");
-        }
+
         return null;
     }
 }

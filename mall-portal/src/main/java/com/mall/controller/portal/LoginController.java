@@ -5,6 +5,7 @@ import com.mall.core.constant.ConstantsPool;
 import com.mall.core.foundation.Result;
 import com.mall.core.util.FrontUtil;
 import com.mall.service.api.UserService;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -37,7 +39,9 @@ public class LoginController {
 
     @PostMapping("/login.jspx")
     @ResponseBody
-    public Result<Void> doLogin(@NotBlank(message = "{phone.required}") String username, @NotBlank(message = "{password.required}") String password) {
+    public Result<Void> doLogin(HttpServletRequest request,@NotBlank(message = "{phone.required}") String username,
+                                @NotBlank(message = "{password.required}") String password,
+                                @NotBlank(message = "{verifyCode.required}") String captcha) {
 
         return Result.success();
     }

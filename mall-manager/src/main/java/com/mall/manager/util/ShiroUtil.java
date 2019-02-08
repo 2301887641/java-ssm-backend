@@ -1,7 +1,10 @@
 package com.mall.manager.util;
 
 import com.mall.manager.context.SpringUtil;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 
 /**
  * shiro的md5以及散列
@@ -51,5 +54,13 @@ public class ShiroUtil {
      */
     public static String sha256(String message,String salt){
         return new SimpleHash("SHA-256",message,salt,hashIterations).toString();
+    }
+
+    public static Session getSession(){
+        return SecurityUtils.getSubject().getSession();
+    }
+
+    public static Subject getSubject(){
+        return SecurityUtils.getSubject();
     }
 }
