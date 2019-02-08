@@ -15,9 +15,6 @@ public class UserDto extends BaseDto{
     private String username;
     private String password;
     private String email;
-    private String question;
-    private String answer;
-    private Integer role;
 
     public static UserDto of(String username,String nickname,String password){
         UserDto userDto = new UserDto();

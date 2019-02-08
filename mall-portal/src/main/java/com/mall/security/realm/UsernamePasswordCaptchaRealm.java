@@ -6,6 +6,7 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;
@@ -32,6 +33,6 @@ public class UsernamePasswordCaptchaRealm extends AuthorizingRealm {
         if(Objects.isNull(userDto)){
             throw new UnknownAccountException();
         }
-        return new SimpleAuthenticationInfo(userDto,userDto.getPassword(),getName());
+        return new SimpleAuthenticationInfo(userDto,userDto.getPassword(), ByteSource.Util.bytes(userName),getName());
     }
 }
