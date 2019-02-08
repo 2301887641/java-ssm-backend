@@ -5,7 +5,6 @@
         id,
         username,
         email,
-        role,
         create_time
     </sql>
 
@@ -30,9 +29,9 @@
         where username = #{username}
     </select>
 
-    <select id="selectByUsername" resultMap="selectByUsernameColumn">
+    <select id="selectByUsername" resultMap="baseResultMap">
         select
-        <include refid="baseColumn"/>
+        <include refid="selectByUsernameColumn"/>
         from mall_user as a
         where username = #{username}
     </select>

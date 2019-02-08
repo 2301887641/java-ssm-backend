@@ -10,6 +10,7 @@ import com.mall.core.util.StringUtil;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
 import com.mall.manager.context.SpringUtil;
+import com.mall.manager.util.ShiroUtil;
 import com.mall.service.api.UserService;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
@@ -54,12 +55,12 @@ public class RegisterController {
     @Autowired
     private VerifyCodeRecordService verifyCodeRecordService;
 
-    @GetMapping("/register.do")
+    @GetMapping("/register.jspx")
     public String toRegister() {
         return FrontUtil.getTemplatePath(TEMPLATE_DIR, TEMPLATE_NAME);
     }
 
-    @PostMapping("/register.do")
+    @PostMapping("/register.jspx")
     @ResponseBody
     public Result<Void> doRegister(@NotNull(message = "{phone.required}") @Pattern(message = "{phone.incorrect.format}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                    @Pattern(message = "{password.incorrect.format}",regexp= ConstantsPool.Regexp.PASSWORD_PATTERN )String password,
@@ -78,10 +79,10 @@ public class RegisterController {
      * @param session  session对象
      * @param response 响应对象
      */
-    @GetMapping("/captcha.do")
+    @GetMapping("/captcha.jspx")
     public void captcha(HttpSession session, HttpServletResponse response) {
         String text = captchaProducer.createText();
-        session.setAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME,VerifyCodeRecordDto.of(text, LocalDateTime.now().plusSeconds(Long.parseLong(SpringUtil.getPropertiesValue("captchaCode.expire.time")))));
+        ShiroUtil.getSession().setAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME,VerifyCodeRecordDto.of(text, LocalDateTime.now().plusSeconds(Long.parseLong(SpringUtil.getPropertiesValue("captchaCode.expire.time")))));
         try {
             ImageIO.write(captchaProducer.createImage(text), ConstantsPool.Img.IMG_JPG, response.getOutputStream());
         } catch (Exception e) {

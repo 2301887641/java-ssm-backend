@@ -4,11 +4,12 @@ import com.mall.core.constant.ConstantsPool;
 import com.mall.core.foundation.Result;
 import com.mall.core.util.FrontUtil;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
+import com.mall.manager.context.SpringUtil;
 import com.mall.manager.util.ShiroUtil;
 import com.mall.service.api.UserService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.service.dto.VerifyCodeRecordDto;
-import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.hibernate.validator.constraints.NotBlank;
@@ -59,8 +60,10 @@ public class LoginController {
             }
             Subject subject = ShiroUtil.getSubject();
             subject.login(new UsernamePasswordToken(username, password));
-        } catch (AuthenticationException e) {
-            e.fillInStackTrace();
+        } catch (UnknownAccountException e) {
+            return Result.failed(SpringUtil.getMessage("validation.user.isNull"));
+        } catch(){
+
         }
         return Result.success();
     }

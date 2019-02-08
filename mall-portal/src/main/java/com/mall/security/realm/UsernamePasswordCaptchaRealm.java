@@ -29,7 +29,7 @@ public class UsernamePasswordCaptchaRealm extends AuthorizingRealm {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
         UserDto userDto = userService.getByUsername(usernamePasswordToken.getUsername());
         if(Objects.isNull(userDto)){
-            return
+            throw new UnknownAccountException();
         }
         // 获取用户名
         String userName = (String) authenticationToken.getPrincipal();
