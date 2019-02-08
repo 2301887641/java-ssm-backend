@@ -6,6 +6,8 @@ package com.mall.core.util;
  * @author suiguozhen on 19/01/26 10:30
  */
 public class FrontUtil {
+    private static final String FRONT = "front";
+
     /**
      * 获取模板路径
      *
@@ -14,6 +16,6 @@ public class FrontUtil {
      * @return String
      */
     public static String getTemplatePath(String dir, String templateName) {
-        return "/front/" + dir + "/" + templateName;
+        return "/" + FRONT + "/" + dir + "/" + templateName;
     }
 }

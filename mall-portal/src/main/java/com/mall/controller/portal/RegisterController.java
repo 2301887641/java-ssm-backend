@@ -76,11 +76,10 @@ public class RegisterController {
 
     /**
      * 验证码
-     * @param session  session对象
      * @param response 响应对象
      */
     @GetMapping("/captcha.jspx")
-    public void captcha(HttpSession session, HttpServletResponse response) {
+    public void captcha(HttpServletResponse response) {
         String text = captchaProducer.createText();
         ShiroUtil.getSession().setAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME,VerifyCodeRecordDto.of(text, LocalDateTime.now().plusSeconds(Long.parseLong(SpringUtil.getPropertiesValue("captchaCode.expire.time")))));
         try {

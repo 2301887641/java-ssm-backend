@@ -7,6 +7,7 @@ import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
 import com.mall.dao.mapper.VerifyCodeMapper;
 import com.mall.manager.context.SpringUtil;
+import com.mall.manager.util.ShiroUtil;
 import com.mall.manager.verifyCode.api.Sender;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
@@ -83,6 +84,9 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
                 return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
             }
             verifyCodeRecordService.updateForIsChecked(verifyCodeRecordDto.getId(),true);
+        }
+        if(VerifyCodeTypeEnum.CAPTCHA.equals(verifyCodeTypeEnum)){
+            ShiroUtil.getSession().removeAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
         }
         return Result.success();
     }

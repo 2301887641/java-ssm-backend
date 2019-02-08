@@ -26,13 +26,12 @@ public class UsernamePasswordCaptchaRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) authenticationToken;
-        UserDto userDto = userService.getByUsername(usernamePasswordToken.getUsername());
+        // 获取用户名
+        String userName = (String) authenticationToken.getPrincipal();
+        UserDto userDto = userService.getByUsername(userName);
         if(Objects.isNull(userDto)){
             throw new UnknownAccountException();
         }
-        // 获取用户名
-        String userName = (String) authenticationToken.getPrincipal();
         return new SimpleAuthenticationInfo();
     }
 }

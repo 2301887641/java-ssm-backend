@@ -68,7 +68,7 @@ public class LoginController {
         return Result.success();
     }
 
-    @GetMapping("/logout.do")
+    @GetMapping("/logout.jspx")
     public Result<Void> logout(HttpSession session) {
         session.removeAttribute(ConstantsPool.Session.USER_SESSION_NAME);
         return Result.success();
