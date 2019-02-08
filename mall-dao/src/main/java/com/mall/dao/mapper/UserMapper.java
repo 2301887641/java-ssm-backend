@@ -19,10 +19,9 @@ public interface UserMapper {
     /**
      * 用户登录
      * @param username 姓名
-     * @param password 密码
      * @return user
      */
-    User selectByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+    User selectByUsername(String username);
 
     /**
      * 用户注册

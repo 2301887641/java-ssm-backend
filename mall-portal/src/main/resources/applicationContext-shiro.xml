@@ -18,7 +18,7 @@
             </property>
         </bean>
         <!--shiro自定义拦截表单验证-->
-        <bean id="loginAuthenticationFilter" class="com.mall.security.filter.LoginAuthenticationFilter"/>
+        <!--<bean id="loginAuthenticationFilter" class="com.mall.security.filter.LoginAuthenticationFilter"/>-->
         <!--安全管理器-->
         <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
             <!--将自定义realm注入到securityManager-->

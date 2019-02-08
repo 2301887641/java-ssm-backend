@@ -11,10 +11,9 @@ public interface UserService{
     /**
      * 登录接口
      * @param username 姓名
-     * @param password 密码
      * @return userDto
      */
-    UserDto getByUsernameAndPassword(String username, String password);
+    UserDto getByUsername(String username);
 
     /**
      * 用户注册

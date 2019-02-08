@@ -5,15 +5,20 @@
         id,
         username,
         email,
-        phone,
-        question,
-        answer,
         role,
+        create_time
+    </sql>
+
+    <sql id="selectByUsernameColumn">
+        id,
+        password,
+        username,
         create_time
     </sql>
 
     <resultMap id="baseResultMap" type="com.mall.dao.pojo.User">
         <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
     </resultMap>
@@ -25,11 +30,11 @@
         where username = #{username}
     </select>
 
-    <select id="selectByUsernameAndPassword" resultMap="baseResultMap">
+    <select id="selectByUsername" resultMap="selectByUsernameColumn">
         select
         <include refid="baseColumn"/>
         from mall_user as a
-        where username = #{username} and password = #{password}
+        where username = #{username}
     </select>
 
     <insert id="save">

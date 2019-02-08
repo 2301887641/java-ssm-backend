@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public UserDto getByUsernameAndPassword(String username, String password) {
-        return UserConverter.CONVERTER.pojoToDto(userMapper.selectByUsernameAndPassword(username, password));
+    public UserDto getByUsername(String username) {
+        return UserConverter.CONVERTER.pojoToDto(userMapper.selectByUsername(username));
     }
 
     @Transactional(rollbackFor = {Exception.class})
