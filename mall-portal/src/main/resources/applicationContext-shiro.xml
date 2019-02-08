@@ -43,6 +43,7 @@
                     /captcha.jspx = anon
                     /smsCode.jspx = anon
                     /login.jspx = anon
+                    /logout.jspx = authc
                     /register.jspx = anon
                     /** = authc
                 </value>

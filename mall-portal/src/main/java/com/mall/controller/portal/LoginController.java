@@ -71,8 +71,9 @@ public class LoginController {
     }
 
     @GetMapping("/logout.jspx")
-    public Result<Void> logout(HttpSession session) {
-        session.removeAttribute(ConstantsPool.Session.USER_SESSION_NAME);
+    public Result<Void> logout() {
+        Subject subject = ShiroUtil.getSubject();
+        subject.logout();
         return Result.success();
     }
 }
