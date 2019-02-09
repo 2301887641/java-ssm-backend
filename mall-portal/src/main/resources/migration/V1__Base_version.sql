@@ -4,11 +4,11 @@
 DROP TABLE IF EXISTS `mall_user`;
 CREATE TABLE `mall_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户表id',
-  `nickname` varchar(50) NOT NULL COMMENT '昵称',
-  `username` varchar(50) NOT NULL COMMENT '用户名 就是手机号',
-  `password` varchar(64) NOT NULL COMMENT '用户密码，MD5加密或sha256散列加密',
-  `email` varchar(50) DEFAULT NULL,
-  `is_admin` tinyint(1) NOT NULL default 1 COMMENT '是否管理员 1不是 2是',
+  `nickname` varchar(50) not null COMMENT '昵称',
+  `username` varchar(50) not null COMMENT '用户名 就是手机号',
+  `password` varchar(64) not null COMMENT '用户密码，MD5加密或sha256散列加密',
+  `email` varchar(50) default "",
+  `is_admin` tinyint(1) not null default 0 COMMENT '是否管理员 0不是 1是',
   create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
@@ -41,9 +41,9 @@ CREATE TABLE mall_verify_code (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
-  type tinyint(1) not null default 0 comment "验证码业务类型",
-  template varchar(150) not null default "" comment "模板内容",
-  template_name varchar(30) not null default "" comment "模板名称",
+  type tinyint(1) not null comment "验证码业务类型",
+  template varchar(150) not null comment "模板内容",
+  template_name varchar(30) not null comment "模板名称",
 	PRIMARY KEY (id),
 	UNIQUE KEY `type_unique` (`type`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -57,12 +57,27 @@ CREATE TABLE mall_verify_code_record (
 	id INT(11) NOT NULL AUTO_INCREMENT,
 	create_time timestamp  not null  default CURRENT_TIMESTAMP,
 	update_time timestamp  not null  default CURRENT_TIMESTAMP,
-	count int(10) default 1 comment "发送记录数",
+	count int(10) not null default 1 comment "发送记录数",
 	target char(11) not null comment "目标对象 手机号或邮箱",
-  code char(6) not null default "" comment "已发送验证码",
-  type tinyint(1) not null default 0 comment "验证码业务类型",
+  code char(6) not null comment "已发送验证码",
+  type tinyint(1) not null comment "验证码业务类型",
   send_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码发送时间 以这个时间为准因为发送和过期是同时插入实体的",
   expire_time timestamp not null  default CURRENT_TIMESTAMP comment "验证码过期时间",
   is_checked tinyint(1) not null default 0 comment "是否已验证 0没有 1已验证",
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for mall_category   商品分类表
+-- ----------------------------
+DROP TABLE IF EXISTS mall_category;
+CREATE TABLE mall_category (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	create_time timestamp  not null  default CURRENT_TIMESTAMP,
+	update_time timestamp  not null  default CURRENT_TIMESTAMP,
+	parent_id int(11) default 0 comment "父类id 0表示根节点",
+	name varchar(50) not null comment "分类名称",
+  status tinyint(1) default 0 comment "分类状态 0正常 1废弃",
+  sort int(4) default 0 comment '排序',
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
