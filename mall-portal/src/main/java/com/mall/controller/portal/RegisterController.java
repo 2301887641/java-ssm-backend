@@ -5,7 +5,6 @@ import com.mall.core.constant.ConstantsPool;
 import com.mall.core.exception.ConsoleLogException;
 import com.mall.core.foundation.Result;
 import com.mall.core.util.FrontUtil;
-import com.mall.core.util.SecurityUtil;
 import com.mall.core.util.StringUtil;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;

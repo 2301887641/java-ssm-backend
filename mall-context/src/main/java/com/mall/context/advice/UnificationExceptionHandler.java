@@ -1,4 +1,4 @@
-package com.mall.controller;
+package com.mall.context.advice;
 
 import com.mall.core.exception.BusinessException;
 import com.mall.core.exception.ConsoleLogException;
@@ -8,7 +8,6 @@ import com.mall.manager.context.SpringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

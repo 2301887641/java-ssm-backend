@@ -63,7 +63,7 @@
                         <value>dialect=mysql</value>
                     </property>
                 </bean>
-                <bean class="com.mall.dao.interceptor.BaseInterceptor"/>
+                <bean class="com.mall.context.interceptor.BaseInterceptor"/>
             </array>
         </property>
     </bean>

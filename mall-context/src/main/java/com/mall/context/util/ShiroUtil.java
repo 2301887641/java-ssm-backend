@@ -1,4 +1,4 @@
-package com.mall.manager.util;
+package com.mall.context.util;
 
 import com.mall.manager.context.SpringUtil;
 import org.apache.shiro.SecurityUtils;

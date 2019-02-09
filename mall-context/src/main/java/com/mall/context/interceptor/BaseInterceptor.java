@@ -1,4 +1,4 @@
-package com.mall.dao.interceptor;
+package com.mall.context.interceptor;
 
 import com.mall.core.foundation.BasePojo;
 import org.apache.ibatis.executor.Executor;

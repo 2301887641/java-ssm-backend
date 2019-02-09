@@ -12,6 +12,7 @@
         <module>mall-core</module>
         <module>mall-portal</module>
         <module>mall-manager</module>
+        <module>mall-context</module>
     </modules>
     <packaging>pom</packaging>
     <name>mall</name>
