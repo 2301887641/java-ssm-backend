@@ -37,7 +37,8 @@ public class VerifyCodeRecordServiceImpl implements VerifyCodeRecordService {
     public VerifyCodeRecordDto save(VerifyCodeRecordDto verifyCodeRecordDto) {
         VerifyCodeRecord verifyCodeRecord = VerifyCodeRecordConverter.CONVERTER.dtoToPojo(verifyCodeRecordDto);
         verifyCodeRecordMapper.save(verifyCodeRecord);
-        return VerifyCodeRecordConverter.CONVERTER.pojoToDto(verifyCodeRecord);
+        verifyCodeRecordDto.setId(verifyCodeRecord.getId());
+        return verifyCodeRecordDto;
     }
 
     @Transactional(rollbackFor = {Exception.class})

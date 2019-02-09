@@ -64,7 +64,7 @@
          update mall_verify_code_record
          set
          count = #{count},code = #{code},send_time = #{sendTime},expire_time = #{expireTime}
-         where target = #{target} and type = #{verifyCodeType}
+         where id = #{id}
     </update>
     <!--更新已检查-->
     <update id="updateForIsChecked">

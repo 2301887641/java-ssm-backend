@@ -10,7 +10,7 @@ public interface BaseMapper<T> {
      * @param t 泛型实体
      * @return 泛型
      */
-    T save(T t);
+    int save(T t);
 
     /**
      * 改
