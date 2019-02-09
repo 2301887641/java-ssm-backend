@@ -13,7 +13,7 @@
         template
     </sql>
 
-    <resultMap id="baseResultMap" type="com.mall.dao.pojo.VerifyCode">
+    <resultMap id="baseResultMap" type="com.mall.sender.verifyCode.pojo.VerifyCode">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="template" column="template" jdbcType="VARCHAR"/>
     </resultMap>
