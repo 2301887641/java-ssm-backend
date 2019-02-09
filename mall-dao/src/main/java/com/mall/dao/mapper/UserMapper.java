@@ -1,5 +1,6 @@
 package com.mall.dao.mapper;
 
+import com.mall.core.foundation.BaseMapper;
 import com.mall.dao.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
  * @author suiguozhen on 19/01/19 14:46
  */
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User> {
     /**
      * 根据用户主体数据进行查找
      * @param username 用户主体数据
@@ -22,10 +23,4 @@ public interface UserMapper {
      * @return user
      */
     User selectByUsername(String username);
-
-    /**
-     * 用户注册
-     * @param user user
-     */
-    void save(User user);
 }
