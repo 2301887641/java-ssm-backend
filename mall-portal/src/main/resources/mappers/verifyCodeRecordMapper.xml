@@ -34,7 +34,7 @@
     <select id="selectTodayLastRecord" resultMap="baseResultMap">
         select <include refid="baseColumn"/>
         from mall_verify_code_record
-        where target = #{target} and type = #{verifyCodeType} and send_time >= #{sendTime}
+        where target = #{target} and type = #{verifyCodeType} and create_time >= #{sendTime}
     </select>
     <!--统一插入-->
     <insert id="save">
