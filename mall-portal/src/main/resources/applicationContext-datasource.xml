@@ -50,7 +50,12 @@
         <!--数据源-->
         <property name="dataSource" ref="dataSource"/>
         <!--mapper.xml位置-->
-        <property name="mapperLocations" value="classpath:mappers/**.xml"/>
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:mappers/**.xml</value>
+                <value>classpath:senders/**.xml</value>
+            </array>
+        </property>
         <property name="typeAliasesPackage" value="com.mall.dao.pojo"/>
         <!--自定义类型处理器使用包扫描的方式-->
         <property name="typeHandlersPackage" value="com.mall.dao.handler"/>
@@ -69,7 +74,7 @@
     </bean>
     <!--mapper扫描接口-->
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.mall.dao.mapper"/>
+        <property name="basePackage" value="com.mall.dao.mapper,com.mall.sender.verifyCode.mapper"/>
     </bean>
     <!--事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
