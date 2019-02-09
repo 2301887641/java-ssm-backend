@@ -1,6 +1,5 @@
 package com.mall.context.util;
 
-import com.mall.manager.context.SpringUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;

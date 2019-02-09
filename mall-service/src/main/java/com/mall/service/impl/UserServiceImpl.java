@@ -1,10 +1,10 @@
 package com.mall.service.impl;
 
 
+import com.mall.context.util.SpringUtil;
 import com.mall.core.exception.BusinessException;
 import com.mall.dao.mapper.UserMapper;
 import com.mall.dao.pojo.User;
-import com.mall.manager.context.SpringUtil;
 import com.mall.service.api.UserService;
 import com.mall.service.converter.UserConverter;
 import com.mall.service.dto.UserDto;

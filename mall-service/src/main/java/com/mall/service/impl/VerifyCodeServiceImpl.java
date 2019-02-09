@@ -1,13 +1,13 @@
 package com.mall.service.impl;
 
+import com.mall.context.util.ShiroUtil;
+import com.mall.context.util.SpringUtil;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.exception.NetworkException;
 import com.mall.core.foundation.Result;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
 import com.mall.dao.mapper.VerifyCodeMapper;
-import com.mall.manager.context.SpringUtil;
-import com.mall.manager.util.ShiroUtil;
 import com.mall.manager.verifyCode.api.Sender;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;

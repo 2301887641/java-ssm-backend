@@ -1,11 +1,11 @@
 package com.mall.controller.portal;
 
+import com.mall.context.util.ShiroUtil;
+import com.mall.context.util.SpringUtil;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.foundation.Result;
 import com.mall.core.util.FrontUtil;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
-import com.mall.manager.context.SpringUtil;
-import com.mall.manager.util.ShiroUtil;
 import com.mall.service.api.UserService;
 import com.mall.service.api.VerifyCodeService;
 import com.mall.service.dto.VerifyCodeRecordDto;

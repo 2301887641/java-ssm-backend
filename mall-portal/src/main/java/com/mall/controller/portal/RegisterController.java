@@ -1,6 +1,8 @@
 package com.mall.controller.portal;
 
 import com.google.code.kaptcha.Producer;
+import com.mall.context.util.ShiroUtil;
+import com.mall.context.util.SpringUtil;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.exception.ConsoleLogException;
 import com.mall.core.foundation.Result;
@@ -8,8 +10,6 @@ import com.mall.core.util.FrontUtil;
 import com.mall.core.util.StringUtil;
 import com.mall.dao.enums.VerifyCodeBusinessEnum;
 import com.mall.dao.enums.VerifyCodeTypeEnum;
-import com.mall.manager.context.SpringUtil;
-import com.mall.manager.util.ShiroUtil;
 import com.mall.service.api.UserService;
 import com.mall.service.api.VerifyCodeRecordService;
 import com.mall.service.api.VerifyCodeService;
