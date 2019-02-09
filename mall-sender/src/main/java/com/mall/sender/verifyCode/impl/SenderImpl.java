@@ -1,7 +1,7 @@
-package com.mall.manager.verifyCode.impl;
+package com.mall.sender.verifyCode.impl;
 
-import com.mall.dao.enums.VerifyCodeTypeEnum;
-import com.mall.manager.verifyCode.api.Sender;
+import com.mall.sender.verifyCode.api.Sender;
+import com.mall.sender.verifyCode.enums.VerifyCodeTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ public class SenderImpl implements Sender {
     private static final Logger logger = LoggerFactory.getLogger(SenderImpl.class);
 
     @Override
-    public void sendStrategy(VerifyCodeTypeEnum verifyCodeTypeEnum,String target,String code,String template) {
+    public void sendStrategy(VerifyCodeTypeEnum verifyCodeTypeEnum, String target, String code, String template) {
         if(VerifyCodeTypeEnum.SMS.equals(verifyCodeTypeEnum)){
             sendSms(target,code,template);
         }

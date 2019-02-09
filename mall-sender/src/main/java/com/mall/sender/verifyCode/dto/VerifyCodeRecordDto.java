@@ -1,6 +1,7 @@
-package com.mall.service.dto;
+package com.mall.sender.verifyCode.dto;
 
-import com.mall.dao.enums.VerifyCodeBusinessEnum;
+import com.mall.core.foundation.BaseDto;
+import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-public class VerifyCodeRecordDto extends BaseDto{
+public class VerifyCodeRecordDto extends BaseDto {
     private Integer id;
     private Integer count;
     private String code;

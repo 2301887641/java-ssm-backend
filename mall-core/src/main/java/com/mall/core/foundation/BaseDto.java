@@ -1,4 +1,4 @@
-package com.mall.service.dto;
+package com.mall.core.foundation;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
-package com.mall.dao.pojo;
+package com.mall.sender.verifyCode.pojo;
 
 import com.mall.core.foundation.BasePojo;
-import com.mall.dao.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
 import lombok.Getter;
 import lombok.Setter;
 

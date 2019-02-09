@@ -1,7 +1,7 @@
-package com.mall.service.converter;
+package com.mall.sender.verifyCode.converter;
 
-import com.mall.service.dto.VerifyCodeRecordDto;
-import com.mall.dao.pojo.VerifyCodeRecord;
+import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
+import com.mall.sender.verifyCode.pojo.VerifyCodeRecord;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

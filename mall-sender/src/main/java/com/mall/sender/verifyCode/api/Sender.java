@@ -1,6 +1,6 @@
-package com.mall.manager.verifyCode.api;
+package com.mall.sender.verifyCode.api;
 
-import com.mall.dao.enums.VerifyCodeTypeEnum;
+import com.mall.sender.verifyCode.enums.VerifyCodeTypeEnum;
 
 /**
  * 短信发送管理器接口
@@ -22,5 +22,5 @@ public interface Sender {
      * @param code  验证码
      * @param template  模板
      */
-    void sendStrategy(VerifyCodeTypeEnum verifyCodeTypeEnum,String target,String code,String template);
+    void sendStrategy(VerifyCodeTypeEnum verifyCodeTypeEnum, String target, String code, String template);
 }

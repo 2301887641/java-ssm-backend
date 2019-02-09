@@ -1,10 +1,10 @@
-package com.mall.service.api;
+package com.mall.sender.verifyCode.api;
 
 import com.mall.core.foundation.Result;
-import com.mall.dao.enums.VerifyCodeBusinessEnum;
-import com.mall.dao.enums.VerifyCodeTypeEnum;
-import com.mall.service.dto.VerifyCodeDto;
-import com.mall.service.dto.VerifyCodeRecordDto;
+import com.mall.sender.verifyCode.dto.VerifyCodeDto;
+import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
+import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.verifyCode.enums.VerifyCodeTypeEnum;
 
 /**
  * 验证码服务类
@@ -19,7 +19,7 @@ public interface VerifyCodeService {
      * @param verifyCodeBusinessEnum 验证码枚举
      * @return Result
      */
-    Result<String> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum,String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum);
+    Result<String> sendCode(VerifyCodeTypeEnum verifyCodeTypeEnum, String target, VerifyCodeBusinessEnum verifyCodeBusinessEnum);
 
     /**
      * 校验验证码 图片验证码 短信验证码

@@ -1,8 +1,8 @@
-package com.mall.dao.mapper;
+package com.mall.sender.verifyCode.mapper;
 
 
 import com.mall.core.foundation.BaseMapper;
-import com.mall.dao.pojo.VerifyCodeRecord;
+import com.mall.sender.verifyCode.pojo.VerifyCodeRecord;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -23,5 +23,5 @@ public interface VerifyCodeRecordMapper extends BaseMapper<VerifyCodeRecord> {
      * @param id    id定位
      * @param isChecked 布尔值
      */
-    void updateForIsChecked(@Param("id")Integer id,@Param("isChecked")Boolean isChecked);
+    void updateForIsChecked(@Param("id") Integer id, @Param("isChecked") Boolean isChecked);
 }

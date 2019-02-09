@@ -1,11 +1,11 @@
-package com.mall.service.impl;
+package com.mall.sender.verifyCode.impl;
 
 import com.mall.core.util.LocalDateTimeUtil;
-import com.mall.dao.mapper.VerifyCodeRecordMapper;
-import com.mall.dao.pojo.VerifyCodeRecord;
-import com.mall.service.api.VerifyCodeRecordService;
-import com.mall.service.converter.VerifyCodeRecordConverter;
-import com.mall.service.dto.VerifyCodeRecordDto;
+import com.mall.sender.verifyCode.api.VerifyCodeRecordService;
+import com.mall.sender.verifyCode.converter.VerifyCodeRecordConverter;
+import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
+import com.mall.sender.verifyCode.mapper.VerifyCodeRecordMapper;
+import com.mall.sender.verifyCode.pojo.VerifyCodeRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

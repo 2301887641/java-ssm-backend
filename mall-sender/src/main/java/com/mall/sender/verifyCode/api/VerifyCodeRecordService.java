@@ -1,7 +1,6 @@
-package com.mall.service.api;
+package com.mall.sender.verifyCode.api;
 
-import com.mall.service.dto.VerifyCodeRecordDto;
-import com.mall.dao.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
 
 /**
  * @author suiguozhen on 19-1-27 下午8:13

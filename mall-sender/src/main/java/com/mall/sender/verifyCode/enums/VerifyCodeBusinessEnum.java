@@ -1,4 +1,4 @@
-package com.mall.dao.enums;
+package com.mall.sender.verifyCode.enums;
 
 import com.mall.core.foundation.BaseEnum;
 import lombok.Getter;

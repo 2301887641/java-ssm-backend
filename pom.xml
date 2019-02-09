@@ -13,6 +13,7 @@
         <module>mall-portal</module>
         <module>mall-manager</module>
         <module>mall-context</module>
+        <module>mall-sender</module>
     </modules>
     <packaging>pom</packaging>
     <name>mall</name>

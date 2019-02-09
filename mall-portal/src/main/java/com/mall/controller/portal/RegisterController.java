@@ -8,13 +8,13 @@ import com.mall.core.exception.ConsoleLogException;
 import com.mall.core.foundation.Result;
 import com.mall.core.util.FrontUtil;
 import com.mall.core.util.StringUtil;
-import com.mall.dao.enums.VerifyCodeBusinessEnum;
-import com.mall.dao.enums.VerifyCodeTypeEnum;
+import com.mall.sender.verifyCode.api.VerifyCodeRecordService;
+import com.mall.sender.verifyCode.api.VerifyCodeService;
+import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
+import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.verifyCode.enums.VerifyCodeTypeEnum;
 import com.mall.service.api.UserService;
-import com.mall.service.api.VerifyCodeRecordService;
-import com.mall.service.api.VerifyCodeService;
 import com.mall.service.dto.UserDto;
-import com.mall.service.dto.VerifyCodeRecordDto;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +63,7 @@ public class RegisterController {
     public Result<Void> doRegister(@NotNull(message = "{phone.required}") @Pattern(message = "{phone.incorrect.format}", regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                    @Pattern(message = "{password.incorrect.format}",regexp= ConstantsPool.Regexp.PASSWORD_PATTERN )String password,
                                    @NotBlank(message = "{verifyCode.required}")String verifyCode) {
-        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(VerifyCodeRecordDto.of(phone,VerifyCodeBusinessEnum.REGISTER));
+        VerifyCodeRecordDto verifyCodeRecordDto = verifyCodeRecordService.getTodayLastRecord(VerifyCodeRecordDto.of(phone, VerifyCodeBusinessEnum.REGISTER));
         Result<Void> result = verifyCodeService.validate(VerifyCodeTypeEnum.SMS,verifyCodeRecordDto, verifyCode);
         if(!result.isSuccess()){
                return result;
