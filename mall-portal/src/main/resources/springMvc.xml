@@ -4,8 +4,11 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
-    <!--配置包扫描-->
-    <context:component-scan base-package="com.mall.controller"/>
+    <!--配置包扫描 扫描所有 但只扫描controller和controllerAdvice-->
+    <context:component-scan base-package="com.mall" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
     <!--Spring处理返回值为String类型的结果时使用了StringHttpMessageConverter, 所以我们需要配置他的编码-->
     <mvc:annotation-driven validator="validator" conversion-service="conversionService">
        <mvc:message-converters>

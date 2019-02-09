@@ -21,7 +21,6 @@ import java.util.Set;
  * @author suiguozhen on 19/01/26 13:34
  */
 @ControllerAdvice
-@Controller
 @Slf4j
 public class UnificationExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(UnificationExceptionHandler.class);
