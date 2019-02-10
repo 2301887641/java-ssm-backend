@@ -1,6 +1,6 @@
-package com.mall.sender.verifyCode.api;
+package com.mall.sender.api;
 
-import com.mall.sender.verifyCode.enums.VerifyCodeTypeEnum;
+import com.mall.sender.enums.VerifyCodeTypeEnum;
 
 /**
  * 短信发送管理器接口

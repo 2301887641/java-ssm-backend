@@ -5,9 +5,9 @@ import com.mall.context.util.SpringUtil;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.foundation.Result;
 import com.mall.core.util.FrontUtil;
-import com.mall.sender.verifyCode.api.VerifyCodeService;
-import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
-import com.mall.sender.verifyCode.enums.VerifyCodeTypeEnum;
+import com.mall.sender.api.VerifyCodeService;
+import com.mall.sender.dto.VerifyCodeRecordDto;
+import com.mall.sender.enums.VerifyCodeTypeEnum;
 import com.mall.service.api.UserService;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -54,7 +54,7 @@ public class LoginController {
                                 @NotBlank(message = "{verifyCode.required}") String captcha) {
         Subject subject = ShiroUtil.getSubject();
         try {
-            VerifyCodeRecordDto verifyCodeRecordDto = (VerifyCodeRecordDto) request.getSession().getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
+            VerifyCodeRecordDto verifyCodeRecordDto = (VerifyCodeRecordDto) request.getSession().getAttribute(VerifyCodeService.CAPTCHA_SESSION_NAME);
             Result<Void> validate = verifyCodeService.validate(VerifyCodeTypeEnum.CAPTCHA, verifyCodeRecordDto, captcha);
             if (!validate.isSuccess()) {
                 return validate;

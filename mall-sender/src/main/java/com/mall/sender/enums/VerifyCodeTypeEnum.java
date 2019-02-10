@@ -1,4 +1,4 @@
-package com.mall.sender.verifyCode.enums;
+package com.mall.sender.enums;
 
 import com.mall.core.foundation.BaseEnum;
 import lombok.Getter;

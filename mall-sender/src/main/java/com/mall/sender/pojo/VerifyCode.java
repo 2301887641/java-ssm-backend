@@ -1,7 +1,7 @@
-package com.mall.sender.verifyCode.pojo;
+package com.mall.sender.pojo;
 
 import com.mall.core.foundation.BasePojo;
-import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.enums.VerifyCodeBusinessEnum;
 import lombok.Getter;
 import lombok.Setter;
 

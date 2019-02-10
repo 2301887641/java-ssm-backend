@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mall.sender.verifyCode.mapper.VerifyCodeMapper">
+<mapper namespace="com.mall.sender.mapper.VerifyCodeMapper">
     <sql id="baseColumn">
         id,
         type,
@@ -13,7 +13,7 @@
         template
     </sql>
 
-    <resultMap id="baseResultMap" type="com.mall.sender.verifyCode.pojo.VerifyCode">
+    <resultMap id="baseResultMap" type="com.mall.sender.pojo.VerifyCode">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="template" column="template" jdbcType="VARCHAR"/>
     </resultMap>

@@ -1,6 +1,6 @@
-package com.mall.sender.verifyCode.api;
+package com.mall.sender.api;
 
-import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
+import com.mall.sender.dto.VerifyCodeRecordDto;
 
 /**
  * @author suiguozhen on 19-1-27 下午8:13
