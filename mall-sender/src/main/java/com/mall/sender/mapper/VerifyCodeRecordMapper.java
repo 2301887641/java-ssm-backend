@@ -1,8 +1,8 @@
-package com.mall.sender.verifyCode.mapper;
+package com.mall.sender.mapper;
 
 
 import com.mall.core.foundation.BaseMapper;
-import com.mall.sender.verifyCode.pojo.VerifyCodeRecord;
+import com.mall.sender.pojo.VerifyCodeRecord;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

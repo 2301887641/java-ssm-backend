@@ -1,7 +1,7 @@
-package com.mall.sender.verifyCode.dto;
+package com.mall.sender.dto;
 
 import com.mall.core.foundation.BaseDto;
-import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.enums.VerifyCodeBusinessEnum;
 import lombok.Getter;
 import lombok.Setter;
 

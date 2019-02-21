@@ -1,19 +1,19 @@
-package com.mall.controller.portal;
+package com.mall.sender.controller;
 
 import com.google.common.base.Strings;
+import com.mall.context.util.ShiroUtil;
 import com.mall.context.util.SpringUtil;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.foundation.Result;
-import com.mall.sender.verifyCode.api.VerifyCodeService;
-import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
-import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
-import com.mall.sender.verifyCode.enums.VerifyCodeTypeEnum;
+import com.mall.sender.api.VerifyCodeService;
+import com.mall.sender.dto.VerifyCodeRecordDto;
+import com.mall.sender.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.enums.VerifyCodeTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -41,17 +41,15 @@ public class VerifyCodeController {
                                 @Pattern(message = "{phone.incorrect.format}",
                                         regexp = ConstantsPool.Regexp.PHONE_PATTERN) String phone,
                                 @NotNull(message = "{exception.network.error}") VerifyCodeBusinessEnum verifyCodeType,
-                                String captcha,
-                                HttpSession session) {
+                                String captcha) {
         if (VerifyCodeBusinessEnum.REGISTER.equals(verifyCodeType)) {
             if (Strings.isNullOrEmpty(captcha)) {
                 return Result.failed(SpringUtil.getMessage("verifyCode.required"));
             }
-            Result<Void> result = verifyCodeService.validate(VerifyCodeTypeEnum.CAPTCHA,(VerifyCodeRecordDto)(session.getAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME)),captcha);
+            Result<Void> result = verifyCodeService.validate(VerifyCodeTypeEnum.CAPTCHA,(VerifyCodeRecordDto)(ShiroUtil.getSession().getAttribute(VerifyCodeService.CAPTCHA_SESSION_NAME)),captcha);
             if (!result.isSuccess()) {
                 return Result.failed(result.getRestInfo());
             }
-            session.removeAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
         }
         return verifyCodeService.sendCode(VerifyCodeTypeEnum.SMS, phone, verifyCodeType);
     }

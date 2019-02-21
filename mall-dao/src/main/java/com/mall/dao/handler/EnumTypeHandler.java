@@ -2,7 +2,7 @@ package com.mall.dao.handler;
 
 import com.mall.core.foundation.BaseEnum;
 import com.mall.core.foundation.BaseEnumTypeHandler;
-import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.enums.VerifyCodeBusinessEnum;
 import org.apache.ibatis.type.MappedTypes;
 
 /**

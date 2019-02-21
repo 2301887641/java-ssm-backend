@@ -11,14 +11,7 @@ public interface ConstantsPool {
      * session相关
      */
     interface Session {
-        /**
-         * 用户的session name
-         */
-        String USER_SESSION_NAME = "user_login_session";
-        /**
-         * 验证码session name
-         */
-        String CAPTCHA_SESSION_NAME = "captcha_show";
+
     }
 
     /**

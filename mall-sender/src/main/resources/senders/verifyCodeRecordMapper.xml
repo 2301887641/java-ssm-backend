@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mall.sender.verifyCode.mapper.VerifyCodeRecordMapper">
+<mapper namespace="com.mall.sender.mapper.VerifyCodeRecordMapper">
     <sql id="baseColumn">
         id,
         type,
@@ -21,7 +21,7 @@
           expire_time
     </sql>
 
-    <resultMap id="baseResultMap" type="com.mall.sender.verifyCode.pojo.VerifyCodeRecord">
+    <resultMap id="baseResultMap" type="com.mall.sender.pojo.VerifyCodeRecord">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="verifyCodeType" column="type" jdbcType="INTEGER"/>
         <result property="target" column="target" jdbcType="VARCHAR"/>

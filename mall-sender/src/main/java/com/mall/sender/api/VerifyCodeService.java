@@ -1,17 +1,17 @@
-package com.mall.sender.verifyCode.api;
+package com.mall.sender.api;
 
 import com.mall.core.foundation.Result;
-import com.mall.sender.verifyCode.dto.VerifyCodeDto;
-import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
-import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
-import com.mall.sender.verifyCode.enums.VerifyCodeTypeEnum;
+import com.mall.sender.dto.VerifyCodeDto;
+import com.mall.sender.dto.VerifyCodeRecordDto;
+import com.mall.sender.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.enums.VerifyCodeTypeEnum;
 
 /**
  * 验证码服务类
  * @author suiguozhen on 19/01/24 10:56
  */
 public interface VerifyCodeService {
-
+    String CAPTCHA_SESSION_NAME = "captcha_show";
     /**
      * 发送短信或邮箱验证码
      * @param verifyCodeTypeEnum 类型 区分手机或邮箱

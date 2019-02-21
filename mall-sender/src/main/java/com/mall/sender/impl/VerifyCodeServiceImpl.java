@@ -1,19 +1,19 @@
-package com.mall.sender.verifyCode.impl;
+package com.mall.sender.impl;
 
 import com.mall.context.util.ShiroUtil;
 import com.mall.context.util.SpringUtil;
 import com.mall.core.constant.ConstantsPool;
 import com.mall.core.exception.NetworkException;
 import com.mall.core.foundation.Result;
-import com.mall.sender.verifyCode.api.Sender;
-import com.mall.sender.verifyCode.api.VerifyCodeRecordService;
-import com.mall.sender.verifyCode.api.VerifyCodeService;
-import com.mall.sender.verifyCode.converter.VerifyCodeConverter;
-import com.mall.sender.verifyCode.dto.VerifyCodeDto;
-import com.mall.sender.verifyCode.dto.VerifyCodeRecordDto;
-import com.mall.sender.verifyCode.enums.VerifyCodeBusinessEnum;
-import com.mall.sender.verifyCode.enums.VerifyCodeTypeEnum;
-import com.mall.sender.verifyCode.mapper.VerifyCodeMapper;
+import com.mall.sender.api.Sender;
+import com.mall.sender.api.VerifyCodeRecordService;
+import com.mall.sender.api.VerifyCodeService;
+import com.mall.sender.enums.VerifyCodeBusinessEnum;
+import com.mall.sender.enums.VerifyCodeTypeEnum;
+import com.mall.sender.converter.VerifyCodeConverter;
+import com.mall.sender.dto.VerifyCodeDto;
+import com.mall.sender.dto.VerifyCodeRecordDto;
+import com.mall.sender.mapper.VerifyCodeMapper;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +73,9 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public Result<Void> validate(VerifyCodeTypeEnum verifyCodeTypeEnum,VerifyCodeRecordDto verifyCodeRecordDto, String requestCode) {
+        if(VerifyCodeTypeEnum.CAPTCHA.equals(verifyCodeTypeEnum)){
+            ShiroUtil.getSession().removeAttribute(VerifyCodeService.CAPTCHA_SESSION_NAME);
+        }
         if (Objects.isNull(verifyCodeRecordDto) || LocalDateTime.now().isAfter(verifyCodeRecordDto.getExpireTime())) {
             return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
         }
@@ -84,9 +87,6 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
                 return Result.failed(SpringUtil.getMessage("verifyCode.expired"));
             }
             verifyCodeRecordService.updateForIsChecked(verifyCodeRecordDto.getId(),true);
-        }
-        if(VerifyCodeTypeEnum.CAPTCHA.equals(verifyCodeTypeEnum)){
-            ShiroUtil.getSession().removeAttribute(ConstantsPool.Session.CAPTCHA_SESSION_NAME);
         }
         return Result.success();
     }
