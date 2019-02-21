@@ -20,7 +20,7 @@
     <filter-name>shiroFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <!--配置spring的uhf-8转码-->
+  <!--配置spring的uhf-8转码 只能处理post请求..-->
   <filter>
     <filter-name>characterEncodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
