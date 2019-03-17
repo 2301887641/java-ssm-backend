@@ -3,7 +3,6 @@ package com.mall.dao.mapper;
 import com.mall.core.foundation.BaseMapper;
 import com.mall.dao.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 /**
  * @author suiguozhen on 19/01/19 14:46
